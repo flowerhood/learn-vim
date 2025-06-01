@@ -9,18 +9,33 @@
 </head>
 <body>
 	<h1>VIM学习笔记 编译文档(Compiling Latex)</h1>
+	<p>LaTeX是一种用于生成高印刷质量的科技和数学类文档的排版系统，可以生成包含复杂表格和数学公式的复杂文档。</p>
+	<p>LaTeX文档是一个以<kbd>.tex</kbd>扩展名的文本文件，可以使用任意的文本编辑器（比如Vim)编辑；在编辑完成后，可以编译为更容易阅读的文档格式（比如PDF）。</p>
 
 	<h2 class="article"><a id="TeX Live">TeX Live</a></h2>
-	<p><a href="https://tug.org/texlive/" title="TeX Live">TeX Live</a>是一种免费的跨平台TeX文档制作系统。它包括所有与TeX相关的主要程序、宏包和字体，支持全球多种语言。许多 Unix/GNU/Linux 操作系统通过自己的包管理器提供TeX Live。</p>
-	<p>以Debian为例，可以使用以下命令手动安装：</p>
-	<p style="text-indent:2em"><code class="inset">sudo apt -y install texlive</code></p>
+	<p><a href="https://tug.org/texlive/" title="TeX Live">TeX Live</a>是一种免费的跨平台TeX文档制作系统。它包括所有与TeX相关的主要程序、宏包和字体，支持全球多种语言。许多Unix/GNU/Linux操作系统通过自己的包管理器提供TeX Live，但强烈推荐您严格按照<a href="https://tug.org/texlive/quickinstall.html" title="Quick install for Unix">官方文档</a>进行手动安装。（另：<a href="https://tex.stackexchange.com/questions/1092/how-to-install-vanilla-texlive-on-debian-or-ubuntu" title="How to install "vanilla" TeXLive on Debian or Ubuntu?">参考</a>）</p>
+	<p>在安装之后，增加以下PATH路径：</p>
+	<pre class="block"><code class="inset">export PATH=$PATH:/usr/local/texlive/2025/bin/i386-linux
+export INFOPATH=$INFOPATH:/usr/local/texlive/2025/texmf-dist/doc/info
+export MANPATH=$MANPATH:/usr/local/texlive/2025/texmf-dist/doc/man</code></pre>
+	<p>同理，使用以下命令为sudo增加安全路径</p>
+	<p style="text-indent:2em"><code class="inset">$ sudo visudo</code></p>
+	<pre class="block"><code class="inset">Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/texlive/2025/bin/i386-linux"</code></pre>
+	<p>使用<a href="https://tug.org/texlive/doc/tlmgr.html" title="tlmgr">tlmgr</a>更新Tex Live系统以及安装的Packages：</p>
+	<p style="text-indent:2em"><code class="inset">$ sudo tlmgr update --self</code></p>
+	<p style="text-indent:2em"><code class="inset">$ sudo tlmgr update --all</code></p>
+	<p>如果在使用过程中，仍然出现类似以下缺失包的报错信息：</p>
+	<p><code class="error">! LaTeX Error: File `gb4e.sty' not found.</code></p>
+	<p>那么可以使用以下命令，进行手动安装：</p>
+	<p style="text-indent:2em"><code class="inset">$ sudo tlmgr install gb4e</code></p>
 
-	<h2 class="article"><a id=""></a></h2>
-	<p></p>
-	<a href="#" title=""></a>
+	<h2 class="article"><a id="Latex-Edit">编辑Latex文档</a></h2>
+	<p>Vim内置了<a href="https://vimhelp.org/syntax.txt.html#latex-syntax" title="latex-syntax">Latex</a>语法高亮度，可以很方便地编辑文档。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Latex-Syntax.png" title="Latex-Syntax"><img src="https://yyq123.github.io/learn-vim/images/Latex-Syntax.png" alt="Latex-Syntax" width="500" height="269" /></a></p>
 
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
+	<pre class="block"><code class="inset"></code></pre>
 
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 
