@@ -13,7 +13,7 @@
 	<p>LaTeX文档是一个以<kbd>.tex</kbd>扩展名的文本文件，可以使用任意的文本编辑器（比如Vim)编辑；在编辑完成后，可以编译为更容易阅读的文档格式（比如PDF）。</p>
 
 	<h2 class="article"><a id="TeX Live">TeX Live</a></h2>
-	<p><a href="https://tug.org/texlive/" title="TeX Live">TeX Live</a>是一种免费的跨平台TeX文档制作系统。它包括所有与TeX相关的主要程序、宏包和字体，支持全球多种语言。许多Unix/GNU/Linux操作系统通过自己的包管理器提供TeX Live，但强烈推荐您严格按照<a href="https://tug.org/texlive/quickinstall.html" title="Quick install for Unix">官方文档</a>进行手动安装。（另：<a href="https://tex.stackexchange.com/questions/1092/how-to-install-vanilla-texlive-on-debian-or-ubuntu" title="How to install "vanilla" TeXLive on Debian or Ubuntu?">参考</a>）</p>
+	<p><a href="https://tug.org/texlive/" title="TeX Live">TeX Live</a>是一种免费的跨平台TeX文档制作系统。它包括所有与TeX相关的主要程序、宏包和字体，支持全球多种语言。许多Unix/GNU/Linux操作系统通过自己的包管理器提供TeX Live，但<strong>强烈推荐您严格按照<a href="https://tug.org/texlive/quickinstall.html" title="Quick install for Unix">官方文档</a>进行手动安装</strong>。（另：<a href="https://tex.stackexchange.com/questions/1092/how-to-install-vanilla-texlive-on-debian-or-ubuntu" title="How to install "vanilla" TeXLive on Debian or Ubuntu?">参考</a>）</p>
 	<p>在安装之后，增加以下PATH路径：</p>
 	<pre class="block"><code class="inset">export PATH=$PATH:/usr/local/texlive/2025/bin/i386-linux
 export INFOPATH=$INFOPATH:/usr/local/texlive/2025/texmf-dist/doc/info
@@ -33,8 +33,21 @@ export MANPATH=$MANPATH:/usr/local/texlive/2025/texmf-dist/doc/man</code></pre>
 	<p>Vim内置了<a href="https://vimhelp.org/syntax.txt.html#latex-syntax" title="latex-syntax">Latex</a>语法高亮度，可以很方便地编辑文档。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Latex-Syntax.png" title="Latex-Syntax"><img src="https://yyq123.github.io/learn-vim/images/Latex-Syntax.png" alt="Latex-Syntax" width="500" height="269" /></a></p>
 
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
+	<h2 class="article"><a id="Latex-Compile">编译Latex文档</a></h2>
+	<p>在Vim命令行中执行<a href="https://tug.org/applications/pdftex/" title="pdfTeX">pdfTeX</a>命令，可以将Latex源文件编译为更容易阅读的PDF文件：</p>
+	<p style="text-indent:2em"><code class="inset">:!pdflatex sample.tex
+</code></p>
+	<p>默认情况下，将显示类似以下输出信息，并等待用户按回车键以返回到Vim：</p>
+	<p><code class="msg">Output written on sample.pdf (1 page, 66919 bytes).<br />
+Transcript written on sample.log.<br />
+Press ENTER or type command to continue</code></p>
+	
+	<h2 class="article"><a id="Latex-View-PDF">查看Latex输出文档</a></h2>
+	<p>命令执行成功后，将在同一目录下，生成一个同名的PDF文件。同时还会生成一些辅助文件，如sample.log，其中包含有关编译过程的详细信息。</p>
+	<p>使用以下命令，启动PDF查看器验证生成的输出结果：</p>
+	<p style="text-indent:2em"><code class="inset">:zathura sample.pdf</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/Latex-View-PDF.png" title="Latex-View-PDF"><img src="https://yyq123.github.io/learn-vim/images/Latex-View-PDF.png" alt="Latex-View-PDF" width="500" height="295" /></a></p>
+	<h2 class="article"><a id="Latex-UDC">自动化Latex编译和输出</a></h2>
 	<pre class="block"><code class="inset"></code></pre>
 
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
