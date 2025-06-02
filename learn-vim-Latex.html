@@ -48,8 +48,22 @@ Press ENTER or type command to continue</code></p>
 	<p style="text-indent:2em"><code class="inset">:zathura sample.pdf</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Latex-View-PDF.png" title="Latex-View-PDF"><img src="https://yyq123.github.io/learn-vim/images/Latex-View-PDF.png" alt="Latex-View-PDF" width="500" height="295" /></a></p>
 	<h2 class="article"><a id="Latex-UDC">自动化Latex编译和输出</a></h2>
-	<pre class="block"><code class="inset"></code></pre>
+	<p>在vimrc启动文件中自定义以下命令：</p>
+	<p style="text-indent:2em"><code class="inset">:command Latex execute "silent !pdflatex % > /dev/null && zathura %:r.pdf > /dev/null 2>&1 &" | redraw!</code></p>
+	<ul>
+		<li><code>silent</code>，将避免显示诸如 “Press ENTER to continue” 等命令执行过程中的提示信息；</li>
+		<li><code>pdlatex</code>，将编译当前文件， <code> % &gt; </code>将标准输出重定向到<code>/dev/null</code>而不是显示在屏幕上；</li>
+		<li><code>zathura</code>，用于查看生成的PDF文件，即以<code>%:r</code>指定的当前文件名，以<code>.pdf<code>指定的后缀扩展名；</li>
+		<li><code>redraw</code>，重画屏幕；</li>
+		<li><code></code>，；</li>
 
+	</ul>
+	<p>在命令行中执行以下自定义命令，将自动化使用pdflatex来编译文档，并使用Zathura来显示生成的PDF文件：</p>
+	<p style="text-indent:2em"><code class="inset">:Latex</code></p>
+	<p>您也可以在vimrc启动文件中自定义以下快捷键：</p>
+	<p style="text-indent:2em"><code class="inset">:map <F2> :Latex <CR></code></p>
+
+	<pre class="block"><code class="inset"></code></pre>
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
 
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
