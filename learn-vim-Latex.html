@@ -10,15 +10,15 @@
 <body>
 	<h1>VIM学习笔记 编译文档(Compiling Latex)</h1>
 	<p>LaTeX是一种用于生成高印刷质量的科技和数学类文档的排版系统，可以生成包含复杂表格和数学公式的复杂文档。</p>
-	<p>LaTeX文档是一个以<kbd>.tex</kbd>扩展名的文本文件，可以使用任意的文本编辑器（比如Vim)编辑；在编辑完成后，可以编译为更容易阅读的文档格式（比如PDF）。</p>
+	<p>LaTeX文档是一个以<kbd>.tex</kbd>扩展名的文本文件，可以使用任意文本编辑器（比如Vim)编辑；在编辑完成后，可以编译为更容易阅读的文档格式（比如PDF）。</p>
 
-	<h2 class="article"><a id="TeX Live">TeX Live</a></h2>
-	<p><a href="https://tug.org/texlive/" title="TeX Live">TeX Live</a>是一种免费的跨平台TeX文档制作系统。它包括所有与TeX相关的主要程序、宏包和字体，支持全球多种语言。许多Unix/GNU/Linux操作系统通过自己的包管理器提供TeX Live，但<strong>强烈推荐您严格按照<a href="https://tug.org/texlive/quickinstall.html" title="Quick install for Unix">官方文档</a>进行手动安装</strong>。（另：<a href="https://tex.stackexchange.com/questions/1092/how-to-install-vanilla-texlive-on-debian-or-ubuntu" title="How to install "vanilla" TeXLive on Debian or Ubuntu?">参考</a>）</p>
+	<h2 class="article"><a id="TeX-Live">TeX Live</a></h2>
+	<p><a href="https://tug.org/texlive/" title="TeX Live">TeX Live</a>是一种免费的跨平台TeX文档制作系统。它包括所有与TeX相关的主要程序、宏包和字体，支持全球多种语言。许多Unix/GNU/Linux操作系统通过自己的包管理器提供TeX Live，但<strong>强烈推荐严格按照<a href="https://tug.org/texlive/quickinstall.html" title="Quick install for Unix">官方文档</a>进行手动安装</strong>。（另：<a href="https://tex.stackexchange.com/questions/1092/how-to-install-vanilla-texlive-on-debian-or-ubuntu" title="How to install "vanilla" TeXLive on Debian or Ubuntu?">参考</a>）</p>
 	<p>在安装之后，增加以下PATH路径：</p>
 	<pre class="block"><code class="inset">export PATH=$PATH:/usr/local/texlive/2025/bin/i386-linux
 export INFOPATH=$INFOPATH:/usr/local/texlive/2025/texmf-dist/doc/info
 export MANPATH=$MANPATH:/usr/local/texlive/2025/texmf-dist/doc/man</code></pre>
-	<p>同理，使用以下命令为sudo增加安全路径</p>
+	<p>同理，使用以下命令为sudo增加安全路径：</p>
 	<p style="text-indent:2em"><code class="inset">$ sudo visudo</code></p>
 	<pre class="block"><code class="inset">Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/texlive/2025/bin/i386-linux"</code></pre>
 	<p>使用<a href="https://tug.org/texlive/doc/tlmgr.html" title="tlmgr">tlmgr</a>更新Tex Live系统以及安装的Packages：</p>
@@ -26,7 +26,7 @@ export MANPATH=$MANPATH:/usr/local/texlive/2025/texmf-dist/doc/man</code></pre>
 	<p style="text-indent:2em"><code class="inset">$ sudo tlmgr update --all</code></p>
 	<p>如果在使用过程中，仍然出现类似以下缺失包的报错信息：</p>
 	<p><code class="error">! LaTeX Error: File `gb4e.sty' not found.</code></p>
-	<p>那么可以使用以下命令，进行手动安装：</p>
+	<p>那么可以使用以下命令，手动安装缺失的包：</p>
 	<p style="text-indent:2em"><code class="inset">$ sudo tlmgr install gb4e</code></p>
 
 	<h2 class="article"><a id="Latex-Edit">编辑Latex文档</a></h2>
@@ -49,58 +49,19 @@ Press ENTER or type command to continue</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Latex-View-PDF.png" title="Latex-View-PDF"><img src="https://yyq123.github.io/learn-vim/images/Latex-View-PDF.png" alt="Latex-View-PDF" width="500" height="295" /></a></p>
 	<h2 class="article"><a id="Latex-UDC">自动化Latex编译和输出</a></h2>
 	<p>在vimrc启动文件中自定义以下命令：</p>
-	<p style="text-indent:2em"><code class="inset">:command Latex execute "silent !pdflatex % > /dev/null && zathura %:r.pdf > /dev/null 2>&1 &" | redraw!</code></p>
+	<p style="text-indent:2em"><code class="inset">:command Latex execute "silent !pdflatex % &gt; /dev/null &amp;&amp; zathura %:r.pdf &gt; /dev/null 2&gt;&amp;1 &amp;" | redraw!</code></p>
 	<ul>
 		<li><code>silent</code>，将避免显示诸如 “Press ENTER to continue” 等命令执行过程中的提示信息；</li>
 		<li><code>pdlatex</code>，将编译当前文件， <code> % &gt; </code>将标准输出重定向到<code>/dev/null</code>而不是显示在屏幕上；</li>
-		<li><code>zathura</code>，用于查看生成的PDF文件，即以<code>%:r</code>指定的当前文件名，以<code>.pdf<code>指定的后缀扩展名；</li>
-		<li><code>redraw</code>，重画屏幕；</li>
-		<li><code></code>，；</li>
-
+		<li><code>zathura</code>，用于查看生成的PDF文件，即以<code>%:r</code>指定的当前文件名，以<code>.pdf</code>指定的后缀扩展名；</li>
+		<li><code>redraw</code>，重画屏幕，以保证正常显示；</li>
 	</ul>
 	<p>在命令行中执行以下自定义命令，将自动化使用pdflatex来编译文档，并使用Zathura来显示生成的PDF文件：</p>
 	<p style="text-indent:2em"><code class="inset">:Latex</code></p>
 	<p>您也可以在vimrc启动文件中自定义以下快捷键：</p>
-	<p style="text-indent:2em"><code class="inset">:map <F2> :Latex <CR></code></p>
+	<p style="text-indent:2em"><code class="inset">:map &lt;F2&gt; :Latex &lt;CR&gt;</code></p>
 
-	<pre class="block"><code class="inset"></code></pre>
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
-
-	<pre class="block">
-	</pre>
-
-	<ul>
-		<li><p class="item"><br /></p></li>
-		<li><p class="item"><a href="#" title=""></a><br /></p></li>
-	</ul>
-
-	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
-
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<thead>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		</thead>
-		<tbody>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-		</tbody>
-	</table>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tbody>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		</tbody>
-	</table>
-&ldquo;&rdquo;
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 25.06.07&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="编译源码(Compile Code)-C" href="http://yyq123.github.io/learn-vim/learn-vim-CompileCode-C.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="编译源码(Compile Code)-Java" href="http://yyq123.github.io/learn-vim/learn-vim-CompileCode-Java.html">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
