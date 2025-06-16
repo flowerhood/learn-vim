@@ -8,11 +8,14 @@
 	<title>VIM学习笔记 工具箱-PDF查看器zathura</title>
 </head>
 <body>
-	<p><a href="https://pwmt.org/projects/zathura/" title="zathura">zathura</a>是一款高度可定制的简约文档查看器，适用于大多数Linux发行版。zathura是由PWMT社区开发的开源软件，使用vim习惯的键位绑定，对vim上瘾者来说是一种享受。</p>
+	<p><a href="https://pwmt.org/projects/zathura/" title="zathura">zathura</a>是一款高度可定制的简约文档查看器，适用于大多数Linux发行版。zathura是由PWMT社区开发的开源软件，它有以下两大特点：</p>
+	<ul>
+		<li>以键盘为中心，使用vim习惯的键位绑定，类似vim的命令行模式，沉浸式的vim操作体验；</li>
+		<li>以文档为中心，极简的用户界面将最大化的屏幕空间留给文档本身，提供更专注的阅读体验。</li>
+	</ul>
 	<p>zathura提供以下主要特性：</p>
 	<ul>
 		<li>支持PDF、Djvu、PostScript、Comic Book等多种文件格式；</li>
-		<li>以键盘为中心的快捷操作；</li>
 		<li>支持书签（bookmark）；</li>
 		<li>类似vim的命令行/搜索行/状态栏；</li>
 		<li>使用鼠标双击进行链接跳转；</li>
@@ -22,21 +25,15 @@
 
 	<h2 class="article"><a id="Install">安装</a></h2>
 	<p>以Debian为例，使用以下命令安装zathura：</p>
-	<p style="text-indent:2em"><code class="inset">sudo apt install zathura zathura-pdf-poppler zathura-djvu zathura-ps</code></p>
+	<p style="text-indent:2em"><code class="inset">$ sudo apt install zathura zathura-pdf-poppler zathura-djvu zathura-ps</code></p>
 	<p>针对其它平台的安装，请参阅<a href="https://pwmt.org/projects/zathura/installation/" title="zathura/installation">官方文档</a>。</p>
 
 	<h2 class="article"><a id="Use">使用</a></h2>
 	<p>在操作系统命令行环境下，使用以下命令即可查看文件：</p>
 	<p style="text-indent:2em"><code class="inset">$ zathura filename.pdf</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/zathura_main_window.png" title="zathura main window"><img src="https://yyq123.github.io/learn-vim/images/zathura_main_window.png" alt="zathura main window" width="550" height="429" /></a></p>
-	<p>可以从默认阅读模式，使用<kbd>F11</kbd>键切换至全屏幕模式；使用<kbd>F5</kbd>键切换至演示模式；使用<kbd>Tab</kbd>键切换至目录模式。</p>
+	<p>在默认阅读模式下，使用<kbd>F11</kbd>键切换至全屏幕模式；使用<kbd>F5</kbd>键切换至演示模式；使用<kbd>Tab</kbd>键切换至目录模式。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/zathura_mode_index.png" title="zathura mode index"><img src="https://yyq123.github.io/learn-vim/images/zathura_mode_index.png" alt="zathura mode index" width="550" height="429" /></a></p>
-
-	<pre class="block"><code>
-</code></pre>
-	<p>：</p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p><code class="msg"></code></p>
 
 	<h2 class="article"><a id="Config">配置</a></h2>
 	<p>通过编辑<kbd>~/.config/zathura/zathurarc</kbd>配置文件，可以自定义系统选项：</p>
@@ -60,11 +57,9 @@ map &lt;C-o&gt; zoom out</code></pre>
 	<p>更多配置选项，请参阅<a href="https://pwmt.org/projects/zathura/documentation/" title="zathura/documentation">官方文档</a>。</p>
 
 	<h2 class="article"><a id="Shortcut">快捷键</a></h2>
-	<p>当然，如果你不喜欢默认设置，也可以对设置进行个性化配置。</p>
-	<table>
-	<thead><tr><th>Shortcut</th><th><strong>Function</strong></th></tr></thead>
+<table summary="Shotcut" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
 	<tbody>
-		<tr><td><strong>Document Navigation</strong></td><td></td></tr>
+		<tr><td><strong>Document Navigation</strong></td><td><strong>文档导航</strong></td></tr>
 		<tr><td>J</td><td>向下移动一行 Move the document display window one line down.</td></tr>
 		<tr><td>K</td><td>向上移动一行 Move the document display window one line up.</td></tr>
 		<tr><td>L</td><td>向右移动一列 Move the document display window one column to the right.</td></tr>
@@ -87,7 +82,7 @@ map &lt;C-o&gt; zoom out</code></pre>
 		<tr><td>?</td><td>向后搜索 Open reverse search prompt.</td></tr>
 		<tr><td>N</td><td>移动到下一匹配处 Go to the next occurrence of the current search term.</td></tr>
 		<tr><td>Shift + N</td><td>移动到上一匹配处 Go back to the previous occurrence of the current search term.</td></tr>
-		<tr><td><strong>Interface Navigation</strong></td><td></td></tr>
+		<tr><td><strong>Interface Navigation</strong></td><td><strong>界面导航</strong></td></tr>
 		<tr><td>A</td><td>适合窗口高度 Fit the height of the current page to the display window.</td></tr>
 		<tr><td>S</td><td>适合窗口宽度 Fit the width of the current page to the display window.</td></tr>
 		<tr><td>R</td><td>顺时针旋转90度 Rotate the current document by 90 degrees clockwise.</td></tr>
@@ -101,13 +96,11 @@ map &lt;C-o&gt; zoom out</code></pre>
 		<tr><td>F5</td><td>演示模式 presentation mode.</td></tr>
 		<tr><td>F11</td><td>全屏幕模式 fullscreen mode.</td></tr>
 		<tr><td>Q</td><td>退出/结束当前进程 Terminate the current Zathura session.</td></tr>
-		<tr><td><strong>Linking and Indexing</strong></td><td></td></tr>
-		<tr><td>Shift + F</td><td>Show all link hints.</td></tr>
-		<tr><td>F</td><td>Load a link hint’s page to the document viewer. </td></tr>
-		<tr><td>C</td><td>Copy a link hint’s page to the system clipboard.</td></tr>
-		<tr><td>M + 1</td><td>Create a new bookmark on the current page and save it to the character “1.”</td></tr>
-		<tr><td>Apostrophe (‘) + 1</td><td>Load the bookmark that is currently stored in the character “1.”</td></tr>
-		<tr><td>Tab</td><td>目录模式 Display the document’s content index.</td></tr>
+		<tr><td><strong>Linking and Indexing</strong></td><td><strong>链接和目录</strong></td></tr>
+		<tr><td>Shift + F</td><td>高亮显示链接 Show all link hints.</td></tr>
+		<tr><td>F</td><td>跳转到指定链接 Load a link hint’s page to the document viewer. </td></tr>
+		<tr><td>C</td><td>复制链接地址 Copy a link hint’s page to the system clipboard.</td></tr>
+		<tr><td>Tab</td><td>进入目录模式 Display the document’s content index.</td></tr>
 		<tr><td>J</td><td>下一目录项 Scroll one item down in the document’s content index.</td></tr>
 		<tr><td>K</td><td>上一目录项 Scroll one item up in the document’s content index.</td></tr>
 		<tr><td>L</td><td>展开当前目录 Display the current index item’s subitems.</td></tr>
@@ -115,11 +108,11 @@ map &lt;C-o&gt; zoom out</code></pre>
 		<tr><td>Shift + L</td><td>展开所有目录 Display all the subitems in the document’s content index.</td></tr>
 		<tr><td>Shift + H</td><td>折叠所有目录 Hide all the subitems in the document’s content index.</td></tr>
 		<tr><td>Enter</td><td>跳转到目录指引的页 Load the page of the currently selected index entry.</td></tr>
-		<tr><td><strong>演示模式 Presentation Mode</strong></td><td></td></tr>
+		<tr><td><strong>Presentation Mode</strong></td><td><strong>演示模式</strong></td></tr>
 		<tr><td>Space</td><td>下一页 Go to the next document slide.</td></tr>
 		<tr><td>Shift + Space</td><td>上一页 Go back to the previous document slide.</td></tr>
 		<tr><td>F5</td><td>退出演示模式 Go back to the default Zathura mode.</td></tr>
-		<tr><td><strong>全屏幕模式 Fullscreen Mode</strong></td><td></td></tr>
+		<tr><td><strong>Fullscreen Mode</strong></td><td><strong>全屏幕模式</strong></td></tr>
 		<tr><td>Shift + J</td><td>下一页 Move the document display window a full page down.</td></tr>
 		<tr><td>Shift + K</td><td>上一页 Move the document display window a full page up.</td></tr>
 		<tr><td>ZI</td><td>放大 Zoom in</td></tr>
@@ -127,13 +120,14 @@ map &lt;C-o&gt; zoom out</code></pre>
 		<tr><td>Z0</td><td>恢复缩放 Reset the current zoom level.</td></tr>
 		<tr><td>60 + =</td><td>缩放至指定比例 Set the zoom level of the document to 60%.</td></tr>
 		<tr><td>F11</td><td>退出全屏幕模式 Go back to the default Zathura mode.</td></tr>
-		<tr><td><strong>命令模式 Command Mode</strong></td><td></td></tr>
+		<tr><td><strong>Command Mode</strong></td><td><strong>命令模式</strong></td></tr>
 		<tr><td>:</td><td>进入命令行 Open Zathura’s command prompt.</td></tr>
 		<tr><td>:close</td><td>关闭当前文档 Exit the current document without exiting Zathura.</td></tr>
 		<tr><td>:open {filename}</td><td>打开指定文档 Open a new document on the current Zathura window.</td></tr>
 		<tr><td>:blist</td><td>列示书签 List all the available bookmarks for the current session.</td></tr>
-		<tr><td>:bmark {bookmark_name}</td><td>新增书签 Add the current page to the session’s bookmark index.</td></tr>
-		<tr><td>:bdelete {bookmark_name}</td><td>删除书签 Delete bookmark</td></tr>
+		<tr><td>:bmark {name}</td><td>新增书签 Add the current page to the session’s bookmark index.</td></tr>
+		<tr><td>:bjump {name}</td><td>跳转至指定书签 Jump to a bookmark.</td></tr>
+		<tr><td>:bdelete {name}</td><td>删除书签 Delete bookmark</td></tr>
 		<tr><td>:exec</td><td>执行外部命令 Run an external shell command on the current document.</td></tr>
 		<tr><td>:info</td><td>显示文档信息 Print the document’s internal properties.</td></tr>
 		<tr><td>:print</td><td>打印文档 Send the current document to the machine’s print spool.</td></tr>
