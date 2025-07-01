@@ -10,22 +10,28 @@
 <body>
 	<h1>VIM学习笔记 终端模式的快捷键映射(tmap)</h1>
 
-	<h2 class="article"><a id=""></a></h2>
+	<h2 class="article"><a id="cmd_:tmap">:tmap命令</a></h2>
 	<p></p>
 	<a href="#" title=""></a>
 	<p>在内置的终端窗口中，为了能正常使用外部 shell 本身的快捷键，Vim 禁用了绝大部分快捷键。也就是说，在内置终端窗口中键入shell命令，既不是插入模式也不是命令行模式，所以imap与cmap都不会生效。Vim为此定义了一种特殊模式，叫做终端作业（Terminal-Job）模式。如果希望为终端作业模式自定义快捷键，那么需要使用<code>:tmap</code>命令。</p>
 	<p>例如定义<kbd>Shift+Insert</kbd>键，用于在终端中粘贴系统剪切板的内容：</p>
 	<p style="text-indent:2em"><code class="inset">:tmap &lt;S-Insert&gt; &lt;C-W&gt;"+</code></p>
-	<p>请注意，在内置终端窗口中，<kbd>Esc</kbd>键也保留为外部shell所用，并不会返回到普通模式。</p>
+	<p>请注意：在内置终端窗口中，<kbd>Esc</kbd>键也保留为外部shell所用，并不会返回到终端普通（Terminal-Normal）模式。</p>
+	<p>可以点击<kbd>Ctrl-\ Ctrl-N</kbd>快捷键，返回到终端普通模式。请参考<code class="inset">:help CTRL-\_CTRL-N</code>帮助信息。</li>
+	<p>也可以自定义<kbd>Shift+Del</kbd>键，用于返回到终端普通模式：</p>
+	<p style="text-indent:2em"><code class="inset">:tnoremap &lt;S-Del&gt; &lt;C-\&gt;&lt;C-N&gt;</code></p>
+	<p>在内置终端窗口中，点击<kbd>i</kbd>或<kbd>a</kbd>键，则可以返回做终端作业模式，继续执行命令。</p>
+	<p>使用以下命令，可以删除所有终端作业模式的键盘映射：</p>
+	<p style="text-indent:2em"><code class="inset">:tmapclear</code></p>
 
-	<h2 class="article"><a id="opt_termwinkey">termwinkey</a></h2>
+	<h2 class="article"><a id="opt_termwinkey">termwinkey选项</a></h2>
 	<p>'termwinkey'选项，用于设置终端窗口中引导为<kbd>&lt;CTRL-W&gt;</kbd>系列命令的键。其默认值为空，即在终端窗口与普通窗口中，<kbd>&lt;CTRL-W&gt;</kbd>引导的快捷键含义保持一致。</p>
+	<p style="text-indent:2em"><code class="inset">:set termwinkey?</code></p>
+	<p style="text-indent:2em"><code class="msg">termwinkey=</code></p>
 	<p>使用默认选项的好处在于，不论是在普通窗口还是在终端窗口之中，点击<kbd>&lt;CTRL-Ww&gt;</kbd>键都可以切换到下一窗口；点击<kbd>&lt;CTRL-Wp&gt;</kbd>键都可以切换到之前所在窗口。也就是说，适用于普通窗口的<kbd>&lt;CTRL-W&gt;</kbd>快捷键，也同样适用于终端窗口。</p>
-	<p>使用<kbd>&lt;CTRL-W:&gt;</kbd>快捷键，则可以进入vim命令行。</p>
+	<p>使用<kbd>&lt;CTRL-W:&gt;</kbd>快捷键，则可以在内置终端中进入vim命令行模式。</p>
 	<p>请注意，为了保持操作的一致性，不建议对'termwinkey'选项进行修改。</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
-	<p>自定义<kbd>Shift-Tab</kbd>键，用于切换至下一普通窗口或终端窗口：</p>
-	<p style="text-indent:2em"><code class="inset">:map &lt;S-Tab&gt; &lt;C-W&gt;w</code></p>
 
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 
@@ -38,24 +44,15 @@
 	</ul>
 
 	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
-	<p style="text-indent:2em"><code class="inset">:help :tmap</code></p>
+	<p style="text-indent:2em"><code class="inset">:h terminal-input</code></p>
 
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<thead>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		</thead>
-		<tbody>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-		</tbody>
-	</table>
 
 	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
 		<caption>命令小结</caption>
 		<tbody>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:tmap</code></td><td>创建终端作业模式的键盘映射</td><td><code class="inset">:help :tmap</code></td></tr>
+		<tr><td><code class="inset">:tmapclear</code></td><td>删除所有终端作业模式的键盘映射</td><td><code class="inset">:help :tmapc</code></td></tr>
+		<tr><td><code class="inset">:set termwinkey</code></td><td>设置终端窗口中引导CTRL-W系列命令的键</td><td><code class="inset">:help termwinkey</code></td></tr>
 		<tr><td><code class="inset">:</code></td><td></td></tr>
 		<tr><td><code class="inset">:</code></td><td></td></tr>
 		</tbody>
