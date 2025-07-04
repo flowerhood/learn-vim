@@ -9,18 +9,41 @@
 </head>
 <body>
 	<h1>VIM学习笔记 搜索结果计数器(vim-which-key)</h1>
-	<p>使用以下命令，可以列示所有F功能键的当前定义：</p>
+	<p>Vim提供了一种不依赖鼠标的快速高效的编辑体验，通过大量的键盘快捷键，可以快速地进行文本移动、编辑、修改等操作。然而如何记忆和使用种类繁多的快捷键，也形成了另一种挑战。</p>
+	<p>打开<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件，然后使用以下命令，可以列示所有F功能键的当前定义：</p>
 	<p style="text-indent:2em"><code class="inset">:for i in range(1, 12) | execute("map &lt;F".i."&gt;") | endfor</code></p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/map_list_FunKey.png" title="map_list_FunKey"><img src="https://yyq123.github.io/learn-vim/images/map_list_FunKey.png" alt="map_list_FunKey" width="550" height="73" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/map_list_FunKey.png" title="map_list_FunKey"><img src="https://yyq123.github.io/learn-vim/images/map_list_FunKey.png" alt="map_list_FunKey" /></a></p>
+	<p>使用以下命令，可以将键盘映射（和修改过的选项），写入到当前目录下的<kbd>_exrc</kbd>文件：</p>
+	<p style="text-indent:2em"><code class="inset">:mk</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/map_list_mk_exrc.png" title="map_list_mk_exrc"><img src="https://yyq123.github.io/learn-vim/images/map_list_mk_exrc.png" alt="map_list_mk_exrc" /></a></p>
+	<p>使用<a style="font-weight: bold;" href="https://github.com/liuchengxu/vim-which-key" title="vim-which-key">vim-which-key</a>插件，可以在弹出窗口（popup）中列示当前所有快捷键的定义，大大减轻了记忆各种快捷键的负担。</p>
 
-	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中增加以下设置，可以在屏幕底部，显示匹配搜索结果的总数，以及当前所处第几个匹配结果。</p>
-	<p><a href="https://yyq123.github.io/learn-vim/images/set_shortmess_S.png" title="set_shortmess_S"><img src="https://yyq123.github.io/learn-vim/images/set_shortmess_S.png" alt="" width="500" height="42" /></a></p>
-	<p><a href="https://github.com/liuchengxu/vim-which-key" title="vim-which-key">vim-which-key</a>插件，可以在屏幕底部的命令行中，显示匹配搜索结果的总数，以及当前所处第几个匹配结果。</p>
-
-	<p style="font-weight:bold; border-bottom:1px solid lightgray; border-left:6px solid lightgray; padding:0 0 3px 5px">安装配置</p>
-	<p>推荐您使用<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">vim-plug</a>或<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">Vundle</a>等插件管理器，来安装GitHub上的<a href="https://github.com/google/vim-searchindex" title="vim-searchindex">vim-searchindex</a>插件。</p>
+	<h2 class="article"><a id="install">安装配置</a></h2>
+	<p>推荐使用<a href="https://yyq123.github.io/learn-vim/learn-vim-plugin-minpac.html" title="插件管理器(minpac)">minpac</a>等插件管理器，来安装GitHub上的<a href="https://github.com/liuchengxu/vim-which-key" title="vim-which-key">vim-which-key</a>插件。</p>
+	<p>假设使用逗号键，作为<a href="http://yyq123.github.io/learn-vim/learn-vi-54-Leader.html" title="leader">前缀键（leader）</a>：</p>
+	<p style="text-indent:2em"><code class="inset">let mapleader=","</code></p>
+	<p>在<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件中设置timeoutlen选项，指定在按下leader键后，如果在约定时间后没有进一步的按键操作，则会在弹出窗口中显示快捷键绑定信息：</p>
+	<pre class="block"><code class="inset">set timeoutlen=500
+nnoremap &lt;silent&gt; &lt;leader&gt; :&lt;c-u&gt;WhichKey '&lt;Space&gt;'&lt;CR&gt;
+nnoremap &lt;silent&gt; &lt;localleader&gt; :&lt;c-u&gt;WhichKey  ','&lt;CR&gt;</code></pre>
 	<p>使用<code class="inset">:help searchindex</code>命令，可以查看vim-searchindex插件的帮助文件。</p>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="http://yyq123.github.io/learn-vim/learn-vi-101-plugin-vundle.html" title="插件管理器(Vundle)">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-List.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="http://yyq123.github.io/learn-vim/learn-vi-102-plugin-plug.html" title="插件管理器(vim-plug)">下一篇</a>&gt;</span></p>
+	<h2 class="article"><a id="dictionary">定义快捷键字典</a></h2>
+	<p>首先，需要创建一个空字典：</p>
+	<pre class="block"><code class="inset">let g:which_key_map = {}</code></pre>
+	<p>vim-which-key插件能够自动识别已经存在的leader快捷键，你可以为其添加文字描述；使用<kbd>'name'</kbd>关键字，可以定义二级字典组，以便于为捷键分类显示。</p>
+	<pre class="block"><code class="inset">let g:which_key_map.s = { 'name' : '+source' }
+let g:which_key_map.s.v = 'Source-vimrc'
+let g:which_key_map.t = { 'name' : '+tab' }
+let g:which_key_map.t.v = 'Tab-vimrc'</code></pre>
+	<p>对于尚不存在的快捷键，也可以直接定义命令和描述：</p>
+	<pre class="block"><code class="inset">let g:which_key_map.f = {
+      \ 'name' : '+file' ,
+      \ 'n' : ['fn' , 'File Name to Clipboard'] ,
+      \ 'p' : ['fp' , 'Path Name to Clipboard'] ,
+      \ }</code></pre>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="" height="" /></a></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 250701&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="键盘映射 (Map)" href="http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="运行外部命令(Shell Command)" href="http://yyq123.github.io/learn-vim/learn-vi-71-Shell.html">下一篇</a>&gt;</span></p>
 </body>
 </html>
