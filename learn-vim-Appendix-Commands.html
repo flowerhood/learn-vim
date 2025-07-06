@@ -64,24 +64,24 @@
 <table border="0">
     <tbody>
     <tr><td colspan="2"><em>字符间移动 Character</em></td></tr>
-    <tr><td><code>h</code></td><td>向左移动一个字符 Left, one space</td></tr>
+    <tr><td><code>h</code></td><td>向左移动一个字符 Left, one space (also: CTRL-H, &lt;BS&gt;, or &lt;Left&gr; key)</td></tr>
     <tr><td><code>j</code></td><td>向下移动一行 down, one line</td></tr>
     <tr><td><code>k</code></td><td>向上移动一行 up, one line</td></tr>
-    <tr><td><code>l</code></td><td>向右移动一个字符 right, one space</td></tr>
+    <tr><td><code>l</code></td><td>向右移动一个字符 right, one space (also:  &lt;Space&gt; or  &lt;Right&gt; key)</td></tr>
     <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
 
     <tr><td colspan="2"><em>词间移动 Text</em></td></tr>
     <tr>
         <td><code>w, W,&nbsp;</code></td>
-        <td valign="bottom">Forward by word/WORD</td>
+        <td valign="bottom">向前移动一个词Forward by word/WORD</td>
     </tr>
      <tr>
         <td><code>b, B&nbsp;</code></td>
-        <td valign="bottom">Backward by word/WOED</td>
+        <td valign="bottom">向后移动一个词 Backward by word/WOED</td>
     </tr>
     <tr>
         <td><code>e, E&nbsp;</code></td>
-        <td>End of word/WORD</td>
+        <td>移动到词尾 End of word/WORD</td>
     </tr>
     <tr><td><code>(</code></td><td>Beginning of current sentence</td></tr>
     <tr><td><code>)</code></td><td>End of current sentence</td></tr>
@@ -99,11 +99,11 @@
         <td><code>RETURN</code></td>
         <td>First nonblank character of next line</td>
     </tr>
-    <tr><td><code>0</code></td><td>First position of current line</td></tr>
-    <tr><td><code>$</code></td><td>Last position of current line</td></tr>
+    <tr><td><code>0</code></td><td>移动至当前行的首个字符 First position of current line (also: &lt;Home&gt; key)</td></tr>
+    <tr><td><code>$</code></td><td>移动至当前行最后一个字符 Last position of current line (also: &lt;End&gt; key)</td></tr>
     <tr>
         <td><code>^, _&nbsp;</code></td>
-        <td>First nonblank character of current line</td>
+        <td>移动至当前行的首个非空字符 First nonblank character of current line</td>
     </tr>
     <tr>
         <td><code>+, -&nbsp;</code></td>
@@ -239,11 +239,11 @@
     <tr><td colspan="2"><em>标记间移动 Marking position</em></td></tr>
     <tr>
         <td><code>mx&nbsp;</code></td>
-        <td>Mark current position as <em>x</em></td>
+        <td>定义标记 Mark current position as <em>x</em></td>
     </tr>
     <tr>
         <td><code>`x&nbsp;</code></td>
-        <td>(Backquote) Moves the cursor to the character marked by <em>x</em></td>
+        <td>跳转到指定标记 (Backquote) Moves the cursor to the character marked by <em>x</em></td>
     </tr>
     <tr>
         <td><code>``&nbsp;</code></td>
@@ -267,50 +267,58 @@
     <tbody>
     <tr><td colspan="2"><strong>插入 Insert</strong></td></tr>
     <tr>
-        <td><code>i, a&nbsp;</code></td>
-        <td>Insert text before, after cursor</td>
+        <td><code>a</code></td>
+        <td>在当前光标之后插入字符 Insert text after the cursor</td>
     </tr>
     <tr>
-        <td><code>I, A&nbsp;</code></td>
-        <td>Insert text before beginning, after end of line</td>
+        <td><code>A</code></td>
+        <td>在行尾插入字符 Insert text at the end of line</td>
     </tr>
     <tr>
-        <td><code>o, O&nbsp;</code></td>
-        <td>Open new line for text below, above cursor</td>
+        <td><code>i</code></td>
+        <td>在当前光标之前插入字符 Insert text before the cursor</td>
     </tr>
     <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td><code>I</code></td>
+        <td>在当前行的首个非空字符之前插入 Insert text before the first non-blank in the line</td>
+    </tr>
+    <tr>
+        <td><code>o</code></td>
+        <td>在当前行之下新增一行 Open a new line below the current line</td>
+    </tr>
+    <tr>
+        <td>O</td>
+        <td>在当前行之上新增一行 open a new line above the current line</td>
     </tr>
     <tr><td colspan="2"><strong>更改 Change</strong></td></tr>
     <tr>
         <td><code>r&nbsp;</code></td>
-        <td>Replace character</td>
+        <td>替换光标下字符 Replace character</td>
     </tr>
     <tr>
         <td><code>cw&nbsp;</code></td>
         <td>Change word</td>
     </tr>
-    <tr><td><code>cc&nbsp;</code></td><td>Change current line</td></tr>
+    <tr><td><code>cc&nbsp;</code></td><td>修改一整行 Change current line</td></tr>
     <tr>
         <td><code>cmotion&nbsp;</code></td>
         <td>Change text between the cursor and the target of <em>motion</em></td>
     </tr>
     <tr>
         <td><code>C, c$</code></td>
-        <td>Change to end of line</td>
+        <td>修改到行尾 Change to end of line</td>
     </tr>
     <tr>
         <td><code>R&nbsp;</code></td>
-        <td>Type over (overwrite) characters</td>
+        <td>进入替换模式 Type over (overwrite) characters</td>
     </tr>
     <tr>
         <td><code>s&nbsp;</code></td>
-        <td>Substitute: delete character and insert new text</td>
+        <td>替换当前字符 Substitute: delete character and insert new text</td>
     </tr>
     <tr>
         <td><code>S&nbsp;</code></td>
-        <td>Substitute: delete current line and insert new text</td>
+        <td>替换一整行 Substitute: delete current line and insert new text</td>
     </tr>
     <tr>
         <td>&nbsp;</td>
@@ -319,11 +327,11 @@
     <tr><td colspan="2"><strong>删除 移动 Delete, move</strong></td></tr>
     <tr>
         <td><code>x&nbsp;</code></td>
-        <td>Delete character under cursor</td>
+        <td>删除光标之下的字符 Delete character under cursor</td>
     </tr>
     <tr>
         <td><code>X&nbsp;</code></td>
-        <td>Delete character before cursor</td>
+        <td>删除光标之前的字符 Delete character before cursor</td>
     </tr>
     <tr><td><code>dw&nbsp;</code></td><td>Delete word</td></tr>
     <tr><td><code>d}</code></td><td>删除至下一个段落paragraph</td></tr>
@@ -334,12 +342,12 @@
     <tr><td><code>guw</code></td><td>转换当前word为小写</td></tr>
     <tr><td><code>gUw</code></td><td>转换当前word为大写</td></tr>
     <tr>
-        <td><code>dd&nbsp;</code></td>
-        <td>Delete current line</td>
+	<td><code>dd</ br>D&nbsp;</code></td>
+        <td>删除当前行Delete current line</td>
     </tr>
     <tr>
-        <td><code>dmotion&nbsp;</code></td>
-        <td>Delete text between the cursor and the target of <em>motion</em></td>
+	    <td><code>d{motion}&nbsp;</code></td>
+        <td>删除动作命令定义的文本 Delete text between the cursor and the target of <em>motion</em></td>
     </tr>
     <tr>
         <td><code>D, d$</code></td>
@@ -384,8 +392,8 @@
         <td><code>.&nbsp;</code></td>
         <td>Repeat last edit command</td>
     </tr>
-    <tr><td><code>u</code></td><td>Undo last edit</td></tr>
-    <tr><td><code>U</code></td><td>restore current line</td></tr>
+    <tr><td><code>u</code></td><td>撤销上次操作 Undo last edit</td></tr>
+    <tr><td><code>U</code></td><td>撤销上次操作的行 restore current line</td></tr>
     <tr><td><code>CTRL-A</code></td><td>增加当前光标下的数值</td></tr>
     <tr><td><code>CTRL-X</code></td><td>减少当前光标下的数值</td></tr>
 <tr><td><code></code></td><td></td></tr>
@@ -430,27 +438,27 @@
     <tbody>
     <tr>
         <td><code>ZZ, :x</code></td>
-        <td>Write (save) and quit file</td>
+        <td>保存并退出 Write (save) and quit file</td>
     </tr>
     <tr>
         <td><code>:wq&nbsp;</code></td>
-        <td>Write (save) and quit file</td>
+        <td>保存并退出 Write (save) and quit file</td>
     </tr>
     <tr>
         <td><code>:w&nbsp;</code></td>
-        <td>Write (save) file</td>
+        <td>保存当前文件 Write (save) file</td>
     </tr>
     <tr>
         <td><code>:w!&nbsp;</code></td>
         <td>Write (save) file, overriding protection</td>
     </tr>
     <tr>
-        <td><code>:30,60w newfile&nbsp;</code></td>
-        <td>Write from line 30 through line 60 as <em>newfile</em></td>
+	<td><code>:30,60w {file}&nbsp;</code></td>
+	<td>将指定范围的行保存至指定文件 Write from line 30 through line 60 as <em>{file}</em></td>
     </tr>
     <tr>
-        <td><code>:30,60w&gt;&gt; file&nbsp;</code></td>
-        <td>Write from line 30 through line 60 and append to <em>file</em></td>
+	<td><code>:30,60w&gt;&gt; {file}&nbsp;</code></td>
+	<td>将指定范围的行增添至指定文件的末尾 Write from line 30 through line 60 and append to <em>{file}</em></td>
     </tr>
     <tr>
         <td><code>:w %.new&nbsp;</code></td>
@@ -458,11 +466,11 @@
     </tr>
     <tr>
         <td><code>:q&nbsp;</code></td>
-        <td>Quit file</td>
+        <td>退出 Quit file</td>
     </tr>
     <tr>
         <td><code>:q!&nbsp;</code></td>
-        <td>Quit file, overriding protection</td>
+        <td>强制退出 Quit file, overriding protection</td>
     </tr>
     <tr>
         <td><code>Q&nbsp;</code></td>
@@ -539,8 +547,8 @@
 	<tr><td><code>:sblast</code></td><td>Move to last buffer (opens a new window)</td></tr>
 	<tr><td><code>:unhide</code></td><td>Edit all loaded buffers</td></tr>
 	<tr><td><code>:sunhide</code></td><td>Edit all loaded buffers (opens them in new windows.)</td></tr>
-	<tr><td><code>:bunload[!]</code></td><td>Unload buffer from memory. The ! modifier forces a modified buffer to be unloaded without being saved.</td></tr>
-	<tr><td><code>:bdelete[!]</code></td><td>Unload buffer and delete it from the buffer list. The ! modifier forces a modified buffer to be unloaded without being saved.</td></tr>
+	<tr><td><code>:bunload[!]</code></td><td>卸载缓冲区 Unload buffer from memory. The ! modifier forces a modified buffer to be unloaded without being saved.</td></tr>
+	<tr><td><code>:bdelete[!]</code></td><td>卸载缓冲区并从缓冲区列表中删除 Unload buffer and delete it from the buffer list. The ! modifier forces a modified buffer to be unloaded without being saved.</td></tr>
 	<tr><td><code></code></td><td></td></tr>
 </tbody>
 </table>
@@ -646,8 +654,7 @@
 <h3><a id="Map"><em>键盘映射 Maps</em></a></h3>
 
 <p><code>:map x sequence</code></p>
-    <p>Define character(s) <em>x</em> as a <em>sequence</em> of
-    editing commands.</p>
+    <p>定义键盘映射 Define character(s) <em>x</em> as a <em>sequence</em> of editing commands.</p>
 
 <p><code>:unmap x</code></p>
     <p>Disable <em>sequence</em> defined for <em>x</em></p>
@@ -656,13 +663,10 @@
     <p>List the characters that are currently mapped .</p>
 
 <p><code>:map! x sequence</code></p>
-    <p>Define character(s) <em>x</em> as a <em>sequence</em> of
-    editing commands or text that will be recognized in input
-    mode.</p>
+    <p>定义在插入模式和命令行模式下的键盘映射 Define character(s) <em>x</em> as a <em>sequence</em> of editing commands or text that will be recognized in input mode.</p>
 
 <p><code>:unmap! x</code></p>
-    <p>Disable the <em>sequence</em> defined for the input mode
-    map <em>x</em>.</p>
+    <p>取消指定的键盘映射 Disable the <em>sequence</em> defined for the input mode map <em>x</em>.</p>
 
 <p>For both command and input mode maps, the map name <em>x</em>
 can take several forms:</p>
@@ -675,6 +679,10 @@ can take several forms:</p>
     <p>All the characters must be txped within one second. The
     value of <code>notimeout</code>
     changes the behaviour.</p>
+
+    <p><code>:mk {filename}</code></p>
+    <p>将当前所有键盘映射和已经改变的选项，保存到指定文件</p>
+
 
     <h3><a id="Marcos"><em>宏 Macros</em></a></h3>
 <table border="0">
@@ -1883,7 +1891,7 @@ expression ends its effect.
 	<h2 style="border-bottom:1px solid lightgray"><span>说明：</span></h2>
 	<ol>
 	<li>The <a href="http://www.oreilly.com/catalog/vipr/noframes.html"><em>vi Editor Pocket Reference</em></a> is a companion volume to O'Reilly's <a href="http://www.oreilly.com/catalog/vi6/"><em>Learning the vi Editor</em></a>, a complete guide to text editing with <em>vi</em>. New topics in <em>Leanring the vi Editor</em> include coverage of four <em>vi</em> clones, <em>vim</em>, expressions, and GUI interfaces.</li>
-	<li><strong>Arnold Robbins</strong>, an Atlanta native now happily living in Israel, is a professional programmer and technical author, and author of the second edition of O'Reilly's <em>sed &amp; awk</em> as well as the new <em>Learning the vi Editor</em>. He has been working with Unix systems since 1980. He currently maintains <em>gawk</em> (<em>GNU awk</em>) and its documentation.</li>
+	<li><a href="http://tnerual.eriogerg.free.fr/vim.html" title="VIM Quick reference card">VIM Quick reference card</a></li>
 	</ol>
 
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 1.0</span><span>&lt;<a title="学习资源(Resources)" href="http://yyq123.github.io/learn-vim/learn-vi-998-Resources.html">上一篇</a>&nbsp;|<a title="笔记列表" href="https://yyq123.github.io/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="插件列表(Plugins)" href="http://yyq123.github.io/learn-vim/learn-vim-plugin.html">下一篇</a>&gt;</span></p>
