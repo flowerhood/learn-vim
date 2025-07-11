@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 网页验证(W3C Validation)</title>
+</head>
+<body>
+	<h1>VIM学习笔记 网页验证(W3C Validation)</h1>
+	<p>符合标准的网页开发，可谓是不作恶的底线了。通过生产具有可读性的高质量代码，促成在不同浏览器中达成一致的显示效果，并且关照不同用户群体的可访问性（accessibility）。</p>
+	<p>可以使用<a title="W3C Markup Validation Service" href="https://validator.w3.org/">W3C Markup Validation Service</a>，在线验证网页是否符合标准；也可以使用<a href="https://www.gueury.com/mozilla/" title="Html Validator">Html Validator</a>插件，在浏览器中验证网页。而更高效的方式，则是使用<a title="Nu Html Checker (v.Nu) Chat roomr" href=https://validator.github.io/validator/">Nu Html Checker (v.Nu)</a>开源工具，它可以在命令行中离线批量验证多个文件。</p>
+	<h2 class="article"><a id="install">安装运行</a></h2>
+	<p>可以直接从<a href="Download Validator" title="https://github.com/validator/validator/releases">GitHub</a>下载各平台下的可运行程序。</p>
+	<p>如果您已经安装了Java运行环境，那么可以下载<kbd> vnu.jar</kbd>文件直接运行。</p>
+	<p>如果您没有安装过Java运行环境，那么可以下载相应操作系统的预编译包，比如<kbd>vnu.windows.zip</kbd>，其中内置了的Java系统。</p>
+	<p>将vnu所在目录，增加到path环境变量中：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/vnu_windows_path.png" title="vnu_windows_path"><img src="https://yyq123.github.io/learn-vim/images/vnu_windows_path.png" alt="vnu_windows_path" /></a></p>
+	<p>在命令行中，执行以下命令，可以显示帮助信息即说明安装成功。</p>
+	<p style="text-indent:2em"><code class="inset">$ vnu --help</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/vnu_cmd_help.png" title="vnu_cmd_help"><img src="https://yyq123.github.io/learn-vim/images/vnu_cmd_help.png" alt="vnu_cmd_help" width="500" height="232" /></a></p>
+	<a href="#" title=""></a>
+	<p>在Mac操作系统下，可以通过<a href="https://brew.sh/" title="Homebrew">Homebrew</a>进行安装：</p>
+	<p style="text-indent:2em"><code class="inset">$ brew install vnu</code></p>
+
+	<h2 class="article"><a id="usage">验证网页</a></h2>
+	<p>使用以下命令，可以验证在线网页：</p>
+	<p style="text-indent:2em"><code class="inset">$ vnu https://yyq123.github.io/learn-vim/learn-vi-00-00-TOC.html</code></p>	
+	<p>使用以下命令，可以验证指定文件：</p>
+	<p style="text-indent:2em"><code class="inset">$ vnu filename.html</code></p>
+	<p>使用以下命令，可以验证多个文件文件：</p>
+	<p style="text-indent:2em"><code class="inset">$ vnu filename1.html filename2.html</code></p>
+	<p>使用以下命令，可以验证当前目录下所有网页文件：</p>
+	<p style="text-indent:2em"><code class="inset">$ vnu --asciiquotes --skip-non-html .</code></p>
+	<p><em>--asciiquotes</em>选项，指定在输出信息中使用ASCII编码的引号（替代默认的Unicode编码的引号）；</p>
+	<p><em>--skip-non-html</em>选项，仅验证所有扩展名为html、htm、xhtml或xht的网页文件。</p>
+	<p>默认情况下，命令按照<a class="internal present" href="/validator/validator/wiki/Output-%C2%BB-GNU">GNU error format</a>格式输出。也可以使用<a href="https://github.com/validator/validator/wiki/Service-%C2%BB-Common-params#out" title="--format">--format</a>选项，指定、xml、json或text格式。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/vnu_cmd_out.png" title="vnu_cmd_out"><img src="https://yyq123.github.io/learn-vim/images/vnu_cmd_out.png" alt="vnu_cmd_out" width="500" height="124" /></a></p>
+	<p>使用<em>--errors-only</em>选项，将仅显示错误信息，而忽略info和warning信息：</p>
+	<p style="text-indent:2em"><code class="inset">$ vnu --errors-only filename.html</code></p>
+
+	<h2 class="article"><a id="vim-shell">在Vim中调用vnu</a></h2>
+	<p>在Vim中，可以直接调用vnu来验证当前文件，将在弹出的操作系统命令行中显示输出信息，需要点击回车键来关闭命令行窗口并返回到Vim：</p>
+	<p style="text-indent:2em"><code class="inset">:!vnu --asciiquotes %</code></p>
+	<p><a href="http://yyq123.github.io/learn-vim/images/vnu_vim_shell.png" title="vnu_vim_shell"><img src="http://yyq123.github.io/learn-vim/images/vnu_vim_shell.png" alt="vnu_vim_shell" /></a></p>
+
+	<h2 class="article"><a id="vim-compiler">使用vnu进行编译</a></h2>
+	<p>请将以下代码，保存至<kbd>~/.vim/after/compiler/w3c-html-validator.vim</kbd>：</p>
+	<pre class="block"><code class="inset">let current_compiler = "w3c-html-validator"
+CompilerSet makeprg=vnu\ $*\ --asciiquotes\ '%'
+CompilerSet errorformat=\"file:%f\":%[0-9]%#\.%c-%l\.%[0-9]%#:\ %m</code></pre>
+	<p>在<a href="https://kutt.it/vim-vimrc" title="vimrc">vimrc</a>配置文件中，指定新建的编译器：</p>
+	<p style="text-indent:2em"><code class="inset">autocmd FileType html compiler w3c-html-validator</code></p>
+	<p>再次打开HTML文件，使用以下命令即可使用vnu进行验证，并在<a href="https://kutt.it/vim-QuickFix" title="QuickFix">QuickFix</a>中显示输出信息：</p>
+	<p style="text-indent:2em"><code class="inset"></code></p>
+
+	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+
+	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
+
+	<pre class="block"><code class="inset">
+	</code></pre>
+
+	<ul>
+		<li><p class="item"><br /></p></li>
+		<li><p class="item"><a href="#" title=""></a><br /></p></li>
+	</ul>
+
+	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
+
+	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
+		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
+		<thead>
+		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
+		</thead>
+		<tbody>
+		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
+		</tbody>
+	</table>
+
+	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
+		<caption>命令小结</caption>
+		<tbody>
+		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
+		<tr><td><code class="inset">:</code></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		<tr><td><code class="inset">:</code></td><td></td></tr>
+		</tbody>
+	</table>
+&ldquo;&rdquo;
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 2.0&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+
+</body>
+</html>

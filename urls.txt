@@ -10,7 +10,8 @@
 
 " }}}
 03 高级 " {{{
-03-12	https://tinyurl.com/vim-register	learn-vi-12-Register	https://yyq123.github.io/learn-vim/learn-vi-12-Register.html
+https://tinyurl.com/vim-register	learn-vi-12-Register	https://yyq123.github.io/learn-vim/learn-vi-12-Register.html
+https://kutt.it/vim-QuickFix		<a href="https://kutt.it/vim-QuickFix" title="QuickFix">QuickFix</a>			learn-vi-70-01-QuickFix
 " }}}
 04 模式 " {{{
 
@@ -31,7 +32,7 @@ https://tiny.cc/vim-LF
 09-02 learn-vi-09-03-sort.html
 " }}}
 10 自定义 " {{{
-http://tiny.cc/vim-vimrc	https://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html
+https://kutt.it/vim-vimrc	https://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html	http://tiny.cc/vim-vimrc
 
 " }}}
 11 Coding " {{{

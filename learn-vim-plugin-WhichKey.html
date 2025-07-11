@@ -5,10 +5,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 搜索结果计数器(vim-which-key)</title>
+	<title>VIM学习笔记 快捷键速查表(vim-which-key)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 搜索结果计数器(vim-which-key)</h1>
+	<h1>VIM学习笔记 快捷键速查表(vim-which-key)</h1>
 	<p>Vim提供了一种不依赖鼠标的快速高效的编辑体验，通过大量的键盘快捷键，可以快速地进行文本移动、编辑、修改等操作。然而如何记忆和使用种类繁多的快捷键，也形成了另一种挑战。</p>
 	<p>打开<a href="http://yyq123.github.io/learn-vim/learn-vi-59-vimrc.html" title="vimrc">vimrc</a>配置文件，然后使用以下命令，可以列示所有F功能键的当前定义：</p>
 	<p style="text-indent:2em"><code class="inset">:for i in range(1, 12) | execute("map &lt;F".i."&gt;") | endfor</code></p>
@@ -42,6 +42,7 @@ let g:which_key_map.t.v = 'Tab-vimrc'</code></pre>
       \ 'n' : ['fn' , 'File Name to Clipboard'] ,
       \ 'p' : ['fp' , 'Path Name to Clipboard'] ,
       \ }</code></pre>
+	<p>更多vim-which-key插件配置代码，请参阅<a href="https://gitlab.com/-/snippets/4870638" title="实例">实例</a>。</p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="" height="" /></a></p>
 	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 250701&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="键盘映射 (Map)" href="http://yyq123.github.io/learn-vim/learn-vi-51-KeyMapping.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="运行外部命令(Shell Command)" href="http://yyq123.github.io/learn-vim/learn-vi-71-Shell.html">下一篇</a>&gt;</span></p>
