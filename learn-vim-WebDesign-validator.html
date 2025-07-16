@@ -51,11 +51,12 @@
 CompilerSet makeprg=vnu\ $*\ --asciiquotes\ '%'
 CompilerSet errorformat=\"file:%f\":%[0-9]%#\.%c-%l\.%[0-9]%#:\ %m</code></pre>
 	<p>在<a href="https://kutt.it/vim-vimrc" title="vimrc">vimrc</a>配置文件中，指定新建的编译器：</p>
-	<p style="text-indent:2em"><code class="inset">autocmd FileType html compiler w3c-html-validator</code></p>
+	<p style="text-indent:2em"><code class="inset">autocmd FileType html,xhtml compiler w3c-html-validator</code></p>
 	<p>再次打开HTML文件，使用以下命令即可使用vnu进行验证，并在<a href="https://kutt.it/vim-QuickFix" title="QuickFix">QuickFix</a>中显示输出信息：</p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-
-	<p><a href="https://yyq123.github.io/learn-vim/images/.png" title=""><img src="https://yyq123.github.io/learn-vim/images/.png" alt="" width="500" height="" /></a></p>
+	<p style="text-indent:2em"><code class="inset">:make</code></p>
+	<p>如果已经打开了多个文件，那么使用以下命令则可以在<a href="https://kutt.it/vim-arg" title="Arguments">参数（Arguments）</a>列表中的所有文件中进行验证：</p>
+	<p style="text-indent:2em"><code class="inset">:make ##</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/vnu_make_quickfix.png" title="vnu_make_quickfix"><img src="https://yyq123.github.io/learn-vim/images/vnu_make_quickfix.png" alt="vnu_make_quickfix" width="500" height="98" /></a></p>
 
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 

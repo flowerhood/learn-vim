@@ -88,10 +88,7 @@
     <tr><td><code>{</code></td><td>Beginning of current paragraph</td></tr>
     <tr><td><code>}</code></td><td>End of current paragraph</td></tr>
     <tr><td><code>]]</code></td><td>Beginning of next section</td></tr>
-    <tr>
-        <td><code>[[&nbsp;</code></td>
-        <td>Beginning of previous section</td>
-    </tr>
+    <tr><td><code>[[</code></td><td>Beginning of previous section</td></tr>
     <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
 
     <tr><td colspan="2"><em>行间移动 Lines</em></td></tr>
@@ -110,20 +107,19 @@
         <td>First nonblank character of next, previous line</td>
     </tr>
     <tr>
-        <td><code>n|&nbsp;</code></td>
-        <td>Column <em>n</em> of current line</td>
+        <td><code>n|&nbsp;</code></td><td>移动至当前行的指定列 Column <em>n</em> of current line</td>
     </tr>
     <tr>
         <td><code>H&nbsp;</code></td>
-        <td>Top line of screen</td>
+        <td>移动至屏幕顶端 Top line of screen</td>
     </tr>
     <tr>
         <td><code>M&nbsp;</code></td>
-        <td>Middle line of screen</td>
+        <td>移动至屏幕中间 Middle line of screen</td>
     </tr>
     <tr>
         <td><code>L&nbsp;</code></td>
-        <td>Last line of screen</td>
+        <td>移动至屏幕底部 Last line of screen</td>
     </tr>
     <tr>
         <td><code>nH&nbsp;</code></td>
@@ -133,47 +129,51 @@
         <td><code>nL&nbsp;</code></td>
         <td><em>n</em> (number) of lines before last line</td>
     </tr>
-    <tr><td><code>gg</code></td><td>Top of file</td></tr>
-    <tr><td><code>G</code></td><td>Bottom of file</td></tr>
+    <tr><td><code>gg</code></td><td>移动至文件开头 Move to first line in file</td></tr>
+    <tr><td><code>G</code></td><td>移动至文件末尾 Move to last line in file</td></tr>
     <tr><td><code>Ctrl-Home</code></td><td>Go to the first nonwhitespace character of the first line of the file</td></tr>
     <tr><td><code>Ctrl-End</code></td><td>Go to the end of file</td></tr>
-    <tr><td><code>{count}%</code></td><td>Go to the line <var>count</var> percent into the file, putting the cursor on the first nonblank line</td></tr>
+    <tr><td><code>{count}%</code></td><td>移动至文件指定百分比的位置 Go to the line <var>count</var> percent into the file, putting the cursor on the first nonblank line</td></tr>
     <tr><td><code><strong>CTRL-G</strong></code></td><td>Display current line number</td></tr>
     <tr><td><code>nG&nbsp;</code></td><td>Move to line number <em>n</em></td></tr>
-    <tr><td><code>gg&nbsp;</code></td><td>Move to first line in file</td></tr>
-    <tr><td><code>G&nbsp;</code></td><td>Move to last line in file</td></tr>
-    <tr><td><code>:n&nbsp;</code></td><td>Move to line <em>n</em> in file</td></tr>
+    <tr><td><code>:n&nbsp;</code></td><td>移动至指定行Move to line <em>n</em> in file</td></tr>
     <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
+
     <tr><td colspan="2"><em>滚动屏幕 Scrolling</em></td></tr>
     <tr>
-        <td><code><strong>CTRL-F,
-        CTRL-B</strong>&nbsp;</code></td>
-        <td>Scroll forward, backward one screen</td>
+        <td><code>CTRL-F, CTRL-B</code></td>
+        <td>向上/向下滚动一屏 Scroll forward, backward one screen</td>
     </tr>
     <tr>
-        <td><code><strong>CTRL-D,
-        CTRL-U</strong>&nbsp;</code></td>
-        <td>Scroll down, up one-half screen</td>
+        <td><code>CTRL-D, CTRL-U</td>
+        <td>向上/向下滚动半屏 Scroll down, up one-half screen</td>
     </tr>
     <tr>
-        <td><code><strong>CTRL-E,
-        CTRL-Y</strong>&nbsp;</code></td>
-        <td>Show one more line at bottom, top of window</td>
+        <td><code>CTRL-E, CTRL-Y</code></td>
+        <td>向上/向下滚动一行 Show one more line at bottom, top of window</td>
     </tr>
     <tr>
-        <td><code>z<strong>RETURN</strong>&nbsp;</code></td>
-        <td>Reposition line with cursor to top of screen</td>
+        <td><code>zt, z&lt;RETURN&gt;</code></td>
+        <td>把光标所在行移动到屏幕的顶部 set current line at top of window</td>
     </tr>
     <tr>
-        <td><code>z.&nbsp;</code></td>
-        <td>Reposition line with cursor to middle of screen</td>
+        <td><code>zz, z.</code></td>
+        <td>把光标所在行移动到屏幕的中间 set current line at center of window</td>
     </tr>
     <tr>
-        <td><code>z-&nbsp;</code></td>
-        <td>Reposition line with cursor to bottom of screen</td>
+        <td><code>zb, z-</code></td>
+        <td>把光标所在行移动到屏幕的底部 set current line at bottom of window</td>
+    </tr>
+    <tr>
+        <td>zh, zl</td>
+        <td>文本向右/向左滚动一个字符。仅当 'wrap' 为关时有效。scroll one character to the right, left</td>
+    </tr>
+    <tr>
+        <td>zH zL</td>
+        <td>文本向右/向左滚动半个屏幕宽度。仅当 'wrap' 为关时有效。scroll half a screen to the right, left&nbsp;</td>
     </tr>
     <tr>
         <td><code><strong>CTRL-L</strong>&nbsp;</code></td>
@@ -256,8 +256,8 @@
     <tr><td><code>''&nbsp;</code></td><td>(Apostrophes) 移动到上一标记的行首</td></tr>
     <tr><td><code>`.&nbsp;</code></td><td>(Backquote period) 移动到当前文件的上次修改处</td></tr>
     <tr><td><code>'.&nbsp;</code></td><td>(Apostrophe period) 移动到当前文件的上次修改处的行首</td></tr>
-    <tr><td><code>'0&nbsp;</code></td><td>(Apostrophe zero) 移动到上次退出时的位置</td></tr>
-    <tr><td><code>:marks&nbsp;</code></td><td>显示所有标记</td></tr>
+    <tr><td><code>'0&nbsp;</code></td><td>(Apostrophe zero) 移动到上次退出时的位置 go to the position where Vim was last exited</td></tr>
+    <tr><td><code>:marks&nbsp;</code></td><td>显示所有标记  print the active marks</td></tr>
 </tbody></table>
 	<p><a href="https://yyq123.github.io/learn-vim/images/Movement.png" title="Movement"><img src="https://yyq123.github.io/learn-vim/images/Movement.png" alt="Movement" /></a></p>
 
@@ -384,6 +384,10 @@
         <td>Put text from buffer <em>a</em> before cursor (a-z)</td>
     </tr>
     <tr>
+        <td>:reg</td>
+        <td>显示寄存器内容</td>
+    </tr>
+    <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
@@ -398,12 +402,12 @@
     <tr><td><code>CTRL-X</code></td><td>减少当前光标下的数值</td></tr>
 <tr><td><code></code></td><td></td></tr>
     <tr>
-        <td><code>J&nbsp;</code></td>
-        <td>Join two lines</td>
+        <td><code>J</code></td>
+        <td>合并行（行间有空格隔开）</td>
     </tr>
     <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td><code>gJ</code></td>
+        <td>合并行（行间无空格）</td>
     </tr>
     <tr>
         <td><code>:d&nbsp;</code></td>
@@ -496,7 +500,7 @@
     <tr><td><code>:n&nbsp;</code></td><td>编辑下一个文件</td></tr>
     <tr><td><code>:rewind</code></td><td>编辑第一个文件</td></tr>
     <tr><td><code>:prev</code></td><td>编辑上一个文件</td></tr>
-    <tr><td><code>:args</code></td><td>显示文件列表</td></tr>
+    <tr><td><code>:args</code></td><td>显示<a href="https://kutt.it/vim-arg" title="Arguments">参数（Arguments）</a>列表</td></tr>
     <tr>
         <td><code>%&nbsp;</code></td>
         <td>Current filename (substitutes into <em>ex</em>
@@ -534,15 +538,17 @@
 	<tr><td><code>:ba[ll]</code></td><td>Edit all args or buffers</td></tr>
 	<tr><td><code>:sba[ll]</code></td><td>Edit all args or buffers (opens them in new windows)</td></tr>
 	<tr><td><code>:badd file</code></td><td>Add file to list.</td></tr>
-	<tr><td><code>:buffers[!]</code></td></tr>
+	<tr><td><code>:buffers[!]</code></td><td>List all buffer</td></tr>
 	<tr><td><code>:buffer [n]</code></td><td>Move to buffer n</td></tr>
 	<tr><td><code>:sbuffer [n]</code></td><td>Move to buffer n (opens a new window.)</td></tr>
 	<tr><td><code>:bn[ext] [n]</code></td><td>Move to next nth buffer</td></tr>
 	<tr><td><code>:sbnext [n]</code></td><td>Move to next nth buffer. (opens a new window)</td></tr>
-	<tr><td><code>:bp[revious] [n]</code></td><td>Move to nth previous buffer</td></tr>
-	<tr><td><code>:sbprevious [n]</code></td><td>Move to nth previous buffer. (open a new window.)</td></tr>
-	<tr><td><code>:bf[irst]</code></td><td>Move to first buffer</td></tr>
-	<tr><td><code>:sbfirst</code></td><td>Move to first buffer (opens a new window)</td></tr>
+	<tr><td><code>:bm[odified] [n]</code></td><td>至往后修改过的缓冲区</td></tr>
+	<tr><td><code>:sbm[odified] [n]</code></td><td>分割窗口并至往后修改过的缓冲区</td></tr>
+	<tr><td><code>:bp[revious] [n], bN[ext] [n]</code></td><td>Move to nth previous buffer</td></tr>
+	<tr><td><code>:sbprevious [n], sbN[ext] [n]</code></td><td>Move to nth previous buffer. (open a new window.)</td></tr>
+	<tr><td><code>:bf[irst], :br[ewind]</code></td><td>Move to first buffer</td></tr>
+	<tr><td><code>:sbfirst, :sbr[ewind]</code></td><td>Move to first buffer (opens a new window)</td></tr>
 	<tr><td><code>:bl[ast]</code></td><td></td></tr>
 	<tr><td><code>:sblast</code></td><td>Move to last buffer (opens a new window)</td></tr>
 	<tr><td><code>:unhide</code></td><td>Edit all loaded buffers</td></tr>
@@ -718,7 +724,6 @@ with a few keystrokes. Here's how it's done:</p>
     <li>Execute the buffer with the <code>@</code> command followed by the
         buffer letter.</li>
 </ol>
-
 <p>The ex command: <code>@buf-name</code>
 works similarly.</p>
 
@@ -728,6 +733,22 @@ used from the <em>ex</em> command line. In addition, if the
 buffer character supplied after the <code>*</code>
 commands is <code>*</code>, the
 command is taken from the default (unnamed) buffer.</p>
+
+<h2><em>Folding</em></h2>
+<table border="0">
+<tbody><tr><th>Command</th><th>Action</th></tr>
+    <tr><td><code class="inset">zj</code></td><td>移动到下一个折叠</td></tr>
+    <tr><td><code class="inset">zk</code></td><td>移动到上一个折叠</td></tr>
+    <tr><td><code class="inset">zo, zO</code></td><td>打开所有光标行上的折叠</td></tr>
+    <tr><td><code class="inset">zc, zC</code></td><td>关闭所有光标行上的折叠</td></tr>
+    <tr><td><code class="inset">zd</code></td><td>删除一个光标行上的折叠</td></tr>
+    <tr><td><code class="inset">zD</code></td><td>删除所有光标行上的折叠</td></tr>
+    <tr><td><code class="inset">[z</code></td><td>移动到折叠的开头</td></tr>
+    <tr><td><code class="inset">]z</code></td><td>移动到折叠的结尾</td></tr>
+    <tr><td><code class="inset"></code></td><td></td></tr>
+    <tr><td><code class="inset"></code></td><td></td></tr>
+</tbody>
+</table>
 
 <h2><em>Automatic Indentation</em></h2>
 
@@ -741,12 +762,12 @@ command is taken from the default (unnamed) buffer.</p>
 
 <table border="0">
     <tbody><tr>
-        <td><code>^T </code></td>
-        <td>Add one level of indentation; typed in insert mode</td>
+	<td><code>^T </code></td>
+        <td>增加缩进 Add one level of indentation; typed in insert mode</td>
     </tr>
     <tr>
         <td><code>^D </code></td>
-        <td>Remove one level of indentation; type in insert mode</td>
+        <td>减少缩进 Remove one level of indentation; type in insert mode</td>
     </tr>
     <tr>
         <td><code>^ ^D&nbsp;</code></td>
@@ -760,22 +781,16 @@ command is taken from the default (unnamed) buffer.</p>
     </tr>
 </tbody></table>
 
-<blockquote>
-    <p>* <code> are not in <em>elvis</em> 2.0<br>
-    + The nvi 1.79 documentation has these two commands switched,
-    but the program actually behaves as described here.</code></p>
-</blockquote>
-
 <p>Two commands can be used for shifting source:</p>
 
 <table border="0">
     <tbody><tr>
-        <td>&lt;&lt;<code>&nbsp;</code></td>
-        <td>Shift a line left eight spaces</td>
+        <td><code>&lt;&lt;</code></td>
+	<td>减少缩进</td>
     </tr>
     <tr>
-        <td><code>&gt;&gt;&nbsp;</code></td>
-        <td>Shift a line right eight spaces</td>
+        <td><code>&gt;&gt;</code></td>
+        <td>增加缩进</td>
     </tr>
 </tbody></table>
 
@@ -1278,18 +1293,19 @@ expression ends its effect.
         <td><strong>Command</strong></td>
         <td><strong>Action</strong></td>
     </tr>
-    <tr><td><code class="inset">Ctrl-]</code></td><td>标签跳转</td></tr>
-    <tr><td><code class="inset">tag</code></td><td>标签跳转</td></tr>
+    <tr><td><code class="inset">Ctrl-]</code></td><td>标签跳转 Jump to the tag under cursor</td></tr>
+    <tr><td><code class="inset">:tag</code></td><td>标签跳转 Jump to tag</td></tr>
     <tr><td><code class="inset">stag</code></td><td>标签跳转至新建窗口</td></tr>
-    <tr><td><code class="inset">pop</code></td><td>标签跳转返回</td></tr>
+    <tr><td><code class="inset">:pop</code></td><td>标签跳转返回 Jump back from [count]'th older tag in tag list</td></tr>
     <tr><td><code class="inset">Ctrl-T</code></td><td>标签跳转返回</td></tr>
-    <tr><td><code class="inset">tags</code></td><td>查看标签栈内容</td></tr>
-    <tr><td><code class="inset">tselect</code></td><td>在新建窗口中显示匹配列表</td></tr>
-    <tr><td><code class="inset">stselect</code></td><td>在预览窗口中显示匹配列表</td></tr>
-    <tr><td><code class="inset">tnext</code></td><td>跳转至下一个匹配项</td></tr>
-    <tr><td><code class="inset">tprevious</code></td><td>跳转至上一个匹配项</td></tr>
-    <tr><td><code class="inset">tfirst</code></td><td>跳转至第一个匹配项</td></tr>
-    <tr><td><code class="inset">tlast</code></td><td>跳转至最后一个匹配项</td></tr>
+    <tr><td><code class="inset">:tags</code></td><td>查看标签栈内容 Print tag list</td></tr>
+    <tr><td><code class="inset">:tselect</code></td><td>在新建窗口中显示匹配列表</td></tr>
+    <tr><td><code class="inset">:tjump</code></td><td>在预览窗口中显示匹配列表类似于，如果只有一个匹配，则直接跳转</td></tr>
+    <tr><td><code class="inset">:stselect</code></td><td>在预览窗口中显示匹配列表</td></tr>
+    <tr><td><code class="inset">:tnext</code></td><td>跳转至下一个匹配项</td></tr>
+    <tr><td><code class="inset">:tprevious</code></td><td>跳转至上一个匹配项</td></tr>
+    <tr><td><code class="inset">:tfirst</code></td><td>跳转至第一个匹配项</td></tr>
+    <tr><td><code class="inset">:tlast</code></td><td>跳转至最后一个匹配项</td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
