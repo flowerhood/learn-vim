@@ -10,9 +10,10 @@
 <body>
 	<h1>VIM学习笔记 网页验证(W3C Validation)</h1>
 	<p>符合标准的网页开发，可谓是不作恶的底线了。通过生产具有可读性的高质量代码，促成在不同浏览器中达成一致的显示效果，并且关照不同用户群体的可访问性（accessibility）。</p>
-	<p>可以使用<a title="W3C Markup Validation Service" href="https://validator.w3.org/">W3C Markup Validation Service</a>，在线验证网页是否符合标准；也可以使用<a href="https://www.gueury.com/mozilla/" title="Html Validator">Html Validator</a>插件，在浏览器中验证网页。而更高效的方式，则是使用<a title="Nu Html Checker (v.Nu) Chat roomr" href=https://validator.github.io/validator/">Nu Html Checker (v.Nu)</a>开源工具，它可以在命令行中离线批量验证多个文件。</p>
+	<p>可以使用<a title="W3C Markup Validation Service" href="https://validator.w3.org/">W3C Markup Validation Service</a>，在线验证网页是否符合标准；也可以使用<a href="https://www.gueury.com/mozilla/" title="Html Validator">Html Validator</a>插件，在浏览器中验证网页。而更高效的方式，则是使用<a title="Nu Html Checker (v.Nu) Chat roomr" href="https://validator.github.io/validator/">Nu Html Checker (v.Nu)</a>开源工具，它可以在命令行中离线批量验证多个文件。</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/vnu_github.png" title="vnu_github"><img src="https://yyq123.github.io/learn-vim/images/vnu_github.png" alt="vnu_github" width="500" height="250" /></a></p>
 	<h2 class="article"><a id="install">安装运行</a></h2>
-	<p>可以直接从<a href="Download Validator" title="https://github.com/validator/validator/releases">GitHub</a>下载各平台下的可运行程序。</p>
+	<p>可以直接从<a title="Download Validator" href="https://github.com/validator/validator/releases">GitHub</a>下载各平台下的可运行程序。</p>
 	<p>如果您已经安装了Java运行环境，那么可以下载<kbd> vnu.jar</kbd>文件直接运行。</p>
 	<p>如果您没有安装过Java运行环境，那么可以下载相应操作系统的预编译包，比如<kbd>vnu.windows.zip</kbd>，其中内置了的Java系统。</p>
 	<p>将vnu所在目录，增加到path环境变量中：</p>
@@ -57,8 +58,6 @@ CompilerSet errorformat=\"file:%f\":%[0-9]%#\.%c-%l\.%[0-9]%#:\ %m</code></pre>
 	<p>如果已经打开了多个文件，那么使用以下命令则可以在<a href="https://kutt.it/vim-arg" title="Arguments">参数（Arguments）</a>列表中的所有文件中进行验证：</p>
 	<p style="text-indent:2em"><code class="inset">:make ##</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/vnu_make_quickfix.png" title="vnu_make_quickfix"><img src="https://yyq123.github.io/learn-vim/images/vnu_make_quickfix.png" alt="vnu_make_quickfix" width="500" height="98" /></a></p>
-
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 
 	<pre class="block"><code class="inset">
 	</code></pre>
