@@ -8,7 +8,7 @@
 	<title>VIM学习笔记 ()</title>
 </head>
 <body>
-	<h1>VIM学习笔记 ()</h1>
+	<p><a href="https://fileinfo.com/extension/csv" title=".CSV File Extension">CSV</a>是一种以逗号分隔值的文本文件，常用于电子表格程序，如 Microsoft Excel 或 OpenOffice Calc。CSV 文件中的每一行代表数据库中的一行，而每行数据库行由一个或多个以逗号分隔的字段组成。</p>
 
 	<h2 class="article"><a id=""></a></h2>
 	<p></p>
@@ -16,8 +16,26 @@
 
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
+	<p>安装<a href="https://github.com/cameron-wags/rainbow_csv.nvim" target="_blank" rel="noopener external nofollow noreferrer">Rainbow CSV</a>插件之后，打开CSV文件将自动以不同的颜色显示不同的列，以提高数据的可读性。</p>
+	<p><a href="http://yyq123.github.io/learn-vim/images/rainbow_csv_color.png" title="rainbow_csv_color"><img src="http://yyq123.github.io/learn-vim/images/rainbow_csv_color.png" alt="rainbow_csv_color" /></a></p>
+	<p>使用以下命令，可以按列对齐：</p>
+	<p style="text-indent:2em"><code class="inset">:RainbowAlign</code></p>
+	<p><a href="http://yyq123.github.io/learn-vim/images/rainbow_csv_aligh.png" title="rainbow_csv_aligh"><img src="http://yyq123.github.io/learn-vim/images/rainbow_csv_aligh.png" alt="rainbow_csv_aligh" /></a></p>
+	<p>请注意，插件是通过新增空格来实现按列对齐，如果您此时保存文件，那么新增的空格也将被保存到原文件中。</p>
 
+	<p>使用类似SQL的<a href="https://rbql.org/" title="Rainbow Query Language">RBQL</a>查询语言，可以对CSV文件进行灵活的数据处理，甚至包括连接查询和更新。</p>
+	<p>使用以下命令，将按照第8列的倒叙，显示第1列和第8列：</p>
+	<p style="text-indent:2em"><code class="inset">Select a1, a8 order by a8 desc</code></p>
+	The status line notation of the present column shows the column number to make building these queries easier. In the demo below, I use this exact query to select out the name and cholesterol level of foods:</p>
+<a href="https://github.com/mechatroner/RBQL/blob/master/README.md#rbql-rainbow-query-language-description" data-wpel-link="external" rel="external noopener noreferrer">robust documentation</a>.
+	<h2 class="article"><a id="frozen-headers">固定标题行</a></h2>
+	<p>首先使用<code class="inset">:sp</code>命令，水平分割窗口，然后点击<kbd>Ctrl+w1_</kbd>快捷键，调整窗口尺寸仅显示首行。</p>
+<p>After that we can <code>:set scrollopt=hor</code> to configure scroll binding behavior to horizontal sync and after that <code>:set scrollbind</code> in both windows will ensure that as we move about in the primary window the headers stay in sync.</p>
 	<h2 class="article"><a id=""></a></h2>
+	<p>使用以下命令，可以查找并计数行内的逗号数量</p>
+	<p style="text-indent:2em"><code class="inset">:s/,/,/gn</code></p>
+
+	<h2 class="article"><a id="column">按列对齐</a></h2>
 	<p>假设有以下逗号分割的CSV文件，如下图红线所示，数据列没有对齐：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-Before.png" title="CSV-Column-Align-Before"><img src="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-Before.png" alt="CSV-Column-Align-Before" width="550" height="84" /></a></p>
 	<p>通过<a href="http://yyq123.github.io/learn-vim/learn-vim-Shell-Filter.html" title="过滤器(Filter)">过滤器</a>使用<a href="http://man.he.net/?topic=column&section=all" title="column">column</a>命令来按列对齐：</p>
@@ -28,7 +46,43 @@
 	<p style="text-indent:2em"><code class="inset">:%ArrangeColumn</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_csv_ArrangeColumn.png" title="plugin_csv_ArrangeColumn"><img src="https://yyq123.github.io/learn-vim/images/plugin_csv_ArrangeColumn.png" alt="plugin_csv_ArrangeColumn" width="550" height="55" /></a></p>
 
-	<h2 class="article"><a id="merge">合并文件</a></h2>
+	<h2 class="article"><a id="sort"></a>按列排序</h2>
+	<p>调用外部<a href="https://www.gnu.org/software/coreutils/manual/html_node/sort-invocation.html" title="sort">sort</a>命令，可以按照第2列进行排序：</p>
+	<p style="text-indent:2em"><code class="inset">:%!sort -t ',' -k2</code></p>
+
+
+	<h2 class="article"><a id="merge-columns"></a>按列合并</h2>
+	<p>假设names.txt文件，包含姓名信息：</p>
+	<pre class="block">Jason
+Cameron
+Tim</pre>
+	<p>假设numbers.txt文件，包含电话信息：</p>
+	<pre class="block">555-1234
+ 555-9876
+ 555-2468</pre>
+	<p>使用以下Linux命令，可以将多个文件按列合并：</p>
+	<p style="text-indent:2em"><code class="inset">$ paste names.txt numbers.txt</code></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/CSV-Column-Merge-paste.png" title="CSV-Column-Merge-paste"><img src="https://yyq123.github.io/learn-vim/images/CSV-Column-Merge-paste.png" alt="CSV-Column-Merge-paste" /></a></p>
+
+	<h2 class="article"><a id="split-files">拆分文件</a></h2>
+	<p>调用外部<a href="https://www.gnu.org/software/coreutils/manual/html_node/split-invocation.html">split</a>命令，可以按行数拆分成多个文件：</p>
+	<p style="text-indent:2em"><code class="inset">$ split -l200 passengers.csv --verbose</code></p>
+	<pre class="block">creating file ‘xaa’
+creating file ‘xab’
+creating file ‘xac’
+creating file ‘xad’
+creating file ‘xae’</pre>
+	<p>调用外部 <a href="https://www.gnu.org/software/coreutils/manual/html_node/wc-invocation.html">wc</a>.命令，可以统计文件包含的行数：</p>
+	<p style="text-indent:2em"><code class="inset">$ wc -l xa*</code></p>
+	<pre class="block">200 xaa
+200 xab
+200 xac
+200 xad
+ 92 xae
+892 total</pre>
+
+
+	<h2 class="article"><a id="merge-files">合并文件</a></h2>
 	<p>在Windows中，使用copy命令可以合并多个文件：</p>
 	<p style="text-indent:2em"><code class="inset">$ copy *.csv merged-filname.csv</code></p>
 	<p>在Linux中，使用cat命令可以合并多个文件：</p>

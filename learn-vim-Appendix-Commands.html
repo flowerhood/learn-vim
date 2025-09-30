@@ -92,22 +92,26 @@
     <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
 
     <tr><td colspan="2"><em>行间移动 Lines</em></td></tr>
-    <tr>
-        <td><code>RETURN</code></td>
-        <td>First nonblank character of next line</td>
-    </tr>
     <tr><td><code>0</code></td><td>移动至当前行的首个字符 First position of current line (also: &lt;Home&gt; key)</td></tr>
     <tr><td><code>$</code></td><td>移动至当前行最后一个字符 Last position of current line (also: &lt;End&gt; key)</td></tr>
     <tr>
         <td><code>^, _&nbsp;</code></td>
-        <td>移动至当前行的首个非空字符 First nonblank character of current line</td>
+        <td>移动至当前行的首个非空字符 First non-blank character of current line</td>
     </tr>
     <tr>
-        <td><code>+, -&nbsp;</code></td>
-        <td>First nonblank character of next, previous line</td>
+        <td><code>+, RETURN, Ctrl-M</code></td>
+        <td>移动至下一行的首个非空字符 First non-blank character of next line</td>
+    </tr>
+    <tr>
+        <td><code>-</code></td>
+        <td>移动至上一行的首个非空字符 First non-blank character of previous line</td>
     </tr>
     <tr>
         <td><code>n|&nbsp;</code></td><td>移动至当前行的指定列 Column <em>n</em> of current line</td>
+    </tr>
+    <tr>
+        <td><code>Ctrl-N</code></td>
+        <td>移动到下一行 Next line</td>
     </tr>
     <tr>
         <td><code>H&nbsp;</code></td>
@@ -168,11 +172,11 @@
         <td>把光标所在行移动到屏幕的底部 set current line at bottom of window</td>
     </tr>
     <tr>
-        <td>zh, zl</td>
+	    <td><code>zh, zl</code></td>
         <td>文本向右/向左滚动一个字符。仅当 'wrap' 为关时有效。scroll one character to the right, left</td>
     </tr>
     <tr>
-        <td>zH zL</td>
+	    <td><code>zH, zL</code></td>
         <td>文本向右/向左滚动半个屏幕宽度。仅当 'wrap' 为关时有效。scroll half a screen to the right, left&nbsp;</td>
     </tr>
     <tr>
@@ -287,53 +291,27 @@
         <td>在当前行之下新增一行 Open a new line below the current line</td>
     </tr>
     <tr>
-        <td>O</td>
+    <td><code>O</code></td>
         <td>在当前行之上新增一行 open a new line above the current line</td>
     </tr>
     <tr><td colspan="2"><strong>更改 Change</strong></td></tr>
-    <tr>
-        <td><code>r&nbsp;</code></td>
-        <td>替换光标下字符 Replace character</td>
+    <tr><td><code>r</code></td> <td>替换光标下字符 Replace character</td></tr>
+    <tr><td><code>cw</code></td><td>Change word</td></tr>
+    <tr><td><code>cc</code></td><td>修改一整行 Change current line</td></tr>
+    <tr><td><code>c{motion}</code></td><td>修改动作命令定义的文本 Change text between the cursor and the target of <em>motion</em></td>
     </tr>
-    <tr>
-        <td><code>cw&nbsp;</code></td>
-        <td>Change word</td>
-    </tr>
-    <tr><td><code>cc&nbsp;</code></td><td>修改一整行 Change current line</td></tr>
-    <tr>
-        <td><code>cmotion&nbsp;</code></td>
-        <td>Change text between the cursor and the target of <em>motion</em></td>
-    </tr>
-    <tr>
-        <td><code>C, c$</code></td>
-        <td>修改到行尾 Change to end of line</td>
-    </tr>
-    <tr>
-        <td><code>R&nbsp;</code></td>
-        <td>进入替换模式 Type over (overwrite) characters</td>
-    </tr>
-    <tr>
-        <td><code>s&nbsp;</code></td>
-        <td>替换当前字符 Substitute: delete character and insert new text</td>
-    </tr>
-    <tr>
-        <td><code>S&nbsp;</code></td>
-        <td>替换一整行 Substitute: delete current line and insert new text</td>
-    </tr>
+    <tr><td><code>C, c$</code></td><td>修改到行尾 Change to end of line</td></tr>
+    <tr><td><code>R</code></td><td>进入替换模式 enter Replace mode</td></tr>
+    <tr><td><code>s</code></td><td>替换当前字符 Substitute: delete character and insert new text</td></tr>
+    <tr><td><code>S</code></td><td>替换一整行 Substitute: delete current line and insert new text</td></tr>
     <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
-    <tr><td colspan="2"><strong>删除 移动 Delete, move</strong></td></tr>
-    <tr>
-        <td><code>x&nbsp;</code></td>
-        <td>删除光标之下的字符 Delete character under cursor</td>
-    </tr>
-    <tr>
-        <td><code>X&nbsp;</code></td>
-        <td>删除光标之前的字符 Delete character before cursor</td>
-    </tr>
-    <tr><td><code>dw&nbsp;</code></td><td>Delete word</td></tr>
+    <tr><td colspan="2"><strong>删除 Delete</strong></td></tr>
+    <tr><td><code>x</code></td><td>删除光标之下的字符 Delete character under cursor</td></tr>
+    <tr><td><code>X</code></td><td>删除光标之前的字符 Delete character before cursor</td></tr>
+    <tr><td><code>dw</code></td><td>删除word Delete word</td></tr>
     <tr><td><code>d}</code></td><td>删除至下一个段落paragraph</td></tr>
     <tr><td><code>d^</code></td><td>删除至行首</td></tr>
     <tr><td><code>dG</code></td><td>删除至文件末尾</td></tr>
@@ -341,65 +319,37 @@
     <tr><td><code>g~w</code></td><td>转换当前word大小写</td></tr>
     <tr><td><code>guw</code></td><td>转换当前word为小写</td></tr>
     <tr><td><code>gUw</code></td><td>转换当前word为大写</td></tr>
-    <tr>
-	<td><code>dd</ br>D&nbsp;</code></td>
-        <td>删除当前行Delete current line</td>
-    </tr>
-    <tr>
-	    <td><code>d{motion}&nbsp;</code></td>
-        <td>删除动作命令定义的文本 Delete text between the cursor and the target of <em>motion</em></td>
-    </tr>
-    <tr>
-        <td><code>D, d$</code></td>
-        <td>Delete to end of line</td>
-    </tr>
+    <tr><td><code>dd</ br>D</code></td><td>删除当前行Delete current line</td></tr>
+    <tr><td><code>d{motion}</code></td><td>删除动作命令定义的文本 Delete text between the cursor and the target of <em>motion</em></td></tr>
+    <tr><td><code>D, d$</code></td><td>删除至行尾 Delete to end of line</td></tr>
     <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
     <tr><td colspan="2"><strong>复制 Yank</strong></td></tr>
-    <tr>
-        <td><code>yw&nbsp;</code></td>
-        <td>Yank (copy) word</td>
-    </tr>
-    <tr>
-        <td><code>yy, Y</code></td>
-        <td>Yank cureent line</td>
+    <tr><td><code>yw</code></td><td>复制word Yank (copy) word</td></tr>
+    <tr><td><code>yy, Y</code></td><td>复制当前行 Yank cureent line</td>
     </tr>
     <tr>
 	    <td><code>ayy&nbsp;</code></td>
         <td>Yank current line into named buffer <em>a</em> (a-z).
         Uppercase names append text</td>
     </tr>
-    <tr>
-        <td><code>ymotion&nbsp;</code></td>
-        <td>Yank text between the cursor and the target of <em>motion</em></td>
-    </tr>
-    <tr>
-        <td><code>p, P&nbsp;</code></td>
-        <td>Put yanked text after, before cursor</td>
-    </tr>
+    <tr><td><code>y{motion}</code></td><td>复制动作命令定义的文本 Yank text between the cursor and the target of <em>motion</em></td></tr>
+    <tr><td><code>p, P</code></td><td>粘贴文本 Put yanked text after, before cursor</td></tr>
     <tr>
 	    <td><code>aPv</code></td>
         <td>Put text from buffer <em>a</em> before cursor (a-z)</td>
-    </tr>
-    <tr>
-        <td>:reg</td>
-        <td>显示寄存器内容</td>
-    </tr>
-    <tr>
+    </tr><tr><td><code>:reg</code></td><td>显示寄存器内容</td></tr><tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
     <tr><td colspan="2"><strong>其他 Miscellaneous</strong></td></tr>
-    <tr>
-        <td><code>.&nbsp;</code></td>
-        <td>Repeat last edit command</td>
-    </tr>
+    <tr><td><code>.</code></td><td>重复上次操作 Repeat last edit command</td></tr>
     <tr><td><code>u</code></td><td>撤销上次操作 Undo last edit</td></tr>
     <tr><td><code>U</code></td><td>撤销上次操作的行 restore current line</td></tr>
-    <tr><td><code>CTRL-A</code></td><td>增加当前光标下的数值</td></tr>
-    <tr><td><code>CTRL-X</code></td><td>减少当前光标下的数值</td></tr>
+    <tr><td><code>CTRL-A</code></td><td>增加当前光标下的数值 add N to the number at the cursor</td></tr>
+    <tr><td><code>CTRL-X</code></td><td>减少当前光标下的数值 subtract N to the number at the cursor</td></tr>
 <tr><td><code></code></td><td></td></tr>
     <tr>
         <td><code>J</code></td>
@@ -1168,12 +1118,14 @@ expression ends its effect.
 <h2 style="border-bottom:1px solid lightgray"><a id="Set-Commands">设置选项 :set Commands</a></h2>
 
 <table border="0"><tbody>
-	<tr><td><code>:set <em>option</em></code></td><td>&nbsp;</td><td>对于布尔值选项，将启用该选项；对于其他类型选项，将显示当前选项值。</td></tr>
-	<tr><td><code>:set no <em>option</em></code></td><td>&nbsp;</td><td>禁用该选项</td></tr>
-	<tr><td><code>:set <em>option</em>=<em>value</em></code></td><td>&nbsp;</td><td>设置选项值</td></tr>
+	<tr><td><code>:set <em>{option}</em></code></td><td>&nbsp;</td><td>对于布尔值选项，将启用该选项；对于其他类型选项，将显示当前选项值。</td></tr>
+	<tr><td><code>:set no<em>{option}</em></code></td><td>&nbsp;</td><td>禁用该选项</td></tr>
+	<tr><td><code>:set inv<em>{option}</em></code></td><td>&nbsp;</td><td>反转该选项</td></tr>
+	<tr><td><code>:set <em>{option}</em>&</code></td><td>&nbsp;</td><td>设置该选项为默认值</td></tr>
+	<tr><td><code>:set <em>{option}</em>=<em>{value}</em></code></td><td>&nbsp;</td><td>设置选项值</td></tr>
 	<tr><td><code>:set</code></td><td>&nbsp;</td><td>显示所有已更改的选项</td></tr>
 	<tr><td><code>:set all</code></td><td>&nbsp;</td><td>显示所有选项</td></tr>
-	<tr><td><code>:set <em>option</em> ?</code></td><td>&nbsp;</td><td>显示选项<em>option</em>的值</td></tr>
+	<tr><td><code>:set <em>{option}</em>?</code></td><td>&nbsp;</td><td>显示选项<em>option</em>的值</td></tr>
 </tbody></table>
 
 <h2 style="border-bottom:1px solid lightgray"><a id="ex-Commands">ex Commands</a></h2>
@@ -1318,11 +1270,11 @@ expression ends its effect.
 </tbody>
 </table>
 
-<h2><em>Tags</em></h2>
+<h2><em>Others</em></h2>
 <table border="0">
 <tbody>
-<tr><td><code class="inset">:X</code></td><td>加密</td></tr>
-    <tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset">:digraphs</code></td><td>列示特殊符号</td></tr>
+	<tr><td><code class="inset">:X</code></td><td>加密</td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
@@ -1659,7 +1611,7 @@ expression ends its effect.
     <tr>
         <td>Source</td>
         <td>&nbsp;</td>
-        <td><code>so filename</code></td>
+	<td><code>so {filename}</code></td>
 	<td>读取并执行文件中的命令</td>
     </tr>
     <tr>
