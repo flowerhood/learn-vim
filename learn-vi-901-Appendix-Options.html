@@ -61,9 +61,9 @@
 
 	<li id="A" style="list-style-type:'A'"><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 	<li><p><a href="#" title="">allowrevins</a> (ari) (Default: off)<br />允许插入和命令行模式使用 CTRL-_。缺省是关闭的；</p></li>
-	<li><p><a href="#" title="">autoindent</a> (ai) (Default: noai)<br />；</p></li>
+	<li><p><a href="#" title="">autoindent</a> (ai) (Default: noai)<br />自动延续上一行的缩进take indent for new line from previous line；</p></li>
 	<li><p><a href="#" title="">autoread</a> (ar) (Default: noautoread)<br />Detect whether a file inside Vim has been modified externally, not by Vim, and automatically refresh the Vim buffer with the changed version of the file；</p></li>
-	<li><p><a href="#" title="">autowrite</a> (aw) (Default: noaw)<br />；</p></li>
+	<li><p><a href="#" title="">autowrite</a> (aw) (Default: noaw)<br />自动保存 automatically write file if changed；</p></li>
 
 	<li id="B" style="list-style-type:'B'"><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 	<li><p><a href="#" title="">background</a> (bg) (Default:dark or light )<br />Vim tries to use background and foreground colors that are appropriate to the particular terminal. The default depends on the current terminal or win- dowing system.；</p></li>
@@ -220,11 +220,11 @@
 	<li><p><a href="#" title="">undolevels</a> (ul) (Default: )<br />；</p></li>
 	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 
-	<li><p><a href="#" title="">viminfo</a> (vi) (Default: )<br />；</p></li>
+	<li><p><a href="#" title="">viminfo</a> (vi) (Default: "")<br />初始化时读入viminfo文件，退出时写回 use .viminfo file upon startup and exiting；</p></li>
 	<li><p><a href="#" title=""></a> () (Default: )<br />；</p></li>
 	<li><p><a href="#opt-visualbell" title="opt-visualbell">visualbell</a> (vb) (Default: off)<br />设置响铃的行为：鸣叫、屏幕闪烁或什么都不做；</p></li>
 
-	<li><p><a href="#" title="">warn</a> () (Default: warn)<br />；</p></li>
+	<li><p><a href="#" title="">warn</a> () (Default: warn)<br />在已修改的缓冲区上使用外部命令会给出警告信息warn for shell command when buffer was changed；</p></li>
 	<li><p><a href="#" title="">window</a> (w) (Default: )<br />；</p></li>
 	<li><p><a href="#" title="">winheight</a> (wh) (default 1)<br /><span>option When entering or creating a window, set its height to at least the specified value.；</span></li>
 	<li><p><a href="#" title="">winwidth</a> () (Default: )<br />；When entering or creating a window, set its width to at least the specified value.</p></li>

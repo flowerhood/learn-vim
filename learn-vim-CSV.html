@@ -20,17 +20,28 @@
 	<p><a href="http://yyq123.github.io/learn-vim/images/rainbow_csv_color.png" title="rainbow_csv_color"><img src="http://yyq123.github.io/learn-vim/images/rainbow_csv_color.png" alt="rainbow_csv_color" /></a></p>
 	<p>使用以下命令，可以按列对齐：</p>
 	<p style="text-indent:2em"><code class="inset">:RainbowAlign</code></p>
-	<p><a href="http://yyq123.github.io/learn-vim/images/rainbow_csv_aligh.png" title="rainbow_csv_aligh"><img src="http://yyq123.github.io/learn-vim/images/rainbow_csv_aligh.png" alt="rainbow_csv_aligh" /></a></p>
+	<p><a href="http://yyq123.github.io/learn-vim/images/rainbow_csv_align.png" title="rainbow_csv_align"><img src="http://yyq123.github.io/learn-vim/images/rainbow_csv_align.png" alt="rainbow_csv_align" /></a></p>
 	<p>请注意，插件是通过新增空格来实现按列对齐，如果您此时保存文件，那么新增的空格也将被保存到原文件中。</p>
 
 	<p>使用类似SQL的<a href="https://rbql.org/" title="Rainbow Query Language">RBQL</a>查询语言，可以对CSV文件进行灵活的数据处理，甚至包括连接查询和更新。</p>
-	<p>使用以下命令，将按照第8列的倒叙，显示第1列和第8列：</p>
+	<p>使用以下命令，将按照第8列的倒序，显示第1列和第8列：</p>
 	<p style="text-indent:2em"><code class="inset">Select a1, a8 order by a8 desc</code></p>
-	The status line notation of the present column shows the column number to make building these queries easier. In the demo below, I use this exact query to select out the name and cholesterol level of foods:</p>
-<a href="https://github.com/mechatroner/RBQL/blob/master/README.md#rbql-rainbow-query-language-description" data-wpel-link="external" rel="external noopener noreferrer">robust documentation</a>.
+	<p>请注意，随着光标移动，可以在状态上查看当前列的序号和名称。</p>
+	<p>关于<a href="https://rbql.org/" title="Rainbow Query Language">RBQL</a>查询语言的更多信息，可以查看<a href="https://github.com/mechatroner/RBQL/blob/master/README.md#rbql-rainbow-query-language-description" title="documentation">在线文档</a>。</p>
+
 	<h2 class="article"><a id="frozen-headers">固定标题行</a></h2>
-	<p>首先使用<code class="inset">:sp</code>命令，水平分割窗口，然后点击<kbd>Ctrl+w1_</kbd>快捷键，调整窗口尺寸仅显示首行。</p>
-<p>After that we can <code>:set scrollopt=hor</code> to configure scroll binding behavior to horizontal sync and after that <code>:set scrollbind</code> in both windows will ensure that as we move about in the primary window the headers stay in sync.</p>
+	<p>通过以下步骤，将文件拆分在两个水平窗口中显示并绑定滚动，可以保持标题行始终置顶显示：</p>
+	<ol>
+		<li>打开CSV文件，使用<code class="inset">:set nowrap</code>命令，取消折行显示；</li>
+		<li>使用<code class="inset">:sp</code>命令，水平分割窗口，然后点击<kbd>1Ctrl-w_</kbd>快捷键，调整窗口尺寸仅显示首行；</li>
+		<li>点击<kbd>Ctrl-wj</kbd>快捷键，跳转到下一窗口；</li>
+		<li>使用<code class="inset">:set scrollopt=hor</code>命令，显示横向滚动条；使用<code class="inset">:set scrollbind</code>命令，绑定滚动；</li>
+		<li>点击<kbd>Ctrl-wk</kbd>快捷键，跳转到上一窗口；</li>
+		<li>使用<code class="inset">:set scrollbind</code>命令，绑定滚动；</li>
+	</ol>
+	<p>此时在文件中左右移动，标题行与内容将自动同步对齐：</p>
+	<p><a href="http://yyq123.github.io/learn-vim/images/CSV-Frozen-Headers.png" title="CSV-Frozen-Headers.png"><img src="http://yyq123.github.io/learn-vim/images/CSV-Frozen-Headers.png.png" alt="CSV-Frozen-Headers.png" /></a></p>
+
 	<h2 class="article"><a id=""></a></h2>
 	<p>使用以下命令，可以查找并计数行内的逗号数量</p>
 	<p style="text-indent:2em"><code class="inset">:s/,/,/gn</code></p>

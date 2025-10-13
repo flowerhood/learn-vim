@@ -17,24 +17,26 @@
     <tr><td><code>vi file&nbsp;</code></td><td>启动vim并打开<em>file</em>文件</td></tr>
     <tr><td><code>vi file1 file2&nbsp;</code></td><td>启动vim并打开<em>file1</em>和<em>file2</em>文件</td></tr>
     <tr><td><code>view file&nbsp;</code></td><td>启动vim并以只读模式打开<em>file</em>文件</td></tr>
-    <tr><td><code>vi -b file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em> in binary mode</td></tr>
+    <tr><td><code>vi -b {file}</code></td><td>以二进制模式打开文件 Open <em>file</em> in binary mode</td></tr>
     <tr><td><code>vi -c command file&nbsp;</code></td><td>Open <em>file</em>, execute <em>command</em>, which is usually a search command or line number (POSIX)</td></tr>
     <tr><td><code>vi -d file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em> in diff mode</td></tr>
     <tr><td><code>vi -D file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em> in debugging mode</td></tr>
+    <tr><td><code>vim -g {file}</code></td><td>启动图形界面 start GUI</td></tr>
     <tr><td><code>vi -h file&nbsp;</code></td><td>显示帮助信息</td></tr>
+    <tr><td><code>vi -i {viminfo}</code></td><td> read info from {viminfo}</td></tr>
     <tr><td><code>vi -m file&nbsp;</code></td><td>允许修改文本，但不允许保存文件</td></tr>
     <tr><td><code>vi -M file&nbsp;</code></td><td>不允许修改文本，也不允许保存文件</td></tr>
-    <tr><td><code>vi -n file&nbsp;</code></td><td>不使用swap文件</td></tr>
+    <tr><td><code>vi -n file&nbsp;</code></td><td>不使用swap文件 Do not create swapfile</td></tr>
     <tr><td><code>vi -N file&nbsp;</code></td><td>非兼容模式（nocompatible）</td></tr>
     <tr><td><code>vi -o[N]&nbsp;</code></td><td>新建N个水平窗口</td></tr>
     <tr><td><code>vi -O[N]&nbsp;</code></td><td>新建N个垂直窗口</td></tr>
-    <tr><td><code>vi -r file&nbsp;</code></td><td>Recover <em>file</em> and recent edits after a crash</td></tr>
-    <tr><td><code>vi -R file&nbsp;</code></td><td>Invoke <em>vi</em> on <em>file</em> in read-only mode</td></tr>
+    <tr><td><code>vi -r {file}</code></td><td>恢复意外退出的文件 Recover <em>file</em> and recent edits after a crash</td></tr>
+    <tr><td><code>vi -R f{ile}</code></td><td>只读模式打开文件 Open <em>file</em> in read-only mode</td></tr>
     <tr><td><code>vi -s file&nbsp;</code></td><td>安静(批处理)模式</td></tr>
     <tr><td><code>vi -S file&nbsp;</code></td><td>Reload all files from <em>file</em> named session</td></tr>
     <tr><td><code>vi -t tag&nbsp;</code></td><td>Look up a <em>tag</em> and start editing at its definition</td></tr>
     <tr><td><code>vi -T type&nbsp;</code></td><td>指定terminal类型</td></tr>
-    <tr><td><code>vi -u file&nbsp;</code></td><td>使用file为初始化文件，而不使用vimrc作为初始化文件</td></tr>
+    <tr><td><code>vi -u {file}</code></td><td>使用file为初始化文件，而不使用vimrc作为初始化文件 read inits from {vimrc}</td></tr>
     <tr><td><code>vi -U file&nbsp;</code></td><td>使用file为初始化文件，而不使用gvimrc作为初始化文件</td></tr>
     <tr><td><code>vi -v&nbsp;</code></td><td>全屏幕vi模式</td></tr>
     <tr><td><code>vi -V[N]&nbsp;</code></td><td>输出更多信息的Verbose模式</td></tr>
@@ -43,9 +45,9 @@
     <tr><td><code>vi -x&nbsp;</code></td><td>使用<a href="http://yyq123.github.io/learn-vim/learn-vi-27-crypt.html" title="使用密钥加密(cryptv)">使用密钥加密(cryptv)</a>文件</td></tr>
     <tr><td><code>vi -y&nbsp;</code></td><td>使用Easy模式，仅可输入文本，无法使用命令</td></tr>
     <tr><td><code>vi -z&nbsp;</code></td><td>使用受限模式，不允许使用外部Shell命令</td></tr>
-    <tr><td><code>vi + file&nbsp;</code></td><td>Open <em>file</em> at last line</td></tr>
-    <tr><td><code>vi +n file&nbsp;</code></td><td>Open <em>file</em> directly at line number <em>n</em></td></tr>
-    <tr><td><code>vi +/pattern file&nbsp;</code></td><td>打开<em>file</em>文件，并定位至<em>pattern</em>模式匹配处</td></tr>
+    <tr><td><code>vi +[num] {file}</code></td><td>打开文件并停留在指定的行Open <em>{file}</em> at last line</td></tr>
+    <tr><td><code>vi +{command} {file}</code></td><td>打开文件并执行指定命令 execute {command} after loading the file</td></tr>
+    <tr><td><code>vi +/{pattern} {file}</code></td><td>打开<em>file</em>文件，并定位至<em>pattern</em>模式匹配处 Open file at the first occurrence of <em>{pattern}</em></td></tr>
     <tr><td><code>vi --noplugin&nbsp;</code></td><td>不启用插件</td></tr>
     <tr><td><code>vi --version&nbsp;</code></td><td>查看版本信息</td></tr>
     <tr><td><code>ex file&nbsp;</code></td><td>Invoke <em>ex</em> on <em>file</em></td></tr>
@@ -63,52 +65,36 @@
 <h3><a id="Movement-Commands">移动命令 Movement Commands</a></h3>
 <table border="0">
     <tbody>
-    <tr><td colspan="2"><em>字符间移动 Character</em></td></tr>
+    <tr><td colspan="2"><em>字符间移动 Character motions</em></td></tr>
     <tr><td><code>h</code></td><td>向左移动一个字符 Left, one space (also: CTRL-H, &lt;BS&gt;, or &lt;Left&gr; key)</td></tr>
     <tr><td><code>j</code></td><td>向下移动一行 down, one line</td></tr>
+    <tr><td><code>gj</code></td><td>向下移动一个屏幕行 down, one line  (differs from "j" when line wraps)</td></tr>
     <tr><td><code>k</code></td><td>向上移动一行 up, one line</td></tr>
+    <tr><td><code>gk</code></td><td>向上移动一个屏幕行 up, one line (differs from "k" when line wraps)</td></tr>
     <tr><td><code>l</code></td><td>向右移动一个字符 right, one space (also:  &lt;Space&gt; or  &lt;Right&gt; key)</td></tr>
+    <tr><td><code>{n}|&nbsp;</code></td><td>移动至当前行的指定列 Column <em>n</em> of current line</td></tr>
     <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
 
-    <tr><td colspan="2"><em>词间移动 Text</em></td></tr>
-    <tr>
-        <td><code>w, W,&nbsp;</code></td>
-        <td valign="bottom">向前移动一个词Forward by word/WORD</td>
-    </tr>
-     <tr>
-        <td><code>b, B&nbsp;</code></td>
-        <td valign="bottom">向后移动一个词 Backward by word/WOED</td>
-    </tr>
-    <tr>
-        <td><code>e, E&nbsp;</code></td>
-        <td>移动到词尾 End of word/WORD</td>
-    </tr>
-    <tr><td><code>(</code></td><td>Beginning of current sentence</td></tr>
-    <tr><td><code>)</code></td><td>End of current sentence</td></tr>
-    <tr><td><code>{</code></td><td>Beginning of current paragraph</td></tr>
-    <tr><td><code>}</code></td><td>End of current paragraph</td></tr>
-    <tr><td><code>]]</code></td><td>Beginning of next section</td></tr>
-    <tr><td><code>[[</code></td><td>Beginning of previous section</td></tr>
+    <tr><td colspan="2"><em>词间移动 Text motions</em></td></tr>
+    <tr><td><code>w, W</code></td><td valign="bottom">向前移动一个词Forward by word/WORD</td></tr>
+    <tr><td><code>b, B</code></td><td valign="bottom">向后移动一个词 Backward by word/WOED</td></tr>
+    <tr><td><code>e, E</code></td><td>移动到词尾 End of word/WORD</td></tr>
+    <tr><td><code>(</code></td><td>移动到句子开头 Beginning of current sentence</td></tr>
+    <tr><td><code>)</code></td><td>移动到句子结尾 End of current sentence</td></tr>
+    <tr><td><code>{</code></td><td>移动到段落开头 Beginning of current paragraph</td></tr>
+    <tr><td><code>}</code></td><td>移动到段落结尾 End of current paragraph</td></tr>
+    <tr><td><code>]]</code></td><td>移动到小节开头 Beginning of next section</td></tr>
+    <tr><td><code>[[</code></td><td>移动到小节结尾 Beginning of previous section</td></tr>
     <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
 
-    <tr><td colspan="2"><em>行间移动 Lines</em></td></tr>
+    <tr><td colspan="2"><em>行间移动 Lines motions</em></td></tr>
     <tr><td><code>0</code></td><td>移动至当前行的首个字符 First position of current line (also: &lt;Home&gt; key)</td></tr>
     <tr><td><code>$</code></td><td>移动至当前行最后一个字符 Last position of current line (also: &lt;End&gt; key)</td></tr>
-    <tr>
-        <td><code>^, _&nbsp;</code></td>
-        <td>移动至当前行的首个非空字符 First non-blank character of current line</td>
-    </tr>
-    <tr>
-        <td><code>+, RETURN, Ctrl-M</code></td>
-        <td>移动至下一行的首个非空字符 First non-blank character of next line</td>
-    </tr>
-    <tr>
-        <td><code>-</code></td>
-        <td>移动至上一行的首个非空字符 First non-blank character of previous line</td>
-    </tr>
-    <tr>
-        <td><code>n|&nbsp;</code></td><td>移动至当前行的指定列 Column <em>n</em> of current line</td>
-    </tr>
+    <tr><td><code>g$</code></td><td>移动至当前屏幕行最后一个字符 Last position of current screen line</td></tr>
+    <tr><td><code>^, _</code></td><td>移动至当前行的首个非空字符 First non-blank character of current line</td></tr>
+    <tr><td><code>g^</code></td><td>移动至当前屏幕行的首个非空字符 First non-blank character of current screen line</td></tr>
+    <tr><td><code>+, RETURN, Ctrl-M</code></td><td>移动至下一行的首个非空字符 First non-blank character of next line</td></tr>
+    <tr><td><code>-</code></td><td>移动至上一行的首个非空字符 First non-blank character of previous line</td></tr>
     <tr>
         <td><code>Ctrl-N</code></td>
         <td>移动到下一行 Next line</td>
@@ -137,10 +123,10 @@
     <tr><td><code>G</code></td><td>移动至文件末尾 Move to last line in file</td></tr>
     <tr><td><code>Ctrl-Home</code></td><td>Go to the first nonwhitespace character of the first line of the file</td></tr>
     <tr><td><code>Ctrl-End</code></td><td>Go to the end of file</td></tr>
-    <tr><td><code>{count}%</code></td><td>移动至文件指定百分比的位置 Go to the line <var>count</var> percent into the file, putting the cursor on the first nonblank line</td></tr>
+    <tr><td><code>{n}%</code></td><td>移动至文件指定百分比的位置 Go to the line <var>n</var> percent into the file, putting the cursor on the first non-blank line</td></tr>
     <tr><td><code><strong>CTRL-G</strong></code></td><td>Display current line number</td></tr>
-    <tr><td><code>nG&nbsp;</code></td><td>Move to line number <em>n</em></td></tr>
-    <tr><td><code>:n&nbsp;</code></td><td>移动至指定行Move to line <em>n</em> in file</td></tr>
+    <tr><td><code>{n}G;</code></td><td>移动到指定行 Move to line number <em>n</em></td></tr>
+    <tr><td><code>:{n}</code></td><td>移动至指定行 Move to line <em>n</em> in file</td></tr>
     <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -179,84 +165,39 @@
 	    <td><code>zH, zL</code></td>
         <td>文本向右/向左滚动半个屏幕宽度。仅当 'wrap' 为关时有效。scroll half a screen to the right, left&nbsp;</td>
     </tr>
-    <tr>
-        <td><code><strong>CTRL-L</strong>&nbsp;</code></td>
-        <td>Redraw screen (without scrolling)</td>
-    </tr>
+    <tr><td><code>CTRL-L</code></td><td>重画屏幕 Redraw screen (without scrolling)</td></tr>
     <tr>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
     </tr>
 
     <tr><td colspan="2"><em>搜索 Searches</em></td></tr>
-    <tr>
-        <td><code>/pattern&nbsp;</code></td>
-        <td>Search forward for <em>pattern</em></td>
-    </tr>
-    <tr>
-        <td><code>?pattern&nbsp;</code></td>
-        <td>Search backward for <em>pattern</em></td>
-    </tr>
-    <tr>
-        <td><code>n, N&nbsp;</code></td>
-        <td>Repeat last search in the same, opposite direction</td>
-    </tr>
-    <tr>
-        <td><code>/, ?&nbsp;</code></td>
-        <td>Repeat previous search forward, backward</td>
-    </tr>
-    <tr><td><code>*</code></td><td>向前查找当前光标下的word</td></tr>
-    <tr><td><code>#</code></td><td>向后查找当前光标下的word</td></tr>
-    <tr><td><code>%</code></td><td>查找匹配的括号</td></tr>
+    <tr><td><code>/{pattern}</code></td><td>向前查找指定模式 Search forward for <em>pattern</em></td></tr>
+    <tr><td><code>?{pattern}</code></td><td>向后查找指定模式 Search backward for <em>pattern</em></td></tr>
+    <tr><td><code>/</code></td><td>重复上一向前查找 Repeat last search, in the forward direction</td></tr>
+    <tr><td><code>?</code></td><td>重复上一向后查找 Repeat last search, in the backward direction</td></tr>
+    <tr><td><code>n</code></td><td>同向重复上一查找 Repeat last search in the same direction</td></tr>
+    <tr><td><code>N</code></td><td>反向重复上一查找 Repeat last search in the opposite direction</td></tr>
+    <tr><td><code>*</code></td><td>向前查找当前光标下的word search forward for the identifier under the cursor</td></tr>
+    <tr><td><code>#</code></td><td>向后查找当前光标下的word search backward for the identifier under the cursor</td></tr>
+    <tr><td><code>%</code></td><td>查找匹配的括号 find the next brace, bracket, comment ...</td></tr>
     <tr><td><code></code></td><td></td></tr>
-    <tr>
-        <td><code>fx&nbsp;</code></td>
-        <td>Search forward for character <em>x</em> in current
-        line</td>
-    </tr>
-    <tr>
-        <td><code>Fx&nbsp;</code></td>
-        <td>Search backward for character <em>x</em> in current
-        line</td>
-    </tr>
-    <tr>
-        <td><code>tx&nbsp;</code></td>
-        <td>Search forward to character before <em>x</em> in
-        current line</td>
-    </tr>
-    <tr>
-        <td><code>Tx&nbsp;</code></td>
-        <td>Search backward to character after <em>x</em> in
-        current line</td>
-    </tr>
-    <tr>
-        <td><code>;&nbsp;</code></td>
-        <td>Repeat previous current line search</td>
-    </tr>
-    <tr>
-        <td><code>,&nbsp;</code></td>
-        <td>Repeat previous current line search in opposite
-        direction</td>
-    </tr>
+    <tr><td><code>f{x}</code></td><td>向前查找 Search forward for character <em>x</em> in current line</td></tr>
+    <tr><td><code>F{x}</code></td><td>向后查找 Search backward for character <em>x</em> in current line</td></tr>
+    <tr><td><code>t{x}</code></td><td>向前查找 Search forward to character before <em>x</em> in current line</td></tr>
+    <tr><td><code>T{x}</code></td><td>向后查找 Search backward to character after <em>x</em> in current line</td></tr>
+    <tr><td><code>;</code></td><td>重复上次的行内查找 Repeat previous current line search</td></tr>
+    <tr><td><code>,</code></td><td>反向重复上次的行内查找 Repeat previous current line search in opposite direction</td></tr>
     <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
-    
+
     <tr><td colspan="2"><em>标记间移动 Marking position</em></td></tr>
-    <tr>
-        <td><code>mx&nbsp;</code></td>
-        <td>定义标记 Mark current position as <em>x</em></td>
-    </tr>
-    <tr>
-        <td><code>`x&nbsp;</code></td>
-        <td>跳转到指定标记 (Backquote) Moves the cursor to the character marked by <em>x</em></td>
-    </tr>
-    <tr>
-        <td><code>``&nbsp;</code></td>
-        <td>(Backquotes) Returns to the exact position of the previous mark or context after a move</td>
-    </tr>
-    <tr>
-        <td><code>'x&nbsp;</code></td>
-        <td>(Apostrophe) Moves the cursor to the first character of the line marked by <em>x</em></td>
-    </tr>
+    <tr><td><code>m{x}</code></td><td>定义标记 Mark current position as <em>x</em></td></tr>
+    <tr><td><code>`{x}</code></td><td>跳转到指定标记 (Backquote) Moves the cursor to the character marked by <em>x</em></td></tr>
+    <tr><td><code>``</code></td><td>(Backquotes) Returns to the exact position of the previous mark or context after a move</td></tr>
+    <tr><td><code>`"</code></td><td>跳转到上次离开这个文件时的位置 go to the position when last editing this file</td></tr>
+    <tr><td><code></code></td><td></td></tr>
+
+    <tr><td><code>'x</code></td><td>(Apostrophe) Moves the cursor to the first character of the line marked by <em>x</em></td></tr>
     <tr><td><code>''&nbsp;</code></td><td>(Apostrophes) 移动到上一标记的行首</td></tr>
     <tr><td><code>`.&nbsp;</code></td><td>(Backquote period) 移动到当前文件的上次修改处</td></tr>
     <tr><td><code>'.&nbsp;</code></td><td>(Apostrophe period) 移动到当前文件的上次修改处的行首</td></tr>
@@ -387,7 +328,7 @@
     </tr>
 </tbody></table>
 
-<h3><a id="Save-Commands">保存命令 Save Commands</a></h3>
+<h3><a id="Save-Commands">保存和退出命令 Writing and quitting</a></h3>
 <table border="0">
     <tbody>
     <tr>
@@ -395,16 +336,20 @@
         <td>保存并退出 Write (save) and quit file</td>
     </tr>
     <tr>
-        <td><code>:wq&nbsp;</code></td>
+        <td><code>:wq</code></td>
         <td>保存并退出 Write (save) and quit file</td>
     </tr>
     <tr>
-        <td><code>:w&nbsp;</code></td>
+        <td><code>:wq!</code></td>
+        <td>强制保存并退出 Write (save) and quit file</td>
+    </tr>
+    <tr>
+        <td><code>:w</code></td>
         <td>保存当前文件 Write (save) file</td>
     </tr>
     <tr>
-        <td><code>:w!&nbsp;</code></td>
-        <td>Write (save) file, overriding protection</td>
+        <td><code>:w!</code></td>
+        <td>强制保存文件 Write (save) file, overriding protection</td>
     </tr>
     <tr>
 	<td><code>:30,60w {file}&nbsp;</code></td>
@@ -419,12 +364,16 @@
         <td>Write current buffer named <em>file</em> as <em>file.new</em></td>
     </tr>
     <tr>
-        <td><code>:q&nbsp;</code></td>
-        <td>退出 Quit file</td>
+        <td><code>:q</code></td>
+        <td>退出 Quit file, Exit Vim when there are no other non-help buffers</td>
     </tr>
     <tr>
-        <td><code>:q!&nbsp;</code></td>
+        <td><code>:q!, ZQ</code></td>
         <td>强制退出 Quit file, overriding protection</td>
+    </tr>
+    <tr>
+        <td><code>:wqall[!], xall[!]</code></td>
+        <td>保存全部文件并退出 Write all changed buffers and exit</td>
     </tr>
     <tr>
         <td><code>Q&nbsp;</code></td>
@@ -435,18 +384,9 @@
 <h3><a id="Multiple-Files-Commands">处理多文件 Multiple Files</a></h3>
 <table border="0">
     <tbody>
-    <tr>
-        <td><code>:e file</code></td>
-	<td>编辑另一文件，当前文件变为<em>alternate</em>文件</td>
-    </tr>
-    <tr>
-        <td><code>:e!&nbsp;</code></td>
-        <td>Return to version of current file at time of last write (save)</td>
-    </tr>
-    <tr>
-        <td><code>:e #&nbsp;</code></td>
-        <td>编辑<em>alternate</em>文件</td>
-    </tr>
+    <tr><td><code>:e {file}</code></td><td>编辑指定文件，当前文件变为<em>alternate</em>文件</td></tr>
+    <tr><td><code>:e!</code></td><td>编辑当前文件，并退回到之前保存的版本 Edit the current file always. Discard any changes.</td></tr>
+    <tr><td><code>:e #</code></td><td>编辑<em>alternate</em>文件</td></tr>
     <tr><td><code>:n&nbsp;</code></td><td>编辑下一个文件</td></tr>
     <tr><td><code>:rewind</code></td><td>编辑第一个文件</td></tr>
     <tr><td><code>:prev</code></td><td>编辑上一个文件</td></tr>
@@ -529,8 +469,8 @@
 <h3><a id="Window-Commands">窗口命令 Window commands</a></h3>
 <table border="0">
 <tbody>
-    <tr><td><code class="inset">:split</code></td><td><code class="inset">^Ws</code></td><td>Split the current window into two from side to side, placing the cursor in the new window. The optional file argument places that file in the newly created window. The windows are created as equal in size as possible, determined by free window space.</td></tr>
-    <tr><td><code class="inset">:new</code></td><td><code class="inset">^Wn</code></td><td>Same as :split, but start the new window editing an empty file. Note that the buffer will have no name until one is assigned.</td></tr>
+    <tr><td><code class="inset">:split</code></td><td><code class="inset">^Ws</code></td><td>拆分窗口Split the current window into two from side to side, placing the cursor in the new window. The optional file argument places that file in the newly created window. The windows are created as equal in size as possible, determined by free window space.</td></tr>
+    <tr><td><code class="inset">:new</code></td><td><code class="inset">^Wn</code></td><td>新建空白窗口 Same as :split, but start the new window editing an empty file.</td></tr>
     <tr><td><code class="inset">:sview</code></td><td><code class="inset"></code></td><td>Read-only version of :split.</td></tr>
     <tr><td><code class="inset">:sfind</code></td><td><code class="inset"></code></td><td>Split window and open file (if specified) in the new window.Look for file in the path.</td></tr>
     <tr><td><code class="inset">:vsplit</code></td><td><code class="inset">^Wv</code></td><td>Split current window into two from top to bottom and open file (if specified) in the new window.</td></tr>
@@ -544,7 +484,7 @@
 <tbody>
     <tr><td><code class="inset">Ctrl-Wr</code></td><td>Rotate windows down or to the right.</td></tr>
     <tr><td><code class="inset">Ctrl-WR</code></td><td>Rotate windows up or to the left.</td></tr>
-    <tr><td><code class="inset">Ctrl-Wx</code></td><td>Swap positions with the next window, or if issued with a count n, swap with nth next window.</td></tr>
+    <tr><td><code class="inset">Ctrl-Wx</code></td><td>交换当前窗口和下一个窗口 Swap positions with the next window.</td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
@@ -554,10 +494,10 @@
 <table border="0">
 <caption style="margin:0.5em; font-weight:bold">Commands to change position and layout</caption>
 <tbody><tr><th>Command</th><th>Action</th></tr>
-    <tr><td><code class="inset">Ctrl-Wk</code></td><td rowspan="2">Move to the next window up.</td></tr>
+    <tr><td><code class="inset">Ctrl-Wk</code></td><td rowspan="2">移动到上一窗口 Move to the next window up.</td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;&lt;Up&gt;</code></td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-K</code></td></tr>
-    <tr><td><code class="inset">Ctrl-Wj</code></td><td rowspan="3">Move to the next window down. Note that this command does not cycle through the windows; it simply moves down to the next window below the current window. If the cursor is in a window at the bottom of the screen, this command has no effect. Also, this command bypasses adjacent windows on its “way down”; for example, if there is a window to the right of the current window, the command does not jump across to the adjacent window.</td></tr>
+    <tr><td><code class="inset">Ctrl-Wj</code></td><td rowspan="3">移动到下一窗口 Move to the next window down. Note that this command does not cycle through the windows; If the cursor is in a window at the bottom of the screen, this command has no effect. </td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;&lt;Down&gt;</code></td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-J</code></td></tr>
     <tr><td><code class="inset">^Wh</code></td><td rowspan="3">Move to the window to the left of the current window</td></tr>
@@ -567,13 +507,13 @@
     <tr><td><code class="inset">Ctrl-Wl</code></td><td rowspan="3">Move to the window to the right of the current window.</td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;&lt;Right&gt;</code></td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-L</code></td></tr>
-    <tr><td><code class="inset">Ctrl-Ww</code></td><td rowspan="2">Move to the next window below or to the right. Note that this command, unlike CTRL-W j , will cycle through all of the Vim windows. When the lowermost window is reached, Vim restarts the cycle and moves to the top leftmost window.</td></tr>
+    <tr><td><code class="inset">Ctrl-Ww</code></td><td rowspan="2">遍历所有窗口 Move to the next window below or to the right. Note that this command, unlike CTRL-W j , will cycle through all of the Vim windows. When the lowermost window is reached, Vim restarts the cycle and moves to the top leftmost window.</td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-W</code></td></tr>
-    <tr><td><code class="inset">Ctrl-Wt</code></td><td rowspan="2">Move cursor to the top leftmost window.</td></tr>
+    <tr><td><code class="inset">Ctrl-Wt</code></td><td rowspan="2">移动到左上角窗口 Move cursor to the top leftmost window.</td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-T</code></td></tr>
-    <tr><td><code class="inset">Ctrl-Wb</code></td><td rowspan="2">Move cursor to the bottom rightmost window.</td></tr>
+    <tr><td><code class="inset">Ctrl-Wb</code></td><td rowspan="2">移动到右下角窗口 Move cursor to the bottom rightmost window.</td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-B</code></td></tr>
-    <tr><td><code class="inset">Ctrl-Wp</code></td><td rowspan="2">Move to the previous (last accessed) window.</td></tr>
+    <tr><td><code class="inset">Ctrl-Wp</code></td><td rowspan="2">移动到上一窗口 Move to the previous (last accessed) window.</td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-P</code></td></tr>
 </tbody>
 </table>
@@ -591,13 +531,13 @@
 
 <table border="0">
 <tbody>
-    <tr><td><code class="inset">^W=</code></td><td>Resize all windows equally. The current window honors the settings of the winheight and winwidth options.</td></tr>
+    <tr><td><code class="inset">^W=</code></td><td>所有窗口等高 Make all windows equal height. The current window honors the settings of the winheight and winwidth options.</td></tr>
     <tr><td><code class="inset">:resize -n</code></td><td></td></tr>
-    <tr><td><code class="inset">^W-</code></td><td>Decrease the current window size. The default amount is one line.</td></tr>
-    <tr><td><code class="inset">:resize +n</code></td><td>Increase the current window size. The default amount is one line.</td></tr>
+    <tr><td><code class="inset">^W-</code></td><td>减小窗口高度 Decrease the current window size. The default amount is one line.</td></tr>
+    <tr><td><code class="inset">:resize +n</code></td><td>增加窗口高度 Increase the current window size. The default amount is one line.</td></tr>
     <tr><td><code class="inset">^W+</code></td><td></td></tr>
     <tr><td><code class="inset">:resize n</code></td><td>Set the current window height. The default is to maximize window height (unlessn is specified).</td></tr>
-    <tr><td><code class="inset">^W_</code></td><td></td></tr>
+    <tr><td><code class="inset">^W_</code></td><td>设置为默认高度 Set current window height (default:very high)</td></tr>
     <tr><td><code class="inset">zn&lt;CR&gt;</code></td><td>Set the current window height to n.</td></tr>
     <tr><td><code class="inset">^W&lt;</code></td><td>Increase the current window width. The default amount is one column.</td></tr>
     <tr><td><code class="inset">^W&gt;</code></td><td>Decrease the current window width. The default amount is one column.</td></tr>
@@ -641,13 +581,32 @@ can take several forms:</p>
 
 
     <h3><a id="Marcos"><em>宏 Macros</em></a></h3>
-<table border="0">
-<tbody><tr><th>Command</th><th>Action</th></tr>
-    <tr><td><code class="inset">qx</code></td><td>开始录制宏x</td></tr>
-    <tr><td><code class="inset">q</code></td><td>结束录制宏</td></tr>
-    <tr><td><code class="inset">@x</code></td><td>执行宏x</td></tr>
-</tbody>
-</table>
+    <table border="0">
+    <tbody><tr><th>Command</th><th>Action</th></tr>
+	    <tr><td><code class="inset">q{x}</code></td><td>开始录制宏x</td></tr>
+	    <tr><td><code class="inset">q</code></td><td>结束录制宏</td></tr>
+	    <tr><td><code class="inset">@{x}</code></td><td>执行宏x</td></tr>
+	    <tr><td><code class="inset">@@</code></td><td>执行上次执行的宏 repeat previous</td></tr>
+	    <tr><td><code class="inset"></code></td><td></td></tr>
+	    <tr><td><code class="inset"></code></td><td></td></tr>
+	    <tr><td><code class="inset"></code></td><td></td></tr>
+	    <tr><td><code class="inset"></code></td><td></td></tr>
+    </tbody>
+    </table>
+
+    <h3><a id="Abbreviations"><em>缩写 Abbreviations</em></a></h3>
+    <table border="0">
+    <tbody><tr><th>Command</th><th>Action</th></tr>
+	    <tr><td><code class="inset">:ab[breviate] {lhs} {rhs}</code></td><td>定义缩写 add abbreviation for {lhs} to {rhs}</td></tr>
+	    <tr><td><code class="inset">:ab[breviate] {lhs}</code></td><td>列出以{lhs}开头的缩写 show abbr's that start with {lhs}</td></tr>
+	    <tr><td><code class="inset">:ab[breviate]</code></td><td>显示所有缩写 show all abbreviations</td></tr>
+	    <tr><td><code class="inset">:una[bbreviate] {lhs}</code></td><td>删除指定缩写 remove abbreviation for {lhs}</td></tr>
+	    <tr><td><code class="inset">:abc[lear]</code></td><td>移除所有缩写 remove all abbreviations</td></tr>
+	    <tr><td><code class="inset">:iab, :iunab, :iabc</code></td><td>针对删除模式的缩写 only for Insert mode</td></tr>
+	    <tr><td><code class="inset">:cab, :cunab, :cabc</code></td><td>针对命令行模式的缩写 only for Command-line mode</td></tr>
+	    <tr><td><code class="inset"></code></td><td></td></tr>
+    </tbody>
+    </table>
 
 <table border="0">
     <tbody><tr>
@@ -736,11 +695,11 @@ command is taken from the default (unnamed) buffer.</p>
 <table border="0">
     <tbody><tr>
         <td><code>&lt;&lt;</code></td>
-	<td>减少缩进</td>
+	<td>减少缩进 Move one shiftwidth left</td>
     </tr>
     <tr>
         <td><code>&gt;&gt;</code></td>
-        <td>增加缩进</td>
+        <td>增加缩进 Move one shiftwidth right</td>
     </tr>
 </tbody></table>
 
@@ -1121,7 +1080,7 @@ expression ends its effect.
 	<tr><td><code>:set <em>{option}</em></code></td><td>&nbsp;</td><td>对于布尔值选项，将启用该选项；对于其他类型选项，将显示当前选项值。</td></tr>
 	<tr><td><code>:set no<em>{option}</em></code></td><td>&nbsp;</td><td>禁用该选项</td></tr>
 	<tr><td><code>:set inv<em>{option}</em></code></td><td>&nbsp;</td><td>反转该选项</td></tr>
-	<tr><td><code>:set <em>{option}</em>&</code></td><td>&nbsp;</td><td>设置该选项为默认值</td></tr>
+	<tr><td><code>:set <em>{option}</em>&amp;</code></td><td>&nbsp;</td><td>设置该选项为默认值</td></tr>
 	<tr><td><code>:set <em>{option}</em>=<em>{value}</em></code></td><td>&nbsp;</td><td>设置选项值</td></tr>
 	<tr><td><code>:set</code></td><td>&nbsp;</td><td>显示所有已更改的选项</td></tr>
 	<tr><td><code>:set all</code></td><td>&nbsp;</td><td>显示所有选项</td></tr>
@@ -1435,6 +1394,12 @@ expression ends its effect.
 	<td>显示移动记录的列表</td>
     </tr>
     <tr>
+        <td>K</td>
+        <td>&nbsp;</td>
+        <td><code></code></td>
+	<td>在操作系统默认的帮助系统中查找关键词 lookup keyword under the cursor with 'keywordprg' program (default: "man")</td>
+    </tr>
+    <tr>
         <td>Left</td>
         <td>&nbsp;</td>
         <td><code>[address] le [count]</code></td>
@@ -1527,8 +1492,14 @@ expression ends its effect.
     <tr>
         <td>Quit All</td>
         <td>&nbsp;</td>
-        <td><code>qa[!]</code></td>
+        <td><code>qa</code></td>
 	<td>关闭所有窗口并退出</td>
+    </tr>
+    <tr>
+        <td>Quit All</td>
+        <td>&nbsp;</td>
+        <td><code>qa[!]</code></td>
+	<td>强制关闭所有窗口并退出</td>
     </tr>
     <tr>
         <td>Quit</td>
