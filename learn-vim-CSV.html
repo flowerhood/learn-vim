@@ -16,18 +16,8 @@
 
 	<p></p>
 	<p style="text-indent:2em"><code class="inset"></code></p>
-	<p>安装<a href="https://github.com/cameron-wags/rainbow_csv.nvim" target="_blank" rel="noopener external nofollow noreferrer">Rainbow CSV</a>插件之后，打开CSV文件将自动以不同的颜色显示不同的列，以提高数据的可读性。</p>
-	<p><a href="http://yyq123.github.io/learn-vim/images/rainbow_csv_color.png" title="rainbow_csv_color"><img src="http://yyq123.github.io/learn-vim/images/rainbow_csv_color.png" alt="rainbow_csv_color" /></a></p>
-	<p>使用以下命令，可以按列对齐：</p>
-	<p style="text-indent:2em"><code class="inset">:RainbowAlign</code></p>
-	<p><a href="http://yyq123.github.io/learn-vim/images/rainbow_csv_align.png" title="rainbow_csv_align"><img src="http://yyq123.github.io/learn-vim/images/rainbow_csv_align.png" alt="rainbow_csv_align" /></a></p>
-	<p>请注意，插件是通过新增空格来实现按列对齐，如果您此时保存文件，那么新增的空格也将被保存到原文件中。</p>
 
-	<p>使用类似SQL的<a href="https://rbql.org/" title="Rainbow Query Language">RBQL</a>查询语言，可以对CSV文件进行灵活的数据处理，甚至包括连接查询和更新。</p>
-	<p>使用以下命令，将按照第8列的倒序，显示第1列和第8列：</p>
-	<p style="text-indent:2em"><code class="inset">Select a1, a8 order by a8 desc</code></p>
-	<p>请注意，随着光标移动，可以在状态上查看当前列的序号和名称。</p>
-	<p>关于<a href="https://rbql.org/" title="Rainbow Query Language">RBQL</a>查询语言的更多信息，可以查看<a href="https://github.com/mechatroner/RBQL/blob/master/README.md#rbql-rainbow-query-language-description" title="documentation">在线文档</a>。</p>
+
 
 	<h2 class="article"><a id="frozen-headers">固定标题行</a></h2>
 	<p>通过以下步骤，将文件拆分在两个水平窗口中显示并绑定滚动，可以保持标题行始终置顶显示：</p>
@@ -40,7 +30,7 @@
 		<li>使用<code class="inset">:set scrollbind</code>命令，绑定滚动；</li>
 	</ol>
 	<p>此时在文件中左右移动，标题行与内容将自动同步对齐：</p>
-	<p><a href="http://yyq123.github.io/learn-vim/images/CSV-Frozen-Headers.png" title="CSV-Frozen-Headers.png"><img src="http://yyq123.github.io/learn-vim/images/CSV-Frozen-Headers.png.png" alt="CSV-Frozen-Headers.png" /></a></p>
+	<p><a href="http://yyq123.github.io/learn-vim/images/CSV-Frozen-Headers.png" title="CSV-Frozen-Headers.png"><img src="http://yyq123.github.io/learn-vim/images/CSV-Frozen-Headers.png" alt="CSV-Frozen-Headers.png" /></a></p>
 
 	<h2 class="article"><a id=""></a></h2>
 	<p>使用以下命令，可以查找并计数行内的逗号数量</p>

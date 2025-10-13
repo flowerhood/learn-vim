@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
+	<title>VIM学习笔记 Rainbow CSV数据编辑</title>
+</head>
+<body>
+	<h1>VIM学习笔记 Rainbow CSV数据编辑</h1>
+	<p>使用<a style="font-weight: bold;" href="https://github.com/mechatroner/rainbow_csv" title="rainbow_csv">Rainbow CSV</a>插件，可以为编辑<a href="https://kutt.it/vim-CSV" title="CSV">CSV</a>数据文件提供语法高亮、按列对齐和复杂查询等高级功能。</p>
+
+	<h2 class="article"><a id="install">安装配置</a></h2>
+	<p>推荐使用<a href="https://yyq123.github.io/learn-vim/learn-vim-plugin-minpac.html" title="插件管理器(minpac)">minpac</a>等插件管理器，来安装GitHub上的<a href="https://github.com/mechatroner/rainbow_csv">Rainbow CSV</a>插件。（请参阅官方<a href=https://github.com/mechatroner/rainbow_csv?tab=readme-ov-file#installation" title="installation">安装文档</a>）</p>
+
+	<h2 class="article"><a id="highlight">多重高亮显示</a></h2>
+	<p>安装Rainbow CSV插件之后，打开CSV文件将自动以不同的颜色显示不同的列，以提高数据的可读性：</p>
+	<p><a href="http://yyq123.github.io/learn-vim/images/rainbow_csv_color.png" title="rainbow_csv_color"><img src="http://yyq123.github.io/learn-vim/images/rainbow_csv_color.png" alt="rainbow_csv_color" /></a></p>
+
+	<h2 class="article"><a id="align">按列对齐</a></h2>
+	<p>使用以下命令，可以将数据按列对齐：</p>
+	<p style="text-indent:2em"><code class="inset">:RainbowAlign</code></p>
+	<p><a href="http://yyq123.github.io/learn-vim/images/rainbow_csv_align.png" title="rainbow_csv_align"><img src="http://yyq123.github.io/learn-vim/images/rainbow_csv_align.png" alt="rainbow_csv_align" /></a></p>
+	<p>请注意，插件是通过新增空格来实现按列对齐，如果您此时保存文件，那么新增的空格也将被保存到原文件中。</p>
+	<p>使用以下命令，可以删除由:RainbowAlign命令新增的空格，以恢复文件原貌：</p>
+	<p style="text-indent:2em"><code class="inset">:RainbowShrink</code></p>
+
+	<h2 class="article"><a id="query">数据查询</a></h2>
+	<p>使用类似SQL的<a href="https://rbql.org/" title="Rainbow Query Language">RBQL</a>查询语言，可以对CSV文件进行灵活的数据处理，甚至包括连接查询和更新。</p>
+	<p>使用以下命令，将按照第8列的倒序，显示第1列和第8列：</p>
+	<p style="text-indent:2em"><code class="inset">Select a1, a8 order by a8 desc</code></p>
+	<p>如下图所示，随着光标移动，可以在状态上查看当前列的序号和名称：</p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/rainbow_csv_column_info.png" title="rainbow_csv_column_info"><img src="https://yyq123.github.io/learn-vim/images/rainbow_csv_column_info.png" alt="rainbow_csv_column_info" /></a></p>
+	<p>使用以下命令，可以将查询结果复制回原文件并覆盖原有内容：</p>
+	<p style="text-indent:2em"><code class="inset">:RainbowCopyBack</code></p>
+
+	<p>关于<a href="https://rbql.org/" title="Rainbow Query Language">RBQL</a>查询语言的更多信息，可以查看<a href="https://github.com/mechatroner/RBQL/blob/master/README.md#rbql-rainbow-query-language-description" title="documentation">在线文档</a>。</p>
+
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 251013&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a href="https://kutt.it/vim-CSV" title="CSV">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a href="https://kutt.it/vim-minpac" title="插件管理器(minpac)">下一篇</a>&gt;</span></p>
+</body>
+</html>
