@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 ()</title>
+	<title>VIM学习笔记 编辑CSV数据文件</title>
 </head>
 <body>
 	<p><a href="https://fileinfo.com/extension/csv" title=".CSV File Extension">CSV</a>是一种以逗号分隔值的文本文件，常用于电子表格程序，如 Microsoft Excel 或 OpenOffice Calc。CSV 文件中的每一行代表数据库中的一行，而每行数据库行由一个或多个以逗号分隔的字段组成。</p>
@@ -32,17 +32,12 @@
 	<p>此时在文件中左右移动，标题行与内容将自动同步对齐：</p>
 	<p><a href="http://yyq123.github.io/learn-vim/images/CSV-Frozen-Headers.png" title="CSV-Frozen-Headers.png"><img src="http://yyq123.github.io/learn-vim/images/CSV-Frozen-Headers.png" alt="CSV-Frozen-Headers.png" /></a></p>
 
-	<h2 class="article"><a id=""></a></h2>
-	<p>使用以下命令，可以查找并计数行内的逗号数量</p>
-	<p style="text-indent:2em"><code class="inset">:s/,/,/gn</code></p>
-
 	<h2 class="article"><a id="column">按列对齐</a></h2>
 	<p>假设有以下逗号分割的CSV文件，如下图红线所示，数据列没有对齐：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-Before.png" title="CSV-Column-Align-Before"><img src="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-Before.png" alt="CSV-Column-Align-Before" width="550" height="84" /></a></p>
-	<p>通过<a href="http://yyq123.github.io/learn-vim/learn-vim-Shell-Filter.html" title="过滤器(Filter)">过滤器</a>使用<a href="http://man.he.net/?topic=column&section=all" title="column">column</a>命令来按列对齐：</p>
+	<p>通过<a href="http://yyq123.github.io/learn-vim/learn-vim-Shell-Filter.html" title="过滤器(Filter)">过滤器</a>使用<a href="http://man.he.net/?topic=column&section=all" title="column">column</a>外部命令来按列对齐：</p>
 	<p style="text-indent:2em"><code class="inset">:%!column -t</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-After.png" title="CSV-Column-Align-After"><img src="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-After.png" alt="CSV-Column-Align-After" width="550" height="77" /></a></p>
-
 	<p>使用<a href="https://github.com/chrisbra/csv.vim" title="csv.vim">csv.vim</a>插件，执行以下命令可以按列对齐：</p>
 	<p style="text-indent:2em"><code class="inset">:%ArrangeColumn</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/plugin_csv_ArrangeColumn.png" title="plugin_csv_ArrangeColumn"><img src="https://yyq123.github.io/learn-vim/images/plugin_csv_ArrangeColumn.png" alt="plugin_csv_ArrangeColumn" width="550" height="55" /></a></p>
@@ -50,7 +45,6 @@
 	<h2 class="article"><a id="sort"></a>按列排序</h2>
 	<p>调用外部<a href="https://www.gnu.org/software/coreutils/manual/html_node/sort-invocation.html" title="sort">sort</a>命令，可以按照第2列进行排序：</p>
 	<p style="text-indent:2em"><code class="inset">:%!sort -t ',' -k2</code></p>
-
 
 	<h2 class="article"><a id="merge-columns"></a>按列合并</h2>
 	<p>假设names.txt文件，包含姓名信息：</p>
@@ -64,6 +58,12 @@ Tim</pre>
 	<p>使用以下Linux命令，可以将多个文件按列合并：</p>
 	<p style="text-indent:2em"><code class="inset">$ paste names.txt numbers.txt</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/CSV-Column-Merge-paste.png" title="CSV-Column-Merge-paste"><img src="https://yyq123.github.io/learn-vim/images/CSV-Column-Merge-paste.png" alt="CSV-Column-Merge-paste" /></a></p>
+
+	<h2 class="article"><a id="merge-files">按行合并</a></h2>
+	<p>在Windows中，使用copy命令可以合并多个文件：</p>
+	<p style="text-indent:2em"><code class="inset">$ copy *.csv merged-filname.csv</code></p>
+	<p>在Linux中，使用cat命令可以合并多个文件：</p>
+	<p style="text-indent:2em"><code class="inset">$ cat *.csv &gt; merged-file.csv</code></p>
 
 	<h2 class="article"><a id="split-files">拆分文件</a></h2>
 	<p>调用外部<a href="https://www.gnu.org/software/coreutils/manual/html_node/split-invocation.html">split</a>命令，可以按行数拆分成多个文件：</p>
@@ -82,12 +82,12 @@ creating file ‘xae’</pre>
  92 xae
 892 total</pre>
 
+	<h2 class="article"><a id="info">数据统计</a></h2>
+	<p>使用以下命令，可以查找并计数行内的逗号数量</p>
+	<p style="text-indent:2em"><code class="inset">:s/,/,/gn</code></p>
 
-	<h2 class="article"><a id="merge-files">合并文件</a></h2>
-	<p>在Windows中，使用copy命令可以合并多个文件：</p>
-	<p style="text-indent:2em"><code class="inset">$ copy *.csv merged-filname.csv</code></p>
-	<p>在Linux中，使用cat命令可以合并多个文件：</p>
-	<p style="text-indent:2em"><code class="inset">$ cat *.csv &gt; merged-file.csv</code></p>
+
+
 
 	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
 

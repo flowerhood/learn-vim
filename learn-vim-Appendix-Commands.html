@@ -8,10 +8,19 @@
 	<title>VIM学习笔记 附录-命令(Appendix-Commands)</title>
 </head>
 <body>
-	<h1>VIM学习笔记 附录-命令(Appendix-Commands)</h1>
+<h1>VIM学习笔记 附录-命令(Appendix-Commands)</h1>
+<ul>
+	<li><a href="#Starting" title="Starting">启动命令 Starting</a></li>
+	<li><a href="" title=""></a></li>
+	<li><a href="" title=""></a></li>
+	<li><a href="#Folding" title="Folding">折叠 Folding</a></li>
+	<li><a href="#Indentation" title="Indentation">自动缩进  Automatic Indentation</a></li>
+	<li><a href="#Qucikfix" title="Qucikfix">快速修复 Quickfix</a></li>
+	<li><a href="" title=""></a></li>
+	<li><a href="" title=""></a></li>
+</ul>
 
-	<h2 style="border-bottom:1px solid lightgray"><a id="Starting-Command">启动命令 Starting</a></h2>
-
+<h2 style="border-bottom:1px solid lightgray"><a id="Starting">启动命令 Starting</a></h2>
 <table border="0">
     <tbody>
     <tr><td><code>vi file&nbsp;</code></td><td>启动vim并打开<em>file</em>文件</td></tr>
@@ -30,18 +39,18 @@
     <tr><td><code>vi -N file&nbsp;</code></td><td>非兼容模式（nocompatible）</td></tr>
     <tr><td><code>vi -o[N]&nbsp;</code></td><td>新建N个水平窗口</td></tr>
     <tr><td><code>vi -O[N]&nbsp;</code></td><td>新建N个垂直窗口</td></tr>
-    <tr><td><code>vi -r {file}</code></td><td>恢复意外退出的文件 Recover <em>file</em> and recent edits after a crash</td></tr>
+    <tr><td><code>vi -r {file}</code></td><td>恢复意外退出的文件 Recover from swap files</td></tr>
     <tr><td><code>vi -R f{ile}</code></td><td>只读模式打开文件 Open <em>file</em> in read-only mode</td></tr>
-    <tr><td><code>vi -s file&nbsp;</code></td><td>安静(批处理)模式</td></tr>
-    <tr><td><code>vi -S file&nbsp;</code></td><td>Reload all files from <em>file</em> named session</td></tr>
+    <tr><td><code>vi -s {scriptin}</code></td><td>安静(批处理)模式 first read commands from the file {scriptin}</td></tr>
+    <tr><td><code>vi -S file</code></td><td>Reload all files from <em>file</em> named session</td></tr>
     <tr><td><code>vi -t tag&nbsp;</code></td><td>Look up a <em>tag</em> and start editing at its definition</td></tr>
-    <tr><td><code>vi -T type&nbsp;</code></td><td>指定terminal类型</td></tr>
+    <tr><td><code>vi -T {type}</code></td><td>指定terminal类型</td></tr>
     <tr><td><code>vi -u {file}</code></td><td>使用file为初始化文件，而不使用vimrc作为初始化文件 read inits from {vimrc}</td></tr>
     <tr><td><code>vi -U file&nbsp;</code></td><td>使用file为初始化文件，而不使用gvimrc作为初始化文件</td></tr>
     <tr><td><code>vi -v&nbsp;</code></td><td>全屏幕vi模式</td></tr>
     <tr><td><code>vi -V[N]&nbsp;</code></td><td>输出更多信息的Verbose模式</td></tr>
-    <tr><td><code>vi -w n&nbsp;</code></td><td>Set the windows size to <em>n</em></td></tr>
-    <tr><td><code>vi -W scriptout&nbsp;</code></td><td>将用户输入的所有命令，覆盖存储到指定的脚本文件</td></tr>
+    <tr><td><code>vi -w {scriptout}</code></td><td>将用户输入的所有命令，新增存储到指定的脚本文件 write typed chars to file {scriptout} (append)</td></tr>
+    <tr><td><code>vi -W {scriptout}</code></td><td>将用户输入的所有命令，覆盖存储到指定的脚本文件 write typed chars to file {scriptout} (overwrite)</td></tr>
     <tr><td><code>vi -x&nbsp;</code></td><td>使用<a href="http://yyq123.github.io/learn-vim/learn-vi-27-crypt.html" title="使用密钥加密(cryptv)">使用密钥加密(cryptv)</a>文件</td></tr>
     <tr><td><code>vi -y&nbsp;</code></td><td>使用Easy模式，仅可输入文本，无法使用命令</td></tr>
     <tr><td><code>vi -z&nbsp;</code></td><td>使用受限模式，不允许使用外部Shell命令</td></tr>
@@ -79,16 +88,32 @@
     <tr><td><code>w, W</code></td><td valign="bottom">向前移动一个词Forward by word/WORD</td></tr>
     <tr><td><code>b, B</code></td><td valign="bottom">向后移动一个词 Backward by word/WOED</td></tr>
     <tr><td><code>e, E</code></td><td>移动到词尾 End of word/WORD</td></tr>
+    <tr><td>ge, gE</td><td>反向移动到词尾 End of word/WORD</td></tr>
     <tr><td><code>(</code></td><td>移动到句子开头 Beginning of current sentence</td></tr>
     <tr><td><code>)</code></td><td>移动到句子结尾 End of current sentence</td></tr>
     <tr><td><code>{</code></td><td>移动到段落开头 Beginning of current paragraph</td></tr>
     <tr><td><code>}</code></td><td>移动到段落结尾 End of current paragraph</td></tr>
     <tr><td><code>]]</code></td><td>移动到小节开头 Beginning of next section</td></tr>
     <tr><td><code>[[</code></td><td>移动到小节结尾 Beginning of previous section</td></tr>
-    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td><code>][</code></td><td>向前移动到节尾 forward, at end of section</td></tr>
+    <tr><td><code>[]</code></td><td>向后移动到节尾backward, at end of section</td></tr>
+    <tr><td><code>]*, ]/</code></td><td>向后移动到注释的结尾 end of /* */ backward, forward</td></tr>
+    <tr><td><code>[*, [/</code></td><td>向前移动到注释的开头 Beginning of /* */ backward, forward</td></tr>
+    <tr><td><code>[#</code></td><td>向前移动到未匹配的 unclosed #if, #else, #endif forwar</td></tr>
+    <tr><td><code>]#</code></td><td>向后移动到未匹配的 unclosed #if, #else, #endif backward</td></tr>
+    <tr><td><code>[(</code></td><td>向前移动到未匹配的( </td></tr>
+    <tr><td><code>])</code></td><td>向后移动到未匹配的(</td></tr>
+    <tr><td><code>[{</code></td><td>向前移动到未匹配的}</td></tr>
+    <tr><td><code>]}</code></td><td>向后移动到未匹配的{</td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td>gd</td><td>跳转 (goto) 至局部声明 (local declaration)</td></tr>
+    <tr><td>gD</td><td>跳转 (goto) 至全局声明 (global declaration)</td></tr>
 
     <tr><td colspan="2"><em>行间移动 Lines motions</em></td></tr>
     <tr><td><code>0</code></td><td>移动至当前行的首个字符 First position of current line (also: &lt;Home&gt; key)</td></tr>
+    <tr><td><code>g0</code></td><td>移动至当前屏幕行的首个字符 First position of current screen line (also: g&lt;Home&gt; key)</td></tr>
+    <tr><td><code>gm</code></td><td>移动至当前屏幕行的中间 Middle position of current screen line</td></tr>
     <tr><td><code>$</code></td><td>移动至当前行最后一个字符 Last position of current line (also: &lt;End&gt; key)</td></tr>
     <tr><td><code>g$</code></td><td>移动至当前屏幕行最后一个字符 Last position of current screen line</td></tr>
     <tr><td><code>^, _</code></td><td>移动至当前行的首个非空字符 First non-blank character of current line</td></tr>
@@ -179,7 +204,9 @@
     <tr><td><code>n</code></td><td>同向重复上一查找 Repeat last search in the same direction</td></tr>
     <tr><td><code>N</code></td><td>反向重复上一查找 Repeat last search in the opposite direction</td></tr>
     <tr><td><code>*</code></td><td>向前查找当前光标下的word search forward for the identifier under the cursor</td></tr>
+    <tr><td><code>g*</code></td><td> like "*", but also find partial matches</td></tr>
     <tr><td><code>#</code></td><td>向后查找当前光标下的word search backward for the identifier under the cursor</td></tr>
+    <tr><td><code>g#</code></td><td>like "#", but also find partial matches/</td></tr>
     <tr><td><code>%</code></td><td>查找匹配的括号 find the next brace, bracket, comment ...</td></tr>
     <tr><td><code></code></td><td></td></tr>
     <tr><td><code>f{x}</code></td><td>向前查找 Search forward for character <em>x</em> in current line</td></tr>
@@ -188,7 +215,7 @@
     <tr><td><code>T{x}</code></td><td>向后查找 Search backward to character after <em>x</em> in current line</td></tr>
     <tr><td><code>;</code></td><td>重复上次的行内查找 Repeat previous current line search</td></tr>
     <tr><td><code>,</code></td><td>反向重复上次的行内查找 Repeat previous current line search in opposite direction</td></tr>
-    <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+    <tr><td></td><td></td></tr>
 
     <tr><td colspan="2"><em>标记间移动 Marking position</em></td></tr>
     <tr><td><code>m{x}</code></td><td>定义标记 Mark current position as <em>x</em></td></tr>
@@ -235,20 +262,30 @@
     <td><code>O</code></td>
         <td>在当前行之上新增一行 open a new line above the current line</td>
     </tr>
+    <td><code>:r {file}</code></td>
+    <td>插入指定文件的内容 insert the contents of {file} below the cursor</td>
+    </tr>
+    <td><code>:r!{command}</code></td>
+        <td>插入指定命令的输出信息 insert the standard output of {command} below the cursor</td>
+    </tr>
+
     <tr><td colspan="2"><strong>更改 Change</strong></td></tr>
     <tr><td><code>r</code></td> <td>替换光标下字符 Replace character</td></tr>
     <tr><td><code>cw</code></td><td>Change word</td></tr>
     <tr><td><code>cc</code></td><td>修改一整行 Change current line</td></tr>
-    <tr><td><code>c{motion}</code></td><td>修改动作命令定义的文本 Change text between the cursor and the target of <em>motion</em></td>
-    </tr>
+    <tr><td><code>c{motion}</code></td><td>修改动作命令定义的文本 Change text between the cursor and the target of <em>motion</em></td></tr>
     <tr><td><code>C, c$</code></td><td>修改到行尾 Change to end of line</td></tr>
     <tr><td><code>R</code></td><td>进入替换模式 enter Replace mode</td></tr>
     <tr><td><code>s</code></td><td>替换当前字符 Substitute: delete character and insert new text</td></tr>
     <tr><td><code>S</code></td><td>替换一整行 Substitute: delete current line and insert new text</td></tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
+
+    <tr><td colspan="2"><strong>排版 Formatting</strong></td></tr>
+    <tr><td>:[range]ce[nter] [width]</td><td>在[range]指定范围的行和[width]限定的列范围内的文本居中对齐</td></tr>
+    <tr><td>:[range]ri[ght] [width]</td><td>在[range]指定范围的行和[width]限定的列范围内的文本右对齐</td></tr>
+    <tr><td>:[range]le[ft] [indent]</td><td>在[range]指定范围的行的文本按[indent]缩进距离靠左对齐</td></tr>
+    <tr><td>gq{motion}</td><td>对{motion}动作跨越的行进行排版 format lines of movement</td></tr>
+    <tr><td></td><td></td></tr>
+
     <tr><td colspan="2"><strong>删除 Delete</strong></td></tr>
     <tr><td><code>x</code></td><td>删除光标之下的字符 Delete character under cursor</td></tr>
     <tr><td><code>X</code></td><td>删除光标之前的字符 Delete character before cursor</td></tr>
@@ -263,10 +300,7 @@
     <tr><td><code>dd</ br>D</code></td><td>删除当前行Delete current line</td></tr>
     <tr><td><code>d{motion}</code></td><td>删除动作命令定义的文本 Delete text between the cursor and the target of <em>motion</em></td></tr>
     <tr><td><code>D, d$</code></td><td>删除至行尾 Delete to end of line</td></tr>
-    <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-    </tr>
+    <tr><td></td><td></td></tr>
     <tr><td colspan="2"><strong>复制 Yank</strong></td></tr>
     <tr><td><code>yw</code></td><td>复制word Yank (copy) word</td></tr>
     <tr><td><code>yy, Y</code></td><td>复制当前行 Yank cureent line</td>
@@ -385,22 +419,25 @@
 <table border="0">
     <tbody>
     <tr><td><code>:e {file}</code></td><td>编辑指定文件，当前文件变为<em>alternate</em>文件</td></tr>
-    <tr><td><code>:e!</code></td><td>编辑当前文件，并退回到之前保存的版本 Edit the current file always. Discard any changes.</td></tr>
+    <tr><td><code>:e! {file}</code></td><td>编辑当前文件，并退回到之前保存的版本 Edit the current file always. Discard any changes.</td></tr>
     <tr><td><code>:e #</code></td><td>编辑<em>alternate</em>文件</td></tr>
-    <tr><td><code>:n&nbsp;</code></td><td>编辑下一个文件</td></tr>
-    <tr><td><code>:rewind</code></td><td>编辑第一个文件</td></tr>
-    <tr><td><code>:prev</code></td><td>编辑上一个文件</td></tr>
-    <tr><td><code>:args</code></td><td>显示<a href="https://kutt.it/vim-arg" title="Arguments">参数（Arguments）</a>列表</td></tr>
-    <tr>
-        <td><code>%&nbsp;</code></td>
-        <td>Current filename (substitutes into <em>ex</em>
-        command line)</td>
-    </tr>
-    <tr>
-        <td><code>#&nbsp;</code></td>
-        <td>Alternate filename (substitutes into <em>ex</em>
-        command line)</td>
-    </tr>
+
+    <tr><td><code>:args</code></td><td>显示<a href="https://kutt.it/vim-arg" title="Arguments">参数（Arguments）</a>列表（当前文件显示在"[]"中）</td></tr>
+    <tr><td><code>:argu[ment] {N}</code></td><td>编辑参数列表中第{N}个文件，在当前窗口中</td>
+    <tr><td><code>:sargu[ment] {N}</code></td><td>编辑参数列表中第{N}个文件，在拆分窗口中</td>
+    <tr><td><code>:n[ext]</code></td><td>编辑下一个文件，在当前窗口中 Edit next file</td></tr>
+    <tr><td><code>:wn[ext]</code></td><td>保存当前文件并编辑下一个文件 Write file and edit next file</td></tr>
+    <tr><td><code>:sn[ext]</code></td><td>编辑下一个文件，在拆分窗口中 Edit next file</td></tr>
+    <tr><td><code>:rew[ind]</code></td><td>编辑第一个文件，在当前窗口中 Edit first file</td></tr>
+    <tr><td><code>:srew[ind]</code></td><td>编辑第一个文件，在拆分窗口中 Edit first file</td></tr>
+    <tr><td><code>:prev[ious], :N[ext]</code></td><td>编辑上一个文件，在当前窗口中 Edit previous file</td></tr>
+    <tr><td><code>:sprev[ious], :sN[ext]</code></td><td>编辑上一个文件，在拆分窗口中 Edit previous file</td></tr>
+    <tr><td><code>:wN[ext]</code></td><td>保存当前文件并编辑上一个文件 Write file and edit previous file</td></tr>
+    <tr><td><code>:last</code></td><td>编辑最后一个文件，在当前窗口中 Edit last file</td></tr>
+    <tr><td><code>:slast</code></td><td>编辑最后一个文件，在拆分窗口中 Edit last file</td></tr>
+    <tr><td><code>:all, :sal</code></td><td>为每一个参数打开一个窗口 Open a window for every file in the arg list</td></tr>
+    <tr><td><code></code></td><td></td></tr>
+
 </tbody></table>
 
 <h3><a id="Buffer-Commands">缓冲区命令 Buffer Names</a></h3>
@@ -424,7 +461,6 @@
 <tbody>
 	<tr><td><em>缓冲区命令</em></td><td></td></tr>
 	<tr><td><code>:ls[!]</code></td><td rowspan="3">List buffers and file names. Include unlisted buffers if ! modifier is included.</td></tr>
-	<tr><td><code>:files[!]</code></td><td></td></tr>
 	<tr><td><code>:ba[ll]</code></td><td>Edit all args or buffers</td></tr>
 	<tr><td><code>:sba[ll]</code></td><td>Edit all args or buffers (opens them in new windows)</td></tr>
 	<tr><td><code>:badd file</code></td><td>Add file to list.</td></tr>
@@ -479,17 +515,9 @@
 </tbody>
 </table>
 
-<table border="0">
-<caption style="margin:0.5em; font-weight:bold">Commands to rotate window positions</caption>
-<tbody>
-    <tr><td><code class="inset">Ctrl-Wr</code></td><td>Rotate windows down or to the right.</td></tr>
-    <tr><td><code class="inset">Ctrl-WR</code></td><td>Rotate windows up or to the left.</td></tr>
-    <tr><td><code class="inset">Ctrl-Wx</code></td><td>交换当前窗口和下一个窗口 Swap positions with the next window.</td></tr>
+    <tr><td><code class="inset">Ctrl-Wq</code></td><td>退出编辑并关闭窗口 Quit editing and close window</td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
     <tr><td><code class="inset"></code></td><td></td></tr>
-    <tr><td><code class="inset"></code></td><td></td></tr>
-</tbody>
-</table>
 
 <table border="0">
 <caption style="margin:0.5em; font-weight:bold">Commands to change position and layout</caption>
@@ -500,11 +528,11 @@
     <tr><td><code class="inset">Ctrl-Wj</code></td><td rowspan="3">移动到下一窗口 Move to the next window down. Note that this command does not cycle through the windows; If the cursor is in a window at the bottom of the screen, this command has no effect. </td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;&lt;Down&gt;</code></td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-J</code></td></tr>
-    <tr><td><code class="inset">^Wh</code></td><td rowspan="3">Move to the window to the left of the current window</td></tr>
+    <tr><td><code class="inset">^Wh</code></td><td rowspan="3">移动到左侧窗口 Move to the window to the left of the current window</td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;&lt;Left&gt;</code></td></tr>
     <tr><td><code class="inset">Ctrl-W&lt;BS&gt;</code></td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-H</code></td></tr>
-    <tr><td><code class="inset">Ctrl-Wl</code></td><td rowspan="3">Move to the window to the right of the current window.</td></tr>
+    <tr><td><code class="inset">Ctrl-Wl</code></td><td rowspan="3">移动到右侧窗口 Move to the window to the right of the current window.</td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;&lt;Right&gt;</code></td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-L</code></td></tr>
     <tr><td><code class="inset">Ctrl-Ww</code></td><td rowspan="2">遍历所有窗口 Move to the next window below or to the right. Note that this command, unlike CTRL-W j , will cycle through all of the Vim windows. When the lowermost window is reached, Vim restarts the cycle and moves to the top leftmost window.</td></tr>
@@ -515,17 +543,18 @@
     <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-B</code></td></tr>
     <tr><td><code class="inset">Ctrl-Wp</code></td><td rowspan="2">移动到上一窗口 Move to the previous (last accessed) window.</td></tr>
     <tr><td><code class="inset">Ctrl-W&nbsp;Ctrl-P</code></td></tr>
+    <tr><td><code class="inset">Ctrl-Wo, :on[ly]</code></td><td>使当前窗口成为屏幕上唯一的窗口 make current window one on screen</td></tr>
+    <tr><td><code class="inset">Ctrl-Wr</code></td><td>向右/下方向旋转窗口 Rotate windows down or to the right.</td></tr>
+    <tr><td><code class="inset">Ctrl-WR</code></td><td>向左/上方向旋转窗口Rotate windows up or to the left.</td></tr>
+    <tr><td><code class="inset">Ctrl-Wx</code></td><td>交换当前窗口和下一个窗口 Swap positions with the next window.</td></tr>
+
 </tbody>
 </table>
 
 <table border="0">
-<caption style="margin:0.5em; font-weight:bold">Commands to change position and layout</caption>
+<caption style="margin:0.5em; font-weight:bold"></caption>
 <tbody><tr><th>Command</th><th>Action</th></tr>
-    <tr><td><code class="inset">^WK</code></td><td>Move window to top of screen and use full width. The cursor stays with the moved window.</td></tr>
-    <tr><td><code class="inset">^WJ</code></td><td>Move window to bottom of screen and use full width. The cursor stays with the moved window.</td></tr>
-    <tr><td><code class="inset">^WH</code></td><td>Move window to left of screen and use full height. The cursor stays with the moved window.</td></tr>
-    <tr><td><code class="inset">^WL</code></td><td>Move window to right of screen and use full height. The cursor stays with the moved window.</td></tr>
-    <tr><td><code class="inset">^WT</code></td><td>Move window to new tab. The cursor stays with the moved window. If the current window is the only window in the current tab, no action is taken.</td></tr>
+    <tr><td><code class="inset"></code></td><td></td></tr>
 </tbody>
 </table>
 
@@ -548,46 +577,63 @@
 </table>
 
 <h3><a id="Map"><em>键盘映射 Maps</em></a></h3>
+<table border="0">
+<tbody>
+	<tr><th><td></td><td></td></th></tr>
+	<tr><td><code class="inset">:ma[p] {lhs} {rhs}</code></td><td>定义键盘映射 Map {lhs} to {rhs} in Normal and Visual mode</td></tr>
+	<tr><td><code class="inset">:ma[p]! {lhs} {rhs}</code></td><td>定义插入模式和命令行模式下的键盘映射 Map {lhs} to {rhs} in Insert and Command-line mode</td></tr>
+	<tr><td><code class="inset">:cma[p] {lhs} {rhs}</code></td><td>定义键盘映射 Map {lhs} to {rhs} in Command mode</td></tr>
+	<tr><td><code class="inset">:ima[p] {lhs} {rhs}</code></td><td>定义键盘映射 Map {lhs} to {rhs} in Insert mode</td></tr>
+	<tr><td><code class="inset">:nma[p] {lhs} {rhs}</code></td><td>定义键盘映射 Map {lhs} to {rhs} in Normal mode</td></tr>
+	<tr><td><code class="inset">:vma[p] {lhs} {rhs}</code></td><td>定义键盘映射 Map {lhs} to {rhs} in Visual mode</td></tr>
+	<tr><td><code class="inset">:no[remap][!] {lhs} {rhs}</code></td><td>定义键盘映射，并禁止重复映射 Same as ":map", no remapping for this {rhs}</td></tr>
+	<tr><td><code class="inset">:cno[remap] {lhs} {rhs}</code></td><td>定义键盘映射，并禁止重复映射 Same as ":cmap", no remapping for this {rhs}</td></tr>
+	<tr><td><code class="inset">:ino[remap] {lhs} {rhs}</code></td><td>定义键盘映射，并禁止重复映射 Same as ":imap", no remapping for this {rhs}</td></tr>
+	<tr><td><code class="inset">:nno[remap] {lhs} {rhs}</code></td><td>定义键盘映射，并禁止重复映射 Same as ":nmap", no remapping for this {rhs}</td></tr>
+	<tr><td><code class="inset">:vno[remap] {lhs} {rhs}</code></td><td>定义键盘映射，并禁止重复映射 Same as ":vmap", no remapping for this {rhs}</td></tr>
+	<tr><td><code class="inset">:unm[ap] {lhs}</code></td><td>取消键盘映射 Remove the mapping of {lhs} for Normal and Visual mode</td></tr>
+	<tr><td><code class="inset">:unm[ap]! {lhs}</code></td><td>取消键盘映射Remove the mapping of {lhs} for Insert and Command-line mode</td></tr>
+	<tr><td><code class="inset">:cunm[ap] {lhs}</code></td><td>取消键盘映射 Remove the mapping of {lhs} for Command mode</td></tr>
+	<tr><td><code class="inset">:iunm[ap] {lhs}</code></td><td>取消键盘映射 Remove the mapping of {lhs} for Insert mode</td></tr>
+	<tr><td><code class="inset">:nunm[ap] {lhs}</code></td><td>取消键盘映射 Remove the mapping of {lhs} for Normal mode</td></tr>
+	<tr><td><code class="inset">:vunm[ap] {lhs}</code></td><td>取消键盘映射 Remove the mapping of {lhs} for Visual mode</td></tr>
+	<tr><td><code class="inset">:ma[p] [lhs]</code></td><td>列示键盘映射 List mappings (starting with [lhs]) for Normal and Visual mode.</td></tr>
+	<tr><td><code class="inset">:ma[p]! [lhs]</code></td><td>列示键盘映射 List mappings (starting with [lhs]) for Insert and Command-line mode</td></tr>
+	<tr><td><code class="inset">:mapc[lear]</code></td><td>remove mappings for Normal and Visual mode</td></tr>
+	<tr><td><code class="inset">:mapc[lear]!</code></td><td>remove mappings for Insert and Cmdline mode</td></tr>
+	<tr><td><code class="inset">:imapc[lear]</code></td><td>remove mappings for Insert mode</td></tr>
+	<tr><td><code class="inset">:vmapc[lear]</code></td><td>remove mappings for Visual mode</td></tr>
+	<tr><td><code class="inset">:nmapc[lear]</code></td><td>remove mappings for Normal mode</td></tr>
+	<tr><td><code class="inset">:cmapc[lear]</code></td><td>remove mappings for Cmdline mode</td></tr>
+	<tr><td><code class="inset">:mk[exrc][!] [file]</code></td><td>将当前所有键盘映射和已经改变的选项，保存到指定文件 write current mappings, abbreviations, and settings to [file] (default: ".exrc"; use ! to overwrite)</td></tr>
+	<tr><td><code class="inset">:mkv[imrc][!] [file]</code></td><td>same as ":mkexrc", but with default ".vimrc"</td></tr>
+	<tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset"></code></td><td></td></tr>
+</tbody>
+</table>
 
-<p><code>:map x sequence</code></p>
-    <p>定义键盘映射 Define character(s) <em>x</em> as a <em>sequence</em> of editing commands.</p>
-
-<p><code>:unmap x</code></p>
-    <p>Disable <em>sequence</em> defined for <em>x</em></p>
-
-<p><code>:map</code></p>
-    <p>List the characters that are currently mapped .</p>
-
-<p><code>:map! x sequence</code></p>
-    <p>定义在插入模式和命令行模式下的键盘映射 Define character(s) <em>x</em> as a <em>sequence</em> of editing commands or text that will be recognized in input mode.</p>
-
-<p><code>:unmap! x</code></p>
-    <p>取消指定的键盘映射 Disable the <em>sequence</em> defined for the input mode map <em>x</em>.</p>
-
-<p>For both command and input mode maps, the map name <em>x</em>
-can take several forms:</p>
+<p>For both command and input mode maps, the map name <em>x</em> can take several forms:</p>
 
 <p><em>One Character</em></p>
-    <p>When you type the character, <em>vi</em> executes the
-    associated sequence of commands.</p>
+<p>When you type the character, <em>vi</em> executes the associated sequence of commands.</p>
 
 <p><em>Multiple Characters</em></p>
-    <p>All the characters must be txped within one second. The
-    value of <code>notimeout</code>
-    changes the behaviour.</p>
-
-    <p><code>:mk {filename}</code></p>
-    <p>将当前所有键盘映射和已经改变的选项，保存到指定文件</p>
-
+<p>All the characters must be txped within one second. The value of <code>notimeout</code> changes the behaviour.</p>
 
     <h3><a id="Marcos"><em>宏 Macros</em></a></h3>
     <table border="0">
     <tbody><tr><th>Command</th><th>Action</th></tr>
 	    <tr><td><code class="inset">q{x}</code></td><td>开始录制宏x</td></tr>
 	    <tr><td><code class="inset">q</code></td><td>结束录制宏</td></tr>
-	    <tr><td><code class="inset">@{x}</code></td><td>执行宏x</td></tr>
-	    <tr><td><code class="inset">@@</code></td><td>执行上次执行的宏 repeat previous</td></tr>
-	    <tr><td><code class="inset"></code></td><td></td></tr>
+	    <tr><td><code class="inset">@{x}</code></td><td>执行宏{x}</td></tr>
+	    <tr><td><code class="inset">@@, :@@</code></td><td>执行上次执行的宏 repeat previous</td></tr>
+	    <tr><td><code class="inset">:@{x}</code></td><td>将宏{x}内容作为Ex命令执行 execute register {x} as an Ex command</td></tr>
 	    <tr><td><code class="inset"></code></td><td></td></tr>
 	    <tr><td><code class="inset"></code></td><td></td></tr>
 	    <tr><td><code class="inset"></code></td><td></td></tr>
@@ -609,15 +655,10 @@ can take several forms:</p>
     </table>
 
 <table border="0">
-    <tbody><tr>
-        <td><code>#n </code></td>
-        <td>Function key notation: a # followed by a digit <em>n</em>
-        represents the sequence of characters sent by the
-        terminal's function number <em>n</em></td>
-    </tr>
+<tbody>
+	<tr><td><code></code></td><td></td></tr>
 </tbody></table>
 
-<p>To enter characters such as Escape (<code>^V</code>).</p>
 
 <h2><em>Executable Buffers</em></h2>
 
@@ -643,7 +684,7 @@ buffer character supplied after the <code>*</code>
 commands is <code>*</code>, the
 command is taken from the default (unnamed) buffer.</p>
 
-<h2><em>Folding</em></h2>
+<h2><a id="Folding">折叠 Folding</a></h2>
 <table border="0">
 <tbody><tr><th>Command</th><th>Action</th></tr>
     <tr><td><code class="inset">zj</code></td><td>移动到下一个折叠</td></tr>
@@ -659,7 +700,7 @@ command is taken from the default (unnamed) buffer.</p>
 </tbody>
 </table>
 
-<h2><em>Automatic Indentation</em></h2>
+<h2><a id="Indentation">自动缩进  Automatic Indentation</a></h2>
 
 <p>You enable automatic indentation with the command:</p>
 
@@ -667,30 +708,16 @@ command is taken from the default (unnamed) buffer.</p>
     <p><code>:set autoindent</code></p>
 </blockquote>
 
-<p>Four special input sequences affect automatic indentation:</p>
+<p>插入模式下：</p>
 
 <table border="0">
-    <tbody><tr>
-	<td><code>^T </code></td>
-        <td>增加缩进 Add one level of indentation; typed in insert mode</td>
-    </tr>
-    <tr>
-        <td><code>^D </code></td>
-        <td>减少缩进 Remove one level of indentation; type in insert mode</td>
-    </tr>
-    <tr>
-        <td><code>^ ^D&nbsp;</code></td>
-        <td>Shift the cursor back to the beginning of the line,
-        but only for the current line*</td>
-    </tr>
-    <tr>
-        <td><code>0 ^D&nbsp;</code></td>
-        <td>Shift the cursor back to the beginning of the line
-        and reset the current auto-indent level to zero+</td>
-    </tr>
+<tbody>
+	<tr><td><code>^T </code></td><td>增加缩进 Add one level of indentation</td></tr>
+	<tr><td><code>^D </code></td><td>减少缩进 Remove one level of indentation</td></tr>
+	<tr><td><code>^ ^D&nbsp;</code></td><td>Shift the cursor back to the beginning of the line, but only for the current line*</td></tr>
+	<tr><td><code>0 ^D</code></td><td>Shift the cursor back to the beginning of the line and reset the current auto-indent level to zero+</td></tr>
 </tbody></table>
 
-<p>Two commands can be used for shifting source:</p>
 
 <table border="0">
     <tbody><tr>
@@ -705,7 +732,21 @@ command is taken from the default (unnamed) buffer.</p>
 
 <p>The default shift is the value of <code>shiftwidth</code>, usually eight spaces.</p>
 
-<h2><a name="Substitution-Regular-Expressions">Substitution and Regular Expressions</a></h2>
+<h2><a id="Qucikfix">快速修复 Quickfix</a></h2>
+<table border="0">
+<tbody><tr><th>Command</th><th>Action</th></tr>
+    <tr><td><code class="inset">:cc[!] [nr]</code></td><td>显示错误[nr] display error [nr] </td></tr>
+    <tr><td><code class="inset">:cn</code></td><td> display the next error</td></tr>
+    <tr><td><code class="inset">:cp</code></td><td>display the previous error</td></tr>
+    <tr><td><code class="inset">:cl</code></td><td> list all errors</td></tr>
+    <tr><td><code class="inset">:cf</code></td><td>read errors from the file 'errorfile'</td></tr>
+    <tr><td><code class="inset">:cq</code></td><td> quit without writing and return error code (to the compiler)</td></tr>
+    <tr><td><code class="inset">:make [args]</code></td><td>start make, read errors, and jump to first error</td></tr>
+    <tr><td><code class="inset"></code></td><td></td></tr>
+</tbody>
+</table>
+
+<h2><a id="Substitution-Regular-Expressions">Substitution and Regular Expressions</a></h2>
 <h3>正则表达式 Regular Expressions</h3>
 
 <table border="0">
@@ -1073,6 +1114,23 @@ expression ends its effect.
         used on the last substitute and applies then to the next
         one.</li>
 </ul>
+<h2 style="border-bottom:1px solid lightgray"><a id="Autocommands">自动命令 Autocommands</a></h2>
+<table border="0"><tbody>
+	<tr><td><code>:au[tocmd] [group] {event} {aupat} {cmd}</code></td><td></td><td>把{cmd}加到匹配{aupat}模式的自动命令</td></tr>
+	<tr><td><code>:au</code></td><td>&nbsp;</td><td>列示所有自动命令 List all autocommands</td></tr>
+	<tr><td><code>:au[tocmd] [group] {event}</code></td><td>&nbsp;</td><td>显示所有和 {event} 事件相关联的自动命令。</td></tr>
+	<tr><td><code>:au[tocmd] [group] {event} {aupat}</code></td><td>&nbsp;</td><td>显示所有和 {event} 事件和 {aupat} 模式相关联的自动命
+令。</td></tr>
+	<tr><td><code></code></td><td>&nbsp;</td><td></td></tr>
+	<tr><td><code>:au!</code></td><td>&nbsp;</td><td>删除所有自动命令 Remove all autocommands</td></tr>
+
+	<tr><td><code>:au[tocmd]! [group] {event} {aupat}</code></td><td>&nbsp;</td><td>删除所有和 {event} 事件相关联的自动命令。</td></tr>
+	<tr><td><code>:au[tocmd]! [group] * {aupat}</code></td><td>&nbsp;</td><td>删除所有和 {aupat} 模式相关联的自动命令</td></tr>
+	<tr><td><code>:au[tocmd]! [group] {event}</code></td><td>&nbsp;</td><td>删除所有和 {event} 事件相关联的自动命令。</td></tr>
+	<tr><td><code></code></td><td>&nbsp;</td><td></td></tr>
+	<tr><td><code></code></td><td>&nbsp;</td><td></td></tr>
+	<tr><td><code></code></td><td>&nbsp;</td><td></td></tr>
+</tbody></table>
 
 <h2 style="border-bottom:1px solid lightgray"><a id="Set-Commands">设置选项 :set Commands</a></h2>
 
@@ -1198,7 +1256,7 @@ expression ends its effect.
     </tr>
 </tbody></table>
 
-<h2><em>Tags</em></h2>
+<h2><em>标签 Tags</em></h2>
 <table border="0">
 <tbody><tr>
         <td><strong>Command</strong></td>
@@ -1229,14 +1287,30 @@ expression ends its effect.
 </tbody>
 </table>
 
-<h2><em>Others</em></h2>
+<h2><em>其他 Others</em></h2>
 <table border="0">
 <tbody>
 	<tr><td><code class="inset">:digraphs</code></td><td>列示特殊符号</td></tr>
+	<tr><td><code class="inset">Ctrl-K</code></td><td>输入特殊符号（插入模式下）</td></tr>
+	<tr><td><code class="inset">:f[ile]</code></td><td>Print the current filename and the cursor position</td></tr>
+	<tr><td><code class="inset">:f[ile] {name}</code></td><td>Set the current filename to {name}</td></tr>
+	<tr><td><code>:files</code></td><td> Show alternate filenames</td></tr>
+	<tr><td><code>:files[!]</code></td><td></td></tr>
+	<tr><td><code class="inset">g?{motion}</code></td><td>使用Rot13对{motion}跨越的文本进行加密</td></tr>
+	<tr><td><code class="inset">ga</code></td><td>显示当前光标下字符的ASCII码 show ascii value of character under cursor in decimal, hex, and octal</td></tr>
+	<tr><td><code class="inset">gf, ]f</code></td><td>打开当前光标下文件 open file which filename is under cursor</td></tr>
+	<tr><td><code class="inset">CTRL-G</code></td><td>在状态栏显示当前文件名 show current file name (with path) and cursor position</td></tr>
+	<tr><td><code class="inset">gCTRL-G</code></td><td>在状态栏显示当前光标位置 show cursor column, line, and character position</td></tr>
+	<tr><td><code class="inset">:cd [path]</code></td><td>Change the current directory to [path]</td></tr>
+	<tr><td><code class="inset">:pwd</code></td><td>显示当前目录 Print the current directory name</td></tr>
+	<tr><td><code class="inset">:sl[eep] [N], [N]gs</code></td><td>睡眠[N]秒 don't do anything for N seconds</td></tr>
+	<tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset">:ve[rsion]</code></td><td>显示Vim系统信息 show exact version number of this Vim</td></tr>
 	<tr><td><code class="inset">:X</code></td><td>加密</td></tr>
-    <tr><td><code class="inset"></code></td><td></td></tr>
-    <tr><td><code class="inset"></code></td><td></td></tr>
-    <tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset">!{motion}{filter}</code></td><td>用{filter}命令过滤{motion}文本</td></tr>
+	<tr><td><code class="inset">[N]!!{filter}</code></td><td>用{filter}命令过滤[N]行</td></tr>
+	<tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset"></code></td><td></td></tr>
 </tbody>
 </table>
 
@@ -1396,7 +1470,7 @@ expression ends its effect.
     <tr>
         <td>K</td>
         <td>&nbsp;</td>
-        <td><code></code></td>
+        <td><code>K</code></td>
 	<td>在操作系统默认的帮助系统中查找关键词 lookup keyword under the cursor with 'keywordprg' program (default: "man")</td>
     </tr>
     <tr>
@@ -1560,6 +1634,12 @@ expression ends its effect.
         <td>&nbsp;</td>
         <td><code>[num] sb [num]</code></td>
 	<td>分割<a href="http://yyq123.github.io/learn-vim/learn-vi-14-MultiWindows.html" title="Window">窗口</a>以编辑指定<a href="http://yyq123.github.io/learn-vim/learn-vi-13-MultiBuffers.html" title="Buffer">缓冲区</a></td>
+    </tr>
+    <tr>
+        <td>Scriptnames</td>
+        <td>&nbsp;</td>
+        <td><code>scriptnames</code></td>
+	<td>列示所有插件</td>
     </tr>
     <tr>
         <td>Set</td>
@@ -1759,7 +1839,7 @@ expression ends its effect.
     <tr>
         <td valign="top">!</td>
         <td>&nbsp;</td>
-        <td valign="top"><code>[address]!command</code></td>
+	<td valign="top"><code>[address]!{command}</code></td>
 	<td><a href="https://yyq123.github.io/learn-vim/learn-vi-71-Shell.html" title="Shell">运行外部命令(Shell Command)</a></td>
     </tr>
     <tr>
@@ -1788,7 +1868,7 @@ expression ends its effect.
         <td valign="top">&amp;</td>
         <td>&nbsp;</td>
         <td valign="top"><code>[address]&amp;[options][count]<br></code></td>
-	<td>repeat substitute</td>
+	<td>重复上一替换 repeat previous substitute</td>
     </tr>
     <tr>
 	<td>~</td>
