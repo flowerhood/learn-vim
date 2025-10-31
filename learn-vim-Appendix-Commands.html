@@ -18,6 +18,14 @@
 	<li><a href="#Qucikfix" title="Qucikfix">快速修复 Quickfix</a></li>
 	<li><a href="" title=""></a></li>
 	<li><a href="" title=""></a></li>
+	<li><a href="" title=""></a></li>
+	<li><a href="" title=""></a></li>
+	<li><a href="" title=""></a></li>
+	<li><a href="" title=""></a></li>
+	<li><a href="#Autocommands" title="Autocommands">自动命令 Autocommands</a></li>
+	<li><a href="" title=""></a></li>
+	<li><a href="" title=""></a></li>
+	<li><a href="#Various" title="Various">其他 Various</a></li>
 </ul>
 
 <h2 style="border-bottom:1px solid lightgray"><a id="Starting">启动命令 Starting</a></h2>
@@ -278,6 +286,12 @@
     <tr><td><code>R</code></td><td>进入替换模式 enter Replace mode</td></tr>
     <tr><td><code>s</code></td><td>替换当前字符 Substitute: delete character and insert new text</td></tr>
     <tr><td><code>S</code></td><td>替换一整行 Substitute: delete current line and insert new text</td></tr>
+    <tr><td><code>~</code></td><td>转换当前字符大小写</td></tr>
+    <tr><td><code>g~w</code></td><td>转换当前word大小写</td></tr>
+    <tr><td><code>guw</code></td><td>转换当前word为小写</td></tr>
+    <tr><td><code>gUw</code></td><td>转换当前word为大写</td></tr>
+    <tr><td><code>{visual}u</code></td><td>转换当前选中文本为小写 make highlighted text lowercase</td></tr>
+    <tr><td><code>{visual}U</code></td><td>转换当前选中文本为大写 make highlighted text uppercase</td></tr>
 
     <tr><td colspan="2"><strong>排版 Formatting</strong></td></tr>
     <tr><td>:[range]ce[nter] [width]</td><td>在[range]指定范围的行和[width]限定的列范围内的文本居中对齐</td></tr>
@@ -293,14 +307,11 @@
     <tr><td><code>d}</code></td><td>删除至下一个段落paragraph</td></tr>
     <tr><td><code>d^</code></td><td>删除至行首</td></tr>
     <tr><td><code>dG</code></td><td>删除至文件末尾</td></tr>
-    <tr><td><code>~</code></td><td>转换当前字符大小写</td></tr>
-    <tr><td><code>g~w</code></td><td>转换当前word大小写</td></tr>
-    <tr><td><code>guw</code></td><td>转换当前word为小写</td></tr>
-    <tr><td><code>gUw</code></td><td>转换当前word为大写</td></tr>
     <tr><td><code>dd</ br>D</code></td><td>删除当前行Delete current line</td></tr>
     <tr><td><code>d{motion}</code></td><td>删除动作命令定义的文本 Delete text between the cursor and the target of <em>motion</em></td></tr>
     <tr><td><code>D, d$</code></td><td>删除至行尾 Delete to end of line</td></tr>
     <tr><td></td><td></td></tr>
+
     <tr><td colspan="2"><strong>复制 Yank</strong></td></tr>
     <tr><td><code>yw</code></td><td>复制word Yank (copy) word</td></tr>
     <tr><td><code>yy, Y</code></td><td>复制当前行 Yank cureent line</td>
@@ -325,7 +336,6 @@
     <tr><td><code>U</code></td><td>撤销上次操作的行 restore current line</td></tr>
     <tr><td><code>CTRL-A</code></td><td>增加当前光标下的数值 add N to the number at the cursor</td></tr>
     <tr><td><code>CTRL-X</code></td><td>减少当前光标下的数值 subtract N to the number at the cursor</td></tr>
-<tr><td><code></code></td><td></td></tr>
     <tr>
         <td><code>J</code></td>
         <td>合并行（行间有空格隔开）</td>
@@ -365,6 +375,10 @@
 <h3><a id="Save-Commands">保存和退出命令 Writing and quitting</a></h3>
 <table border="0">
     <tbody>
+    <tr><td><code>:w[rite]</code></td><td>保存当前文件 Write (save) file</td></tr>
+    <tr><td><code>:w!</code></td><td>强制保存文件 Write (save) file, overriding protection</td></tr>
+    <tr><td><code>:[range]w {file}</code></td><td>将指定范围的行保存至指定文件 Write lines as <em>{file}</em></td>
+    <tr><td><code>:[range]w &gt;&gt; {file}</code></td><td>将指定范围的行增添至指定文件的末尾 Write lines and append to <em>{file}</em></td></tr>
     <tr>
         <td><code>ZZ, :x</code></td>
         <td>保存并退出 Write (save) and quit file</td>
@@ -376,22 +390,6 @@
     <tr>
         <td><code>:wq!</code></td>
         <td>强制保存并退出 Write (save) and quit file</td>
-    </tr>
-    <tr>
-        <td><code>:w</code></td>
-        <td>保存当前文件 Write (save) file</td>
-    </tr>
-    <tr>
-        <td><code>:w!</code></td>
-        <td>强制保存文件 Write (save) file, overriding protection</td>
-    </tr>
-    <tr>
-	<td><code>:30,60w {file}&nbsp;</code></td>
-	<td>将指定范围的行保存至指定文件 Write from line 30 through line 60 as <em>{file}</em></td>
-    </tr>
-    <tr>
-	<td><code>:30,60w&gt;&gt; {file}&nbsp;</code></td>
-	<td>将指定范围的行增添至指定文件的末尾 Write from line 30 through line 60 and append to <em>{file}</em></td>
     </tr>
     <tr>
         <td><code>:w %.new&nbsp;</code></td>
@@ -607,7 +605,7 @@
 	<tr><td><code class="inset">:cmapc[lear]</code></td><td>remove mappings for Cmdline mode</td></tr>
 	<tr><td><code class="inset">:mk[exrc][!] [file]</code></td><td>将当前所有键盘映射和已经改变的选项，保存到指定文件 write current mappings, abbreviations, and settings to [file] (default: ".exrc"; use ! to overwrite)</td></tr>
 	<tr><td><code class="inset">:mkv[imrc][!] [file]</code></td><td>same as ":mkexrc", but with default ".vimrc"</td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset">:lo[adview] [nr]</code></td><td>为当前文件载入视图 load view configuration</td></tr>
 	<tr><td><code class="inset"></code></td><td></td></tr>
 	<tr><td><code class="inset"></code></td><td></td></tr>
 	<tr><td><code class="inset"></code></td><td></td></tr>
@@ -1127,8 +1125,8 @@ expression ends its effect.
 	<tr><td><code>:au[tocmd]! [group] {event} {aupat}</code></td><td>&nbsp;</td><td>删除所有和 {event} 事件相关联的自动命令。</td></tr>
 	<tr><td><code>:au[tocmd]! [group] * {aupat}</code></td><td>&nbsp;</td><td>删除所有和 {aupat} 模式相关联的自动命令</td></tr>
 	<tr><td><code>:au[tocmd]! [group] {event}</code></td><td>&nbsp;</td><td>删除所有和 {event} 事件相关联的自动命令。</td></tr>
-	<tr><td><code></code></td><td>&nbsp;</td><td></td></tr>
-	<tr><td><code></code></td><td>&nbsp;</td><td></td></tr>
+	<tr><td><code>:rv[iminfo][!] [file]</code></td><td>读入viminfo文件 Read info from viminfo file</td><td></td></tr>
+	<tr><td><code>:wv[iminfo][!] [file]</code></td><td></td><td>写入 viminfo 文件 Write info to viminfo file</td></tr>
 	<tr><td><code></code></td><td>&nbsp;</td><td></td></tr>
 </tbody></table>
 
@@ -1287,7 +1285,7 @@ expression ends its effect.
 </tbody>
 </table>
 
-<h2><em>其他 Others</em></h2>
+<h2><a id="Starting">其他 Various</a></h2>
 <table border="0">
 <tbody>
 	<tr><td><code class="inset">:digraphs</code></td><td>列示特殊符号</td></tr>
@@ -1309,7 +1307,7 @@ expression ends its effect.
 	<tr><td><code class="inset">:X</code></td><td>加密</td></tr>
 	<tr><td><code class="inset">!{motion}{filter}</code></td><td>用{filter}命令过滤{motion}文本</td></tr>
 	<tr><td><code class="inset">[N]!!{filter}</code></td><td>用{filter}命令过滤[N]行</td></tr>
-	<tr><td><code class="inset"></code></td><td></td></tr>
+	<tr><td><code class="inset">:redi[r][!] &gt; {file}</code></td><td>重定向消息到文件 redirect output to {file}</td></tr>
 	<tr><td><code class="inset"></code></td><td></td></tr>
 </tbody>
 </table>

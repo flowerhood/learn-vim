@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="learn-vi.css" />
-	<title>VIM学习笔记 插件(Plugin)</title>
+	<title>VIM学习笔记 快捷键(Keys)</title>
     <style>
       /* ----------------- */
 
@@ -1900,246 +1900,71 @@ Modes: 𝐍=normal 𝐕=visual 𝐒=select 𝐈=insert 𝐂=command
 </tr>
 </tbody>
 </table>
-<h3>
-<a id="git-version-control" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#git-version-control" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Git Version Control</h3>
+<h3><a id="git-version-control" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#git-version-control" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Keys in Insert mode</h3>
 <table>
 <thead>
-<tr>
-<th>Key</th>
-<th align="center">Mode</th>
-<th>Action</th>
-<th>Plugin or Mapping</th>
-</tr>
+<tr><th>Key</th><th>Action</th></tr>
 </thead>
 <tbody>
-<tr>
-<td><kbd>gs</kbd></td>
-<td align="center">𝐍</td>
-<td>Preview hunk</td>
-<td><a href="https://github.com/airblade/vim-gitgutter" rel="nofollow">airblade/vim-gitgutter</a></td>
-</tr>
-<tr>
-<td><kbd>gS</kbd></td>
-<td align="center">𝐍 𝐕 𝐒</td>
-<td>Stage hunk</td>
-<td><a href="https://github.com/airblade/vim-gitgutter" rel="nofollow">airblade/vim-gitgutter</a></td>
-</tr>
-<tr>
-<td>
-<kbd>Space</kbd>+<kbd>gr</kbd>
-</td>
-<td align="center">𝐍</td>
-<td>Revert hunk</td>
-<td><a href="https://github.com/airblade/vim-gitgutter" rel="nofollow">airblade/vim-gitgutter</a></td>
-</tr>
-<tr>
-<td>
-<kbd>Space</kbd>+<kbd>ga</kbd>
-</td>
-<td align="center">𝐍</td>
-<td>Git add current file</td>
-<td><a href="https://github.com/chemzqm/vim-easygit" rel="nofollow">chemzqm/vim-easygit</a></td>
-</tr>
-<tr>
-<td>
-<kbd>Space</kbd>+<kbd>gd</kbd>
-</td>
-<td align="center">𝐍</td>
-<td>Git diff</td>
-<td><a href="https://github.com/chemzqm/vim-easygit" rel="nofollow">chemzqm/vim-easygit</a></td>
-</tr>
-<tr>
-<td>
-<kbd>Space</kbd>+<kbd>gc</kbd>
-</td>
-<td align="center">𝐍</td>
-<td>Git commit</td>
-<td><a href="https://github.com/chemzqm/vim-easygit" rel="nofollow">chemzqm/vim-easygit</a></td>
-</tr>
-<tr>
-<td>
-<kbd>Space</kbd>+<kbd>gb</kbd>
-</td>
-<td align="center">𝐍</td>
-<td>Git blame</td>
-<td><a href="https://github.com/chemzqm/vim-easygit" rel="nofollow">chemzqm/vim-easygit</a></td>
-</tr>
-<tr>
-<td>
-<kbd>Space</kbd>+<kbd>gF</kbd>
-</td>
-<td align="center">𝐍</td>
-<td>Git fetch</td>
-<td><a href="https://github.com/chemzqm/vim-easygit" rel="nofollow">chemzqm/vim-easygit</a></td>
-</tr>
-<tr>
-<td>
-<kbd>Space</kbd>+<kbd>gp</kbd>
-</td>
-<td align="center">𝐍</td>
-<td>Git push</td>
-<td><a href="https://github.com/chemzqm/vim-easygit" rel="nofollow">chemzqm/vim-easygit</a></td>
-</tr>
+<tr><td><kbd>&lt;NL&gt;</kbd></td><td rowspan="4">开始新行 begin new line</td></tr>
+<tr><td><kbd>&lt;CR&gt;</kbd></td></tr>
+<tr><td><kbd>CTRL-J</kbd></td></tr>
+<tr><td><kbd>CTRL-M</kbd></td></tr>
+<tr><td><kbd>CTRL-E</kbd></td><td>插入光标下面的字符 insert the character from below the cursor</td></tr>
+<tr><td><kbd>CTRL-Y</kbd></td><td>插入光标上面的字符 insert the character from above the cursor</td></tr>
+<tr><td><kbd>CTRL-R</kbd></td><td>插入寄存器内容 insert contents of register</td></tr>
+<tr><td><kbd>&lt;BS&gt;</kbd></td><td rowspan="2">删除光标前的字符 delete the character before the cursor</td></tr>
+<tr><td><kbd>CTRL-H</kbd></td></tr>
+<tr><td><kbd>CTRL-W</kbd></td><td>删除光标前的单词 delete word before the cursor</td></tr>
+<tr><td><kbd>CTRL-U</kbd></td><td>删除当前行上光标前的所有输入字符 delete all inserted character in current line</td></tr>
+<tr><td><kbd>CTRL-K</kbd></td><td>输入特殊字符 enter digraph</td></tr>
+<tr><td><kbd>CTRL-N</kbd></td><td>查找下一个关键字 text completion before cursor</td></tr>
+<tr><td><kbd>VTRL-P</kbd></td><td>查找上一个关键字 text completion after cursor</td></tr>
+<tr><td><kbd>CTRL-X</kbd></td><td>进入补全模式</td></tr>
+<tr><td><kbd>CTRL-T</kbd></td><td>在当前行开始处插入缩进 insert one shiftwidth of indent in front of the current line</td></tr>
+<tr><td><kbd>CTRL-D</kbd></td><td>在当前行开始处删除缩进 delete one shiftwidth of indent in front of the current line</td></tr>
+<tr><td><kbd>0 CTRL-D</kbd></td><td>删除所有当前行的缩进 delete all indent in the current line</td></tr>
+<tr><td><kbd>^ CTRL-D</kbd></td><td>删除当前行的所有缩进。缩进在下一行上恢复。delete all indent in the current line, restore indent in next line</td></tr>
+<tr><td><kbd></kbd></td><td></td></tr>
+<tr><td><kbd></kbd></td><td></td></tr>
+<tr><td><kbd></kbd></td><td></td></tr>
+<tr><td><kbd></kbd></td><td></td></tr>
+<tr><td><kbd></kbd></td><td></td></tr>
 </tbody>
 </table>
+
 <h3>
-<a id="plugin-denite" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#plugin-denite" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plugin: Denite</h3>
+<a id="plugin-denite" class="anchor" href="https://awesomeopensource.com/project/rafi/vim-config#plugin-denite" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Keys in Command-line mode</h3>
 <table>
 <thead>
-<tr>
-<th>Key</th>
-<th align="center">Mode</th>
-<th>Action</th>
-</tr>
+<tr><th>Key</th><th>Action</th></tr>
 </thead>
 <tbody>
-<tr>
-<td><kbd>;r</kbd></td>
-<td align="center">𝐍</td>
-<td>Resumes last Denite window</td>
-</tr>
-<tr>
-<td><kbd>;f</kbd></td>
-<td align="center">𝐍</td>
-<td>File search</td>
-</tr>
-<tr>
-<td><kbd>;g</kbd></td>
-<td align="center">𝐍</td>
-<td>Grep search</td>
-</tr>
-<tr>
-<td><kbd>;b</kbd></td>
-<td align="center">𝐍</td>
-<td>Buffers and MRU</td>
-</tr>
-<tr>
-<td><kbd>;d</kbd></td>
-<td align="center">𝐍</td>
-<td>Directories and MRU</td>
-</tr>
-<tr>
-<td><kbd>;v</kbd></td>
-<td align="center">𝐍 𝐕</td>
-<td>Yank history</td>
-</tr>
-<tr>
-<td><kbd>;l</kbd></td>
-<td align="center">𝐍</td>
-<td>Location list</td>
-</tr>
-<tr>
-<td><kbd>;q</kbd></td>
-<td align="center">𝐍</td>
-<td>Quick fix</td>
-</tr>
-<tr>
-<td><kbd>;n</kbd></td>
-<td align="center">𝐍</td>
-<td>Dein plugin list</td>
-</tr>
-<tr>
-<td><kbd>;j</kbd></td>
-<td align="center">𝐍</td>
-<td>Jump points and change stack</td>
-</tr>
-<tr>
-<td><kbd>;u</kbd></td>
-<td align="center">𝐍</td>
-<td>Junk files</td>
-</tr>
-<tr>
-<td><kbd>;o</kbd></td>
-<td align="center">𝐍</td>
-<td>Outline tags</td>
-</tr>
-<tr>
-<td><kbd>;s</kbd></td>
-<td align="center">𝐍</td>
-<td>Sessions</td>
-</tr>
-<tr>
-<td><kbd>;t</kbd></td>
-<td align="center">𝐍</td>
-<td>Tag list</td>
-</tr>
-<tr>
-<td><kbd>;p</kbd></td>
-<td align="center">𝐍</td>
-<td>Jumps</td>
-</tr>
-<tr>
-<td><kbd>;h</kbd></td>
-<td align="center">𝐍</td>
-<td>Help</td>
-</tr>
-<tr>
-<td><kbd>;m</kbd></td>
-<td align="center">𝐍</td>
-<td>Memo list</td>
-</tr>
-<tr>
-<td><kbd>;z</kbd></td>
-<td align="center">𝐍</td>
-<td>Z (jump around)</td>
-</tr>
-<tr>
-<td><kbd>;;</kbd></td>
-<td align="center">𝐍</td>
-<td>Command history</td>
-</tr>
-<tr>
-<td><kbd>;/</kbd></td>
-<td align="center">𝐍</td>
-<td>Buffer lines</td>
-</tr>
-<tr>
-<td><kbd>;*</kbd></td>
-<td align="center">𝐍</td>
-<td>Search word under cursor with lines</td>
-</tr>
-<tr>
-<td>
-<kbd>Space</kbd>+<kbd>gl</kbd>
-</td>
-<td align="center">𝐍</td>
-<td>Git log (all)</td>
-</tr>
-<tr>
-<td>
-<kbd>Space</kbd>+<kbd>gs</kbd>
-</td>
-<td align="center">𝐍</td>
-<td>Git status</td>
-</tr>
-<tr>
-<td>
-<kbd>Space</kbd>+<kbd>gc</kbd>
-</td>
-<td align="center">𝐍</td>
-<td>Git branches</td>
-</tr>
-<tr>
-<td>
-<kbd>Space</kbd>+<kbd>gt</kbd>
-</td>
-<td align="center">𝐍</td>
-<td>Find tags matching word under cursor</td>
-</tr>
-<tr>
-<td>
-<kbd>Space</kbd>+<kbd>gf</kbd>
-</td>
-<td align="center">𝐍</td>
-<td>Find files matching word under cursor</td>
-</tr>
-<tr>
-<td>
-<kbd>Space</kbd>+<kbd>gg</kbd>
-</td>
-<td align="center">𝐍 𝐕</td>
-<td>Grep word under cursor</td>
-</tr>
+<tr><td><kbd>&lt;Left&gt;</kbd></td><td>向左移动</td></tr>
+<tr><td><kbd>&lt;Right&gt;</kbd></td><td>向有移动</td></tr>
+<tr><td><kbd>&lt;S-Left&gt;</kbd></td><td>向左移动一个词 cursor one word left</td></tr>
+<tr><td><kbd>&lt;S-Right&gt;</kbd></td><td>向右移动一个词 cursor one word right</td></tr>
+<tr><td><kbd>CTRL-B</kbd></td><td>移动到开头 cursor to beginning of command-line</td></tr>
+<tr><td><kbd>CTRL-E</kbd></td><td>移动到末尾 cursor to end of command-line</td></tr>
+<tr><td><kbd>CTRL-R</kbd></td><td>插入寄存器内容 insert contents of register</td></tr>
+<tr><td><kbd>&lt;BS&gt;</kbd></td><td>delete the character in front of the cursor</td></tr>
+<tr><td><kbd>&lt;Del&gt;</kbd></td><td>delete the character under the cursor</td></tr>
+<tr><td><kbd>CTRL-W</kbd></td><td>delete the word in front of the cursor</td></tr>
+<tr><td><kbd>CTRL-U</kbd></td><td>删除所有字符 remove all characters</td></tr>
+<tr><td><kbd>&lt;Up&gt;</kbd></td><td>recall older/newer command-line that starts</td></tr>
+<tr><td><kbd>&lt;Down&gt;</kbd></td><td></td></tr>
+<tr><td><kbd>&lt;S-Up&gt;</kbd></td><td>recall older/newer command-line from history</td></tr>
+<tr><td><kbd>&lt;S-Down&gt;</kbd></td><td></td></tr>
+<tr><td><kbd>&lt;&gt;</kbd></td><td></td></tr>
+<tr><td><kbd>&lt;&gt;</kbd></td><td></td></tr>
+<tr><td><kbd></kbd></td><td></td></tr>
+<tr><td><kbd></kbd></td><td></td></tr>
+<tr><td><kbd></kbd></td><td></td></tr>
+<tr><td><kbd></kbd></td><td></td></tr>
+</tbody>
+</table>
+
+
 <tr>
 <td><strong>Within <em>Denite</em> window</strong></td>
 <td align="center"></td>
