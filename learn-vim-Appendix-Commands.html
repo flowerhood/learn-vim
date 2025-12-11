@@ -229,7 +229,9 @@
     <tr><td><code>m{x}</code></td><td>定义标记 Mark current position as <em>x</em></td></tr>
     <tr><td><code>`{x}</code></td><td>跳转到指定标记 (Backquote) Moves the cursor to the character marked by <em>x</em></td></tr>
     <tr><td><code>``</code></td><td>(Backquotes) Returns to the exact position of the previous mark or context after a move</td></tr>
-    <tr><td><code>`"</code></td><td>跳转到上次离开这个文件时的位置 go to the position when last editing this file</td></tr>
+    <tr><td><code>`"</code></td><td>(Backquotes) 跳转到上次离开这个文件时的位置 go to the position when last editing this file</td></tr>
+    <tr><td><code>`&lt;</code></td><td>(Backquotes) 跳转到上一可视化区域的开头 go to the start of the (previous) Visual area</td></tr>
+    <tr><td><code>`&gt;</code></td><td>(Backquotes) 跳转到上一可视化区域的结尾 go to the end of the (previous) Visual area</td></tr>
     <tr><td><code></code></td><td></td></tr>
 
     <tr><td><code>'x</code></td><td>(Apostrophe) Moves the cursor to the first character of the line marked by <em>x</em></td></tr>
@@ -509,13 +511,13 @@
     <tr><td><code class="inset">:sfind</code></td><td><code class="inset"></code></td><td>Split window and open file (if specified) in the new window.Look for file in the path.</td></tr>
     <tr><td><code class="inset">:vsplit</code></td><td><code class="inset">^Wv</code></td><td>Split current window into two from top to bottom and open file (if specified) in the new window.</td></tr>
     <tr><td><code class="inset">:vnew</code></td><td><code class="inset"></code></td><td>Vertical version of :new.</td></tr>
+    <tr><td><code>Ctrl-W]</code></td><td>Split window and jump to tag under cursor</td></tr>
+    <tr><td><code class="inset">Ctrl-Wf</code></td><td>拆分窗口并编辑光标下的文件 Split window and edit file name under the cursor</td></tr>
+    <tr><td><code class="inset">Ctrl-W^</code></td><td>Split window and edit alternate file</td></tr>
     <tr><td><code class="inset">:close</code></td><td></td><td>关闭当前窗口</td></tr>
+    <tr><td><code class="inset">Ctrl-Wq</code></td><td>退出编辑并关闭窗口 Quit editing and close window</td></tr>
 </tbody>
 </table>
-
-    <tr><td><code class="inset">Ctrl-Wq</code></td><td>退出编辑并关闭窗口 Quit editing and close window</td></tr>
-    <tr><td><code class="inset"></code></td><td></td></tr>
-    <tr><td><code class="inset"></code></td><td></td></tr>
 
 <table border="0">
 <caption style="margin:0.5em; font-weight:bold">Commands to change position and layout</caption>
@@ -651,6 +653,21 @@
 	    <tr><td><code class="inset"></code></td><td></td></tr>
     </tbody>
     </table>
+
+    <h2>可视化模式 Visual Mode</h2>
+<table border="0">
+<tbody>
+	<tr><td><code>v</code></td><td>进入字符可视化模式（Characterwise visual mode)</td></tr>
+	<tr><td><code>V</code></td><td>进入行可视化模式（Linewise visual mode)</td></tr>
+	<tr><td><code>CTRL-V<br />CTRL-Q</code></td><td>进入的块可视化模式（Blockwise visual mode）</td></tr>
+	<tr><td><code>gv</code></td><td>重复前一次可视化模式的选择 highlighting on previous visual are</td></tr>
+	<tr><td><code>o</code></td><td>跳到高亮文本的另一端 (Other) exchange cursor position with start of highlighting</td></tr>
+	<tr><td><code>O</code></td><td>跳到高亮文本的另一端。同 "o" 命令相似，但是在列块模式
+下，光标移动到水平方向的另一个角。</td></tr>
+	<tr><td><code>{visual}!{command}&lt;CR&gt;</code></td><td>过滤所选区域 filter the highlighted lines through {command}</td></tr>
+	<tr><td><code></code></td><td></td></tr>
+	<tr><td><code></code></td><td></td></tr>
+</tbody></table>
 
 <table border="0">
 <tbody>
@@ -958,18 +975,9 @@ bracket expression.</p>
         command. This is useful for repeating an edit.</td>
     </tr>
     <tr>
-        <td valign="top"><code>\u or
-        \l&nbsp;</code></td>
-        <td valign="top">Changes the next character in the
-        replacement string to upper- or lowercase, respectively.</td>
-    </tr>
-    <tr>
-        <td valign="top"><code>\U&nbsp;or&nbsp;\L,&nbsp;<br>
+        <td valign="top">
         \e&nbsp;or&nbsp;\E&nbsp;</code></td>
-        <td valign="top"><code>\U</code>
-        and <code>\L</code> are
-        similar to <code>\u</code> or
-        <code>\l</code>, but all
+        but all
         following characters are converted to upper- or lowercase
         until the end of the replacement string or until <code>\E</code>, all characters of the
         replacement text affected by the <code>\L</code>.</td>
@@ -978,15 +986,9 @@ bracket expression.</p>
 
 <table border="1" cellpadding="3">
 <tbody><tr>
-<td style="background:#cccccc"><tt>Shortcut</tt></td>
-
-<td bgcolor="#cccccc"><b><tt>Equivalent
-      <br>
-Character
-      <br>
-Set</tt></b></td>
-
-<td bgcolor="#cccccc">What it matches</td>
+<td><tt>Shortcut</tt></td>
+<td><tt>Equivalent Character<br>Set</tt></b></td>
+<td>What it matches</td>
 </tr>
 
 <tr>
@@ -1037,46 +1039,28 @@ Set</tt></b></td>
 <td>"word separator" : i.e. space or punctuation, also
 not EOL or BOL</td>
 </tr><tr>
-      <td valign="top">\l<br>
-      </td>
-      <td valign="top">[a-z]<br>
-      </td>
-      <td valign="top">Lowercase
-letter. In the search expression it matches any lower case letter. In the
-replace expression it lowercases the character or character representer following
-it.<br>
+      <td>\l<br></td>
+      <td>[a-z]<br></td>
+      <td>In the search expression it matches any lower case letter. In the
+replace expression it lowercases the character or character representer following it.<br>
       </td>
     </tr>
     <tr>
-      <td valign="top">\L<br>
-      </td>
-      <td valign="top">[^a-z]<br>
-      </td>
-      <td valign="top">In the search expression \L matches any character except except a lowercase letter.
-In the replace expression it makes everything that follows it, to the end
-of the replace expression, lower case. However, a later \U in the replace
-expression ends its effect.<br>
-      </td>
+      <td>\L<br></td>
+      <td>[^a-z]<br></td>
+      <td>In the search expression \L matches any character except except a lowercase letter.
+In the replace expression it makes everything that follows it, to the end of the replace expression, lower case. However, a later \U in the replace expression ends its effect.<br> </td>
     </tr>
     <tr>
-      <td valign="top">\u<br>
-      </td>
-      <td valign="top">[A-Z]<br>
-      </td>
-      <td valign="top">Uppercase
-letter.  In the search expression it matches any lower case letter. In the
-replace expression it capitalizes the character following it.       </td>
+      <td>\u<br></td>
+      <td>[A-Z]<br></td>
+      <td>In the search expression it matches any lower case letter. In the
+replace expression it capitalizes the character following it.</td>
     </tr>
     <tr>
-      <td valign="top">\U<br>
-      </td>
-      <td valign="top">[^A-Z]<br>
-      </td>
-      <td valign="top">In the search expression \U matches any character except except an uppercase letter.
-In the replace expression it makes everything that follows it, to the end
-of the replace expression, upper case. However, a later \L in the replace
-expression ends its effect.
-      </td>
+      <td>\U<br></td>
+      <td>[^A-Z]<br></td>
+      <td>In the search expression \U matches any character except except an uppercase letter.  In the replace expression it makes everything that follows it, to the end of the replace expression, upper case. However, a later \L in the replace expression ends its effect.</td>
     </tr>
 
 </tbody>
@@ -1147,83 +1131,83 @@ expression ends its effect.
 <p>ex命令采用以下格式：</p>
 <p><code>:[address]command[options]</code></p>
 
-<h3>寻址符号 Address Symbols</h3>
+<h3>寻址符号 Address Symbols / Range</h3>
 <table border="0">
     <tbody>
     <tr>
-        <td valign="top"><code>1,$</code></td>
+        <td><code>x,y</code></td>
         <td>&nbsp;</td>
-        <td valign="top"> 所有行 All lines in the file</td>
+        <td>从<em>x</em>到<em>y</em>的所有行 separates two lines numbers</td>
     </tr>
     <tr>
-        <td valign="top"><code>x,y</code></td>
+        <td><code>0</code></td>
         <td>&nbsp;</td>
-        <td valign="top">从<em>x</em>到<em>y</em>的所有行</td>
+        <td>文件开头 Top of the file</td>
     </tr>
     <tr>
-        <td valign="top"><code>0</code></td>
+        <td><code>.</code></td>
         <td>&nbsp;</td>
-        <td valign="top">文件开头 Top of the file</td>
+        <td>当前行 Current line</td>
     </tr>
     <tr>
-        <td valign="top"><code>.</code></td>
+        <td><code>n</code></td>
         <td>&nbsp;</td>
-        <td valign="top">当前行 Current line</td>
+        <td>绝对<a href="http://yyq123.github.io/learn-vim/learn-vi-32-LineNumber.html" title="">行号</a>Absolute line number<em>n</em></td>
     </tr>
     <tr>
-        <td valign="top"><code>n</code></td>
+        <td><code>$</code></td>
         <td>&nbsp;</td>
-        <td valign="top">绝对<a href="http://yyq123.github.io/learn-vim/learn-vi-32-LineNumber.html" title="">行号</a>Absolute line number<em>n</em></td>
+        <td>最后一行 Last line</td>
     </tr>
     <tr>
-        <td valign="top"><code>$</code></td>
+        <td><code>%</code></td>
         <td>&nbsp;</td>
-        <td valign="top">最后一行 Last line</td>
+        <td>所有行 All lines; same as <code>1,$</code></td>
     </tr>
     <tr>
-        <td valign="top"><code>%</code></td>
+        <td><code>*</code></td>
         <td>&nbsp;</td>
-        <td valign="top">所有行 All lines; same as <code>1,$</code></td>
+        <td>选中的区域 Visual area; same as <code>'&lt;,'&gt;</code></td>
     </tr>
     <tr>
-        <td valign="top"><code>x-n</code></td>
+        <td><code>x-n</code></td>
         <td>&nbsp;</td>
-        <td valign="top"><em>n</em> lines before <em>x</em></td>
+        <td><em>n</em> lines before <em>x</em></td>
     </tr>
     <tr>
-        <td valign="top"><code>x+n</code></td>
+        <td><code>x+n</code></td>
         <td>&nbsp;</td>
-        <td valign="top"><em>n</em> lines after <em>x</em></td>
+        <td><em>n</em> lines after <em>x</em></td>
     </tr>
     <tr>
-        <td valign="top"><code>-[n]</code></td>
+        <td><code>-[n]</code></td>
         <td>&nbsp;</td>
-        <td valign="top">One or <em>n</em> lines previous</td>
+        <td>One or <em>n</em> lines previous</td>
     </tr>
     <tr>
-        <td valign="top"><code>+[n]</code></td>
+        <td><code>+[n]</code></td>
         <td>&nbsp;</td>
-        <td valign="top">One or <em>n</em> lines ahead</td>
+        <td>One or <em>n</em> lines ahead</td>
     </tr>
     <tr>
-        <td valign="top"><code>'x</code></td>
+        <td><code>'x</code></td>
         <td>&nbsp;</td>
-        <td valign="top"><a href="http://yyq123.github.io/learn-vim/learn-vi-53-Mark.html" title="">标记</a><em>x</em></td>
+        <td><a href="http://yyq123.github.io/learn-vim/learn-vi-53-Mark.html" title="">标记</a> position of mark<em>x</em></td>
     </tr>
     <tr>
-        <td valign="top"><code>''</code></td>
+        <td><code>''</code></td>
         <td>&nbsp;</td>
-        <td valign="top">上一<a href="http://yyq123.github.io/learn-vim/learn-vi-53-Mark.html" title="">标记</a> Previous mark</td>
+        <td>上一<a href="http://yyq123.github.io/learn-vim/learn-vi-53-Mark.html" title="">标记</a> Previous mark</td>
     </tr>
     <tr>
-        <td valign="top"><code>/pattern/</code></td>
+        <td><code>/pattern/</code></td>
         <td>&nbsp;</td>
-        <td valign="top">向前匹配模式<em>pattern</em></td>
+        <td>向前匹配模式 the next line where <em>pattern</em> matches</td>
     </tr>
     <tr>
-        <td valign="top"><code>?pattern?</code></td>
+        <td><code>?pattern?</code></td>
         <td>&nbsp;</td>
-        <td valign="top">向后匹配模式<em>pattern</em></td>
+        <td>向后匹配模式 the previous line where <em>pattern</em> matches</td>
     </tr>
 </tbody></table>
 
@@ -1241,16 +1225,29 @@ expression ends its effect.
         <td>A variant form of the command</td>
     </tr>
     <tr>
+        <td><code>"</code></td>
+        <td>&nbsp;</td>
+        <td>注释</td>
+    </tr>
+    <tr>
         <td><code>count</code></td>
         <td>&nbsp;</td>
         <td>Repeat the command <em>count</em> times</td>
     </tr>
     <tr>
-        <td><code>file</code></td>
+        <td><code>|</code></td>
         <td>&nbsp;</td>
-        <td>Filename: <code>%</code> is
-        current file, <code>#</code>
-        is previous file</td>
+        <td>分割两个命令 separates two command</td>
+    </tr>
+    <tr>
+        <td><code>%</code></td>
+        <td>&nbsp;</td>
+        <td>current filename</td>
+    </tr>
+    <tr>
+        <td><code>#</code></td>
+        <td>&nbsp;</td>
+        <td>alternate filename</td>
     </tr>
 </tbody></table>
 
