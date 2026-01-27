@@ -223,7 +223,83 @@
     <tr><td><code>T{x}</code></td><td>向后查找 Search backward to character after <em>x</em> in current line</td></tr>
     <tr><td><code>;</code></td><td>重复上次的行内查找 Repeat previous current line search</td></tr>
     <tr><td><code>,</code></td><td>反向重复上次的行内查找 Repeat previous current line search in opposite direction</td></tr>
-    <tr><td></td><td></td></tr>
+
+    <tr><td colspan="2"><em>搜索偏移量 search-offset</em></td></tr>
+    <tr><td><code>[num]</code></td><td>向下 [num] 行，位于首列 [num] lines downwards, in column 1</td></tr>
+    <tr><td><code>+[num]</code></td><td>向下 [num] 行，位于首列 [num] lines downwards, in column 1</td></tr>
+    <tr><td><code>-[num]</code></td><td>向上 [num] 行，位于首列 [num] lines upwards, in column 1</td></tr>
+    <tr><td><code>e[+num]</code></td><td>匹配结尾 (end) 右方 [num] 个字符处 [num] characters to the right of the end of the match</td></tr>
+    <tr><td><code>e[-num]</code></td><td>匹配结尾 (end) 左方 [num] 个字符处 [num] characters to the left of the end of the match</td></tr>
+    <tr><td><code>s[+num]</code></td><td>匹配启始 (start) 右方 [num] 个字符处 [num] characters to the right of the start of the match</td></tr>
+    <tr><td><code>s[-num]</code></td><td>匹配启始 (start) 左方 [num] 个字符处 [num] characters to the left of the start of the match</td></tr>
+    <tr><td><code>b[+num]</code></td><td>匹配启始 (start) 右方 [num] 个字符处 [num] characters to the right of the start (begin) of the match</td></tr>
+    <tr><td><code>b[-num]</code></td><td>匹配启始 (start) 左方 [num] 个字符处[num] characters to the left of the start (begin) of the match</td></tr>
+    <tr><td><code>;{search command}</code></td><td>接着执行 {search‑command} 查找命令execute {search command} next</td></tr>
+
+    <tr><td colspan="2"><em>搜索偏移量示例 search-offset examples</em></td></tr>
+    <tr><td><code>/test/+1</code></td><td>one line below "test", in column 1</td></tr>
+    <tr><td><code>/test/e</code></td><td>on the last t of "test"</td></tr>
+    <tr><td><code>/test/s+2</code></td><td>on the 's' of "test"</td></tr>
+
+    <tr><td colspan="2"><em>搜索模式 serach pattern</em></td></tr>
+    <tr><td colspan="2">普通匹配原 ordinary atom</td></tr>
+    <tr><td><code>.</code></td><td>匹配任何字符 any single character</td></tr>
+    <tr><td><code>^</code></td><td>匹配行首 start of line</td></tr>
+    <tr><td><code>$</code></td><td>匹配行尾 end of line</td></tr>
+    <tr><td><code>\&lt;</code></td><td>单词的起始 start of word</td></tr>
+    <tr><td><code>\&gt;</code></td><td>单词的结尾 end of word</td></tr>
+    <tr><td><code>\(</code></td><td>group patterns into an atom</td></tr>
+    <tr><td><code>\)</code></td><td></td></tr>
+    <tr><td><code>\+</code></td><td>匹配前面的匹配原1 或更多 match 1..∞ of preceding atoms</td></tr>
+    <tr><td><code>\=</code></td><td>匹配前面的匹配原0 或 1 match 0..1 preceding atoms</td></tr>
+    <tr><td colspan="2">字符类匹配原 character classes</td></tr>
+    <tr><td><code>\i</code></td><td>标识符字符 (见 'isident' 选项) identifier</td></tr>
+    <tr><td><code>\I</code></td><td>同 "\i"，但不包括数字字符 identifier</td></tr>
+    <tr><td><code>\k</code></td><td>关键字字符 (见 'iskeyword' 选项) keyword</td></tr>
+    <tr><td><code>\K</code></td><td>同 "\k"，但不包括数字字符 keyword</td></tr>
+    <tr><td><code>\f</code></td><td>file name</td></tr>
+    <tr><td><code>\F</code></td><td>file name</td></tr>
+    <tr><td><code>\p</code></td><td>printable character</td></tr>
+    <tr><td><code>\P</code></td><td>printable character</td></tr>
+    <tr><td><code>\s</code></td><td>white space</td></tr>
+    <tr><td><code>\S</code></td><td> non-white space</td></tr>
+    <tr><td><code>\d</code></td><td></td></tr>
+    <tr><td><code>\D</code></td><td></td></tr>
+    <tr><td><code>\x</code></td><td></td></tr>
+    <tr><td><code>\X</code></td><td></td></tr>
+    <tr><td><code>\o</code></td><td></td></tr>
+    <tr><td><code>\O</code></td><td></td></tr>
+    <tr><td><code>\w</code></td><td></td></tr>
+    <tr><td><code>\W</code></td><td></td></tr>
+    <tr><td><code>\h</code></td><td></td></tr>
+    <tr><td><code>\H</code></td><td></td></tr>
+    <tr><td><code>\a</code></td><td></td></tr>
+    <tr><td><code>\A</code></td><td></td></tr>
+    <tr><td><code>\l</code></td><td></td></tr>
+    <tr><td><code>\L</code></td><td></td></tr>
+    <tr><td><code>\u</code></td><td></td></tr>
+    <tr><td><code>\U</code></td><td></td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code>\e</code></td><td>&lt;esc&gt;</td></tr>
+    <tr><td><code>\t</code></td><td> &lt;tab&gt;</td></tr>
+    <tr><td><code>\r</code></td><td>&lt;CR&gt;</td></tr>
+    <tr><td><code>\b</code></td><td>&lt;BS&gt;</td></tr>
+    <tr><td><code>\n</code></td><td></td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code>\c</code></td><td>忽略大小写 ignore case</td></tr>
+    <tr><td><code>\C</code></td><td>匹配大小写 match case</td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code></code></td><td></td></tr>
+    <tr><td><code></code></td><td></td></tr>
 
     <tr><td colspan="2"><em>标记间移动 Marking position</em></td></tr>
     <tr><td><code>m{x}</code></td><td>定义标记 Mark current position as <em>x</em></td></tr>
@@ -957,10 +1033,8 @@ bracket expression.</p>
         in hold buffers) are counted from the left on the line.</td>
     </tr>
     <tr>
-        <td valign="top"><code>\&nbsp;</code></td>
-        <td valign="top">Treats the following special characters
-        as an ordinary character. To specify a real backslash,
-        type two in a row (<code>\\</code>).</td>
+        <td><code>\</code></td>
+        <td>Treats the following special characters as an ordinary character. To specify a real backslash, type two in a row (<code>\\</code>).</td>
     </tr>
     <tr>
         <td valign="top"><code>&amp;&nbsp;</code></td>
@@ -1131,6 +1205,9 @@ replace expression it capitalizes the character following it.</td>
 <p>ex命令采用以下格式：</p>
 <p><code>:[address]command[options]</code></p>
 
+<p>执行常规命令 Execute Normal mode commands：</p>
+<p><code>:norm[al][!] {commands}</code></p>
+
 <h3>寻址符号 Address Symbols / Range</h3>
 <table border="0">
     <tbody>
@@ -1211,7 +1288,7 @@ replace expression it capitalizes the character following it.</td>
     </tr>
 </tbody></table>
 
-<h2><em>Command Option Symbols</em></h2>
+<h2><em>Special Ex characters</em></h2>
 
 <table border="0">
     <tbody><tr>
@@ -1242,12 +1319,42 @@ replace expression it capitalizes the character following it.</td>
     <tr>
         <td><code>%</code></td>
         <td>&nbsp;</td>
-        <td>current filename</td>
+        <td>当前文件名 current filename</td>
     </tr>
     <tr>
         <td><code>#</code></td>
         <td>&nbsp;</td>
-        <td>alternate filename</td>
+        <td>轮换文件名 alternate filename</td>
+    </tr>
+    <tr>
+        <td><code>&lt;cword&gt;</code></td>
+        <td>&nbsp;</td>
+        <td>光标下的单词 word under the cursor (only where filename is expected)</td>
+    </tr>
+    <tr>
+        <td><code>&lt;cWORD&gt;</code></td>
+        <td>&nbsp;</td>
+        <td>光标下的字串 WORD under the cursor (only where filename is expected)</td>
+    </tr>
+    <tr>
+        <td><code>&lt;cfile&gt;</code></td>
+        <td>&nbsp;</td>
+        <td>光标下的文件名 file name under the cursor (only where filename is expected)</td>
+    </tr>
+    <tr>
+        <td><code>&lt;afile&gt;</code></td>
+        <td>&nbsp;</td>
+        <td>文件名，用于自动命令 file name for autocommand (only where filename is expected)</td>
+    </tr>
+    <tr>
+        <td><code>&lt;sfile&gt;</code></td>
+        <td>&nbsp;</td>
+        <td>":source" 的文件里该文件的文件名</td>
+    </tr>
+    <tr>
+        <td><code></code></td>
+        <td>&nbsp;</td>
+        <td></td>
     </tr>
 </tbody></table>
 

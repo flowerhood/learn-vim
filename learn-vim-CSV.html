@@ -8,16 +8,12 @@
 	<title>VIM学习笔记 编辑CSV数据文件</title>
 </head>
 <body>
-	<p><a href="https://fileinfo.com/extension/csv" title=".CSV File Extension">CSV</a>是一种以逗号分隔值的文本文件，常用于电子表格程序，如 Microsoft Excel 或 OpenOffice Calc。CSV 文件中的每一行代表数据库中的一行，而每行数据库行由一个或多个以逗号分隔的字段组成。</p>
+	<p><a href="https://fileinfo.com/extension/csv" title=".CSV File Extension">CSV</a>是一种以逗号分隔值的文本文件，常用于电子表格程序，如 Microsoft Excel 或 OpenOffice Calc。CSV 文件中的每一行代表数据库中的一行，而每行数据又由一个或多个以逗号分隔的字段组成。</p>
+	<p>针对典型的CSV数据处理场景，以下将结合Vim内置命令、操作系统命令和<a style="font-weight: bold;" href="http://github.com/chrisbra/csv.vim" title="csv.vim">csv.vim</a>插件进行操作演示。</p>
+	<p>您也可以使用<a href="https://kutt.it/vim-rb-csv" title="Rainbow-CSV">Rainbow CSV</a>等其他插件执行类似操作。</p>
 
-	<h2 class="article"><a id=""></a></h2>
-	<p></p>
-	<a href="#" title=""></a>
-
-	<p></p>
-	<p style="text-indent:2em"><code class="inset"></code></p>
-
-
+	<h2 class="article"><a id="install">安装配置</a></h2>
+	<p>推荐使用<a href="https://yyq123.github.io/learn-vim/learn-vim-plugin-minpac.html" title="插件管理器(minpac)">minpac</a>等插件管理器，来安装GitHub上的<a href="http://github.com/chrisbra/csv.vim" title="csv.vim">csv.vim</a>插件。（请参阅官方<a href=https://github.com/chrisbra/csv.vim?tab=readme-ov-file#installation" title="installation">安装文档</a>）</p>
 
 	<h2 class="article"><a id="frozen-headers">固定标题行</a></h2>
 	<p>通过以下步骤，将文件拆分在两个水平窗口中显示并绑定滚动，可以保持标题行始终置顶显示：</p>
@@ -31,6 +27,10 @@
 	</ol>
 	<p>此时在文件中左右移动，标题行与内容将自动同步对齐：</p>
 	<p><a href="http://yyq123.github.io/learn-vim/images/CSV-Frozen-Headers.png" title="CSV-Frozen-Headers.png"><img src="http://yyq123.github.io/learn-vim/images/CSV-Frozen-Headers.png" alt="CSV-Frozen-Headers.png" /></a></p>
+	<p>使用<a href="https://github.com/chrisbra/csv.vim" title="csv.vim">csv.vim</a>插件，执行以下命令可以固定标题行：</p>
+	<p style="text-indent:2em"><code class="inset">:Header</code></p>
+	<p>执行以下命令可以取消固定标题行：</p>
+	<p style="text-indent:2em"><code class="inset">:Header!</code></p>
 
 	<h2 class="article"><a id="column">按列对齐</a></h2>
 	<p>假设有以下逗号分割的CSV文件，如下图红线所示，数据列没有对齐：</p>
@@ -45,6 +45,8 @@
 	<h2 class="article"><a id="sort"></a>按列排序</h2>
 	<p>调用外部<a href="https://www.gnu.org/software/coreutils/manual/html_node/sort-invocation.html" title="sort">sort</a>命令，可以按照第2列进行排序：</p>
 	<p style="text-indent:2em"><code class="inset">:%!sort -t ',' -k2</code></p>
+	<p>使用<a href="https://github.com/chrisbra/csv.vim" title="csv.vim">csv.vim</a>插件，执行以下命令可以按照第2列进行排序：</p>
+	<p style="text-indent:2em"><code class="inset">:Sort 2</code></p>
 
 	<h2 class="article"><a id="merge-columns"></a>按列合并</h2>
 	<p>假设names.txt文件，包含姓名信息：</p>
@@ -53,8 +55,8 @@ Cameron
 Tim</pre>
 	<p>假设numbers.txt文件，包含电话信息：</p>
 	<pre class="block">555-1234
- 555-9876
- 555-2468</pre>
+555-9876
+555-2468</pre>
 	<p>使用以下Linux命令，可以将多个文件按列合并：</p>
 	<p style="text-indent:2em"><code class="inset">$ paste names.txt numbers.txt</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/CSV-Column-Merge-paste.png" title="CSV-Column-Merge-paste"><img src="https://yyq123.github.io/learn-vim/images/CSV-Column-Merge-paste.png" alt="CSV-Column-Merge-paste" /></a></p>
@@ -66,7 +68,7 @@ Tim</pre>
 	<p style="text-indent:2em"><code class="inset">$ cat *.csv &gt; merged-file.csv</code></p>
 
 	<h2 class="article"><a id="split-files">拆分文件</a></h2>
-	<p>调用外部<a href="https://www.gnu.org/software/coreutils/manual/html_node/split-invocation.html">split</a>命令，可以按行数拆分成多个文件：</p>
+	<p>调用外部<a href="https://www.gnu.org/software/coreutils/manual/html_node/split-invocation.html">split</a>命令，可以按照制定行数拆分成多个文件：</p>
 	<p style="text-indent:2em"><code class="inset">$ split -l200 passengers.csv --verbose</code></p>
 	<pre class="block">creating file ‘xaa’
 creating file ‘xab’
@@ -86,49 +88,13 @@ creating file ‘xae’</pre>
 	<p>使用以下命令，可以删除所有空行：</p>
 	<p style="text-indent:2em"><code class="inset">:%g/^ *$/d</code></p>
 
-
 	<h2 class="article"><a id="info">数据统计</a></h2>
 	<p>使用以下命令，可以查找并计数行内的逗号数量</p>
 	<p style="text-indent:2em"><code class="inset">:s/,/,/gn</code></p>
+	<p>使用<a href="https://github.com/chrisbra/csv.vim" title="csv.vim">csv.vim</a>插件，执行以下命令可以显示当前行的列数：</p>
+	<p style="text-indent:2em"><code class="inset">:NrColumns!</code></p>
 
-
-
-
-	<p style="color:gray; font-size:0.6em"><a href="http://yyq123.github.io/learn-vim/images/.png" title=""><img src="http://yyq123.github.io/learn-vim/images/.png" alt="" /></a></br>Source: medium.com/free-code-camp</p>
-
-	<pre class="block">
-	</pre>
-
-	<ul>
-		<li><p class="item"><br /></p></li>
-		<li><p class="item"><a href="#" title=""></a><br /></p></li>
-	</ul>
-
-	<span style="font-weight:bold; color:#4169E1; margin-left:0.2em">&#65311;</span>
-
-	<table summary="Commands" border="1" frame="border" rules="all" cellspacing="0" cellpadding="3">
-		<caption style="margin:0.5em; font-weight:bold">选项列表</caption>
-		<thead>
-		<tr><th style="white-space: nowrap">选项</th><th>描述</th><th>帮助信息</th></tr>
-		</thead>
-		<tbody>
-		<tr><td><code class="inset">!</code></td><td>如果包含，表示。例如，。</td><td style="white-space: nowrap"><code class="inset">:help viminfo-!</code></td></tr>
-		</tbody>
-	</table>
-
-	<table summary="Commands" border="2" frame="hsides" rules="all" cellspacing="0" cellpadding="3">
-		<caption>命令小结</caption>
-		<tbody>
-		<tr><td><code class="inset">:</code></td><td rowspan="2"></td></tr>
-		<tr><td><code class="inset">:</code></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		<tr><td><code class="inset">:</code></td><td></td></tr>
-		</tbody>
-	</table>
-&ldquo;&rdquo;
-
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 250723&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="" href="http://yyq123.github.io/learn-vim/.html">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="" href="http://yyq123.github.io/learn-vim/.html">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 250723&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="插件管理器(minpac)" href="https://kutt.it/vim-minpa">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="Rainbow CSV数据编辑" href="https://kutt.it/vim-rb-csv">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
