@@ -26,7 +26,7 @@
 		<li>使用<code class="inset">:set scrollbind</code>命令，绑定滚动；</li>
 	</ol>
 	<p>此时在文件中左右移动，标题行与内容将自动同步对齐：</p>
-	<p><a href="http://yyq123.github.io/learn-vim/images/CSV-Frozen-Headers.png" title="CSV-Frozen-Headers.png"><img src="http://yyq123.github.io/learn-vim/images/CSV-Frozen-Headers.png" alt="CSV-Frozen-Headers.png" /></a></p>
+	<p><a href="https://yyq123.github.io/learn-vim/images/CSV-Frozen-Headers.png" title="CSV-Frozen-Headers.png"><img src="https://yyq123.github.io/learn-vim/images/CSV-Frozen-Headers.png" alt="CSV-Frozen-Headers.png" /></a></p>
 	<p>使用<a href="https://github.com/chrisbra/csv.vim" title="csv.vim">csv.vim</a>插件，执行以下命令可以固定标题行：</p>
 	<p style="text-indent:2em"><code class="inset">:Header</code></p>
 	<p>执行以下命令可以取消固定标题行：</p>
@@ -35,7 +35,7 @@
 	<h2 class="article"><a id="column">按列对齐</a></h2>
 	<p>假设有以下逗号分割的CSV文件，如下图红线所示，数据列没有对齐：</p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-Before.png" title="CSV-Column-Align-Before"><img src="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-Before.png" alt="CSV-Column-Align-Before" width="550" height="84" /></a></p>
-	<p>通过<a href="http://yyq123.github.io/learn-vim/learn-vim-Shell-Filter.html" title="过滤器(Filter)">过滤器</a>使用<a href="http://man.he.net/?topic=column&section=all" title="column">column</a>外部命令来按列对齐：</p>
+	<p>在Linux中，使用<a href="https://kutt.it/vim-filter" title="filter">过滤器(Filter)</a>执行外部<a href="http://man.he.net/?topic=column&section=all" title="column">column</a>命令来按列对齐：</p>
 	<p style="text-indent:2em"><code class="inset">:%!column -t</code></p>
 	<p><a href="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-After.png" title="CSV-Column-Align-After"><img src="https://yyq123.github.io/learn-vim/images/CSV-Column-Align-After.png" alt="CSV-Column-Align-After" width="550" height="77" /></a></p>
 	<p>使用<a href="https://github.com/chrisbra/csv.vim" title="csv.vim">csv.vim</a>插件，执行以下命令可以按列对齐：</p>
@@ -75,7 +75,7 @@ creating file ‘xab’
 creating file ‘xac’
 creating file ‘xad’
 creating file ‘xae’</pre>
-	<p>调用外部 <a href="https://www.gnu.org/software/coreutils/manual/html_node/wc-invocation.html">wc</a>.命令，可以统计文件包含的行数：</p>
+	<p>调用外部 <a href="https://www.gnu.org/software/coreutils/manual/html_node/wc-invocation.html">wc</a>.命令，可以统计文件包含的行数，以验证拆分的结果：</p>
 	<p style="text-indent:2em"><code class="inset">$ wc -l xa*</code></p>
 	<pre class="block">200 xaa
 200 xab
@@ -85,8 +85,21 @@ creating file ‘xae’</pre>
 892 total</pre>
 
 	<h2 class="article"><a id="del-empty-lines">删除空行</a></h2>
-	<p>使用以下命令，可以删除所有空行：</p>
+	<p>使用以下<a href="https://kutt.it/vim-Global" title="Global Command">全局命令</a>，可以删除所有空行：</p>
 	<p style="text-indent:2em"><code class="inset">:%g/^ *$/d</code></p>
+	<p>在Linux中，使用以下任一命令都可以删除所有空行：</p>
+	<p style="text-indent:2em"><code class="inset">$ sed '/^$/d' old.csv &gt; new.csv</code></p>
+	<p style="text-indent:2em"><code class="inset">$ grep . old.csv &gt; new.csv</code></p>
+	<p style="text-indent:2em"><code class="inset">$ awk NF old.csv &gt; new.csv</code></p>
+	<p style="text-indent:2em"><code class="inset">$ cat old.csv | tr -s '\n' new.csv</code></p>
+
+	<h2 class="article"><a id="del-duplicate-lines">删除重复行</a></h2>
+	<p>使用<a href="https://kutt.it/vim-sort" title="sort">sort</a>命令，将删除重复行并对文本进行排序（请注意，这将改变文本行的原有顺序）：</p>
+	<p style="text-indent:2em"><code class="inset">:sort u</code></p>
+	<p>使用以下<a href="https://kutt.it/vim-Global" title="Global Command">全局命令</a>，可以删除所有重复行：</p>
+	<p style="text-indent:2em"><code class="inset">:g/^\(.*\)$\n\1$/d</code></p>
+	<p>在Linux中，使用<a href="https://kutt.it/vim-filter" title="filter">过滤器(Filter)</a>执行外部<a href="https://linux.die.net/man/1/uniq" title="uniq">uniq</a>命令可以删除所有重复行：</p>
+	<p style="text-indent:2em"><code class="inset">:%!uniq</code></p>
 
 	<h2 class="article"><a id="info">数据统计</a></h2>
 	<p>使用以下命令，可以查找并计数行内的逗号数量</p>
@@ -94,7 +107,7 @@ creating file ‘xae’</pre>
 	<p>使用<a href="https://github.com/chrisbra/csv.vim" title="csv.vim">csv.vim</a>插件，执行以下命令可以显示当前行的列数：</p>
 	<p style="text-indent:2em"><code class="inset">:NrColumns!</code></p>
 
-	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 250723&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="插件管理器(minpac)" href="https://kutt.it/vim-minpa">上一篇</a>&nbsp;|<a title="笔记列表" href="http://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="Rainbow CSV数据编辑" href="https://kutt.it/vim-rb-csv">下一篇</a>&gt;</span></p>
+	<p style="border-top:1px solid lightgray"><span style="float:right">Ver: 260128&nbsp;|&nbsp;<a href="mailto:yyq123@gmail.com">YYQ</a></span><span>&lt;<a title="插件管理器(minpac)" href="https://kutt.it/vim-minpac">上一篇</a>&nbsp;|<a title="笔记列表" href="https://yyq123.github.com/learn-vim/learn-vi-00-00-TOC.html">&nbsp;目录&nbsp;</a>|&nbsp;<a title="Rainbow CSV数据编辑" href="https://kutt.it/vim-rb-csv">下一篇</a>&gt;</span></p>
 
 </body>
 </html>
